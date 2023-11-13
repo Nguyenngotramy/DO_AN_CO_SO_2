@@ -446,7 +446,7 @@ body{
  #contact {
     display: flex;
     justify-content: space-between;
-    padding: 0 12px;
+    padding: 100px 12px;
     border-top:1px solid #060606;
  }
 
