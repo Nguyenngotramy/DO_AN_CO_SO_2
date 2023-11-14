@@ -6,9 +6,9 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="/https://www.flaticon.com/uicons/interface-icons/css/uicons-rounded-regular.css" rel="stylesheet">
+    <!-- <link href="/https://www.flaticon.com/uicons/interface-icons/css/uicons-rounded-regular.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-bold.css" rel="stylesheet">
-  <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet">
+  <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/styleshop.css">
 </head>
 <body>
@@ -41,7 +41,7 @@
            <span id="header-text-logo">GODTHISM</span>
            <div id="menu-logo">
             <a href="#" id="first"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></a>
-            <a href="#"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+            <a id="choose-cart"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
             <a href="#"><i class="fa-regular fa-heart" style="color: #000000;"></i></a>
             <a href="#"><i class="fa-sharp fa-solid fa-rotate" style="color: #000000;"></i></a>
             <a href="#"><i class="fa-regular fa-user" style="color: #000000;"></i></a>
@@ -388,6 +388,48 @@
      </div>
      </div>
 
+
+     <div id="cart-div-control" class="hidden">
+      <div id="icon-controler">
+          <a id="choose-exit"><i class="fa-solid fa-xmark" style="color: #000000;"></i></a>
+          <div id="icon-controler-main">
+              <a href="#"id="choose1"><i class="fa-solid fa-bag-shopping"
+                      style="color: #000000;"></i></a>
+              <a href="#"><i class="fa-regular fa-heart"
+                      style="color: #000000;"></i></a>
+              <a href="#"><i class="fa-sharp fa-solid fa-rotate"
+                      style="color: #000000;"></i></a>
+          </div>
+      </div>
+      <div id="limit">
+          <div id="text-limit">There products are limit, check out within</div>
+          <div class="countdown">
+              <div class="digit" id="minutes">5</div><label>:</label>
+              <div class="digit" id="seconds">00</div>
+          </div>
+      </div>
+
+      <div id="product-in-icon-cart">
+          <div id="divi-pic">
+            <img src="img/37000208_OR_B-450x450.webp" />
+            <div id="name-p-in-cart">
+                <p>Product name</p>
+                <p>$95.00 x <b>2</b></p>
+            </div>
+           </div>       
+            <a href="#"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
+        
+        </div>
+       
+        <div id="sub-total-in-div-cart">
+         <p><b>Sub total</b></p>
+          <p><b>$290.00</b></p>
+      </div>
+
+      <div id="Button-Viewcart-checkout">
+          <a href="#"  id="Viewcart" ><li>View cart</li></a>
+          <a href="#"  id="Viewcart" ><li>Check out</li></a>
+      </div>
    </div>
    <script>
       const element = document.getElementById("circal");
@@ -430,10 +472,46 @@
           document1.classList.toggle('hidden');
       }
     </script>
-      
+      <!-- icon-cart -->
+      <script>
+         const element4 = document.getElementById("choose-cart");
+         element4.addEventListener("click", myFunction);
+   
+         function myFunction() {
+            const document1 = document.getElementById("cart-div-control");
+             document1.classList.toggle('visible');
+         }
+         const element5 = document.getElementById("choose-exit");
+         element5.addEventListener("click", myFunction);
+   
+         function myFunction() {
+            const document1 = document.getElementById("cart-div-control");
+             document1.classList.toggle('hidden');
+         }
+         </script>
+ <script>
+   let totalSeconds = 5 * 60;
+   let minutesDisplay = document.getElementById('minutes');
+   let secondsDisplay = document.getElementById('seconds');
 
+   function updateDisplay() {
+       let minutes = Math.floor(totalSeconds / 60);
+       let seconds = totalSeconds % 60;
 
+       minutesDisplay.textContent = minutes;
+       secondsDisplay.textContent = seconds;
+   }
 
-  </script>
+   function countdownTimer() {
+       if (totalSeconds <= 0) {
+           clearInterval(countdown);
+           return;
+       }
+       totalSeconds--;
+       updateDisplay();
+   }
+
+   let countdown = setInterval(countdownTimer, 1000);
+</script>
 </body>
 </html>
