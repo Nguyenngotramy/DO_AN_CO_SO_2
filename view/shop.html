@@ -65,36 +65,49 @@
 
             <div id="FilterBy">
                <div id="By">
-                   <label id="clickon">Filter By</label>
-                   <a href="#" id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
+                   <label >Filter By</label>
+                   <a id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
                </div>
+               <div id="disapp">
                <div id="By">
-                  <span>Fattern #1</span>
+                  <span >Fattern #1</span>
                   <span id="num">2</span>
                </div>
                <div id="By">
                   <span>Fattern #2</span>
                   <span id="num">2</span>
                </div>
+               </div>
             </div>
 
             <div id="FilterByPrice">
-               <div id="By">
+               <div id="By" class="By">
                   <label>Filter By Price</label>
-                  <a href="#" id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
+                  <a id="circal1"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
               </div>
+              <div id="disapp1">
                 <input type="range" min="90" max="240" value="75"/>
               <div id="By">
                <a href="#" id="filter"><li>Filter</li></a>
                <span id="price">PRICE: $90 — $240</span>
               </div>
+              </div>
             </div>
 
             <div id="FilterByColor">
-               <div id="By">
+               <div id="By" >
                   <label>Filter by Color</label>
-                  <a href="#" id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
+                  <a href="#" id="circal2"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
               </div>
+
+              <div id="disapp2">
+              <div id="By">
+               <div id="Filter_choose">
+               <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
+               </div>
+               <span id="num">2</span>
+              </div>
+              
 
               <div id="By">
                <div id="Filter_choose">
@@ -116,21 +129,15 @@
                </div>
                <span id="num">2</span>
               </div>
-
-              <div id="By">
-               <div id="Filter_choose">
-               <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
-               </div>
-               <span id="num">2</span>
               </div>
             </div>
 
             <div id="FilterBySize">
                <div id="By">
                   <label>Filter By Size</label>
-                  <a href="#" id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
+                  <a id="circal3"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
               </div>
-
+              <div id="disapp3">
               <div id="By">
                  <span>10K</span>
                <span id="num">2</span>
@@ -145,6 +152,7 @@
                <span>24K</span>
              <span id="num">2</span>
             </div>
+              </div>
             </div>
 
          </div>
@@ -381,5 +389,51 @@
      </div>
 
    </div>
+   <script>
+      const element = document.getElementById("circal");
+      element.addEventListener("click", myFunction);
+
+      function myFunction() {
+          const document1 = document.getElementById("disapp");
+          document1.classList.toggle('visible');
+          document1.classList.toggle('hidden');
+      }
+      </script>
+   <script>
+       const element1 = document.getElementById("circal1");
+      element1.addEventListener("click", myFunction);
+
+      function myFunction() {
+          const document1 = document.getElementById("disapp1");
+          document1.classList.toggle('visible');
+          document1.classList.toggle('hidden');
+      }
+   </script>
+     
+   <script>  
+   const element2 = document.getElementById("circal2");
+      element2.addEventListener("click", myFunction);
+
+      function myFunction() {
+          const document1 = document.getElementById("disapp2");
+          document1.classList.toggle('visible');
+          document1.classList.toggle('hidden');
+      }
+</script>
+    <script>
+      const element3 = document.getElementById("circal3");
+      element3.addEventListener("click", myFunction);
+
+      function myFunction() {
+          const document1 = document.getElementById("disapp3");
+          document1.classList.toggle('visible');
+          document1.classList.toggle('hidden');
+      }
+    </script>
+      
+
+
+
+  </script>
 </body>
 </html>

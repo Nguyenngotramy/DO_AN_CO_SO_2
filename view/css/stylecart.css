@@ -145,8 +145,9 @@
     color: #777777;
 }
 #maincart #maincart-right #contaner-cart-total #shipping #change-address #add-r{
-  display: grid;
+  
  padding: 5px 0;
+ 
 }
 #maincart #maincart-right #contaner-cart-total #shipping #change-address #city,#district,#ward{
     padding: 10px 0px;
