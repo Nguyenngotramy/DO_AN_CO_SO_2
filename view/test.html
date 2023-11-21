@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <title>Document</title>
+    </head>
+    <style>
+        body{
+        margin: 0;
+         padding: 0;
+    font-family: Jost, sans-serif;
+        }
+         #log-in-cart{
+            width: 600px;
+            height: 100vh;
+            /* background: #6e5858; */
+            position: absolute;
+            left: 0;
+            flex-wrap: none;
+            border-left:1px solid #d7d7d7 ;
+            max-height:100vh; 
+            overflow-y: auto;  
+            
+            
+        }
+        #right-icon-login{
+             /* display: grid;  */
+            float: left;
+            font-size: 24px;
+            padding: 10px;
+            background: #d7d7d7;
+            text-align: center;
+            width: 10%;
+            color: #000000;
+        }
+        #left-form-login{
+            display: grid;
+        float: right;
+        font-size: 24px;
+        width: 92%;
+        background: #fafafa;
+        height: 100vh;
+        color: #000000;
+        }
+        #log-in-cart #right-icon-login  #choose-exit-login{
+           
+            text-decoration: none;
+            list-style: none;
+          
+        }
+        #log-in-cart #right-icon-login  #choose-exit-login i{
+             padding: 6px 12px;
+        }
+        #log-in-cart #right-icon-login #text-logo{
+            padding: 6px 12px;
+        color: #000000;
+        transform: rotate(90deg);
+ /* transform-origin: top left; */
+        margin-top: 250px;
+        display: flex;
+           
+       }
+       #left-form-login #title-login{
+        
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        border-bottom: 1px solid #000000;
+        margin: 0 30px;
+        height: 25px;
+
+       }
+       #left-form-login  #title-login div:hover{
+        cursor: pointer;
+        color: #d7d7d7;
+       }
+       #left-form-login  #form-login{
+        padding: 20px;
+        margin-bottom: 480px;
+       }
+       #left-form-login  #form-login1{
+        padding: 20px;
+        margin-bottom: 480px;
+       }
+       #left-form-login  #form-login #Form-login-input{
+        display: grid;
+        font-size: 20px;
+        margin: 20px 10px;
+       }
+       #left-form-login  #form-login1 #Form-login-input{
+        display: grid;
+        font-size: 20px;
+        margin: 20px 10px;
+       }
+       #left-form-login  #form-login #Form-login-input,#checkbox-Remember label{
+        font-size: 18px;
+        color: #bbbbbb;
+        margin: 0px 10px;
+       }
+       #left-form-login  #form-login1 #Form-login-input label{
+        font-size: 18px;
+        color: #bbbbbb;
+        margin: 0px 10px;
+       }
+       #left-form-login  #form-login #Form-login-input input{
+       padding: 20px;
+       margin: 20px 15px;
+       }
+       #left-form-login  #form-login1 #Form-login-input input{
+       padding: 20px;
+       margin: 20px 15px;
+       }
+       #left-form-login  #form-login #checkbox-Remember{
+        margin: 0px 20px;
+        
+       }
+    
+       #left-form-login  #form-login #checkbox-Remember #remember{
+        position: relative;
+            padding-left: 30px; /* Khoảng cách giữa checkbox và văn bản */
+            cursor: pointer;
+           
+       }
+       #left-form-login  #form-login #submit-login-main{
+        display: flex;
+       align-items: center;
+       justify-content: center;
+       }
+       #left-form-login  #form-login #submit-login-main{
+        display: flex;
+       align-items: center;
+       justify-content: center;
+       }
+       #left-form-login  #form-login #submit-login-main #submit-login{
+        padding: 20px;
+        background-color: #000000;
+        color: #fafafa;
+        width: 90%;
+       margin: 10px 10px;
+       font-size: 18px;
+       }
+       #left-form-login  #form-login1 #submit-login-main #submit-login{
+        padding: 20px;
+        background-color: #000000;
+        color: #fafafa;
+        width: 90%;
+       margin: 10px 10px;
+       font-size: 18px;
+       }
+       #left-form-login  #form-login #Lostpass{
+        text-decoration: none;
+        font-size: 18px;
+        color: #000000;
+        padding: 10px;
+       }
+       #left-form-login  #form-login1 #regis{
+        font-size: 18px;
+        color: #bbbbbb;
+        margin: 0px 10px;
+        padding: 10px;
+       }
+       .visible {
+    display: block ;
+}
+
+.hidden {
+    display: none ;
+}
+
+       
+    </style>
+    <body>
+        <div id="log-in-cart">
+            <div style="display: flex;">
+                <div id="right-icon-login">
+                    <a id="choose-exit-login"><i class="fa-solid fa-xmark"
+                            style="color: #000000;"></i></a>
+                    <span id="text-logo">GODTHISM</span>
+                </div>
+
+                <div id="left-form-login">
+                    <div id="title-login">
+                        <div id="tt-Signin">Sign in</div>
+                        <div id="tt-Register">Register</div>
+                    </div>
+                    <div id="form-login">
+                        <form action method="post">
+                            <div id="Form-login-input">
+                                <label>Email *</label>
+                                <input id="user-email" type="email">
+                            </div>
+                            <div id="Form-login-input">
+                                <label>Password *</label>
+                                <input id="password" type="password">
+                            </div>
+                            <div id="checkbox-Remember">
+                                <input type="checkbox" name id="remember">
+                                <label> Remember me</label>
+                            </div>
+                            <div id="submit-login-main">
+                                <input id="submit-login" type="submit"
+                                    value="Login">
+                            </div>
+                        </form>
+                        <a href id="Lostpass">Lost your password ?</a>
+                    </div>
+
+                    <div id="form-login1" class="hidden">
+                        <form action method="post">
+                            <div id="Form-login-input">
+                                <label> Username </label>
+                                <input id="user-email" type="email">
+                            </div>
+                            <div id="Form-login-input">
+                                <label> Email </label>
+                                <input id="user-email" type="email">
+                            </div>
+                            <center> <label id="regis">A password will be sent
+                                    to your
+                                    email
+                                    address.</label><br>
+                                <label id="regis">Your personal data will be
+                                    used to
+                                    support
+                                    your
+                                    experience throughout this website,
+                                    to manage access to your account, and for
+                                    other
+                                    purposes described in our privacy policy.</label></center>
+                            <div id="submit-login-main">
+                                <input id="submit-login" type="submit"
+                                    value="Register">
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+                    const element3 = document.getElementById("tt-Register");
+                    element3.addEventListener("click", myFunction);
+              
+                    function myFunction() {
+                        const document1 = document.getElementById("form-login");
+                        const document2 = document.getElementById("form-login1");
+                      
+                        document1.classList.toggle('hidden')
+                        document2.classList.toggle('hidden');
+                   
+                    }
+                    const element6 = document.getElementById("tt-Signin");
+                    element6.addEventListener("click", myFunction);
+              
+                    function myFunction() {
+                        const document1 = document.getElementById("form-login");
+                        const document2 = document.getElementById("form-login1");
+                      
+                        document1.classList.toggle('hidden')
+                        document2.classList.toggle('hidden');
+                   
+                    }
+                    const element7 = document.getElementById("choose-exit-login");
+                    element7.addEventListener("click", myFunction);
+              
+                    function myFunction() {
+                        const document1 = document.getElementById("log-in-cart");
+                        document1.classList.toggle('hidden')
+                       
+                   
+                    }
+                    const element8 = document.getElementById("log-in-user");
+                    element8.addEventListener("click", myFunction);
+              
+                    function myFunction() {
+                        const document1 = document.getElementById("log-in-cart");
+                        document1.classList.toggle('hidden')
+                       
+                   
+                    }
+                  </script>
+    </body>
+</html>

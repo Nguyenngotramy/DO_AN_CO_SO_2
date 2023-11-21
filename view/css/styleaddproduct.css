@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: "Convergence", sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+.container {
+  display: flex;
+}
+
+.Publish-product {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff; /* Nền trắng */
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Điểm nhấn đen */
+}
+
+.product-details {
+  width: 45%;
+}
+
+.fillouttheforn,
+.Catogory-Price {
+  width: 50%;
+}
+
+.fillouttheforn,
+.catogory,
+.Price {
+  background-color: #f5f5f5; /* Nền màu trắng đục */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Điểm nhấn đen */
+  margin: 20px;
+}
+
+.fillouttheforn input,
+.fillouttheforn textarea,
+.catogory select,
+.Price input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.variants select,
+.variants input {
+  width: 50%;
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.Inventory input,
+.Price input {
+  width: 100px;
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.Publish-product input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Publish-product input[type="submit"]:hover {
+  background-color: #45a049;
+}
+.divilr {
+  justify-content: space-between;
+  display: flex;
+}
