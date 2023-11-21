@@ -72,7 +72,6 @@
                             <form action="/add_products" method="POST"
                                 enctype="multipart/form-data">
                                 <input type="submit" value="Publish product">
-                            </form>
                         </div>
                         <div class="divilr">
                             <section class="fillouttheforn">
@@ -114,6 +113,8 @@
                                 <div class="variants">
                                     <h3>Variants</h3>
                                     <div>
+                                        <form>
+                                            <div class="option">
                                         <select>
                                             <option>--Option--</option>
                                             <option>Color</option>
@@ -121,6 +122,9 @@
                                             <option>Material</option>
                                         </select>
                                         <input type="text" placeholder="value">
+                                    </div>
+                                        <input type="submit" value="add">
+                                    </form>
                                     </div>
                                 </div>
 
@@ -139,23 +143,24 @@
                                     <h3>Category</h3>
                                     <select>
                                         <option>--Option--</option>
-                                        <option>Color</option>
-                                        <option>Size</option>
-                                        <option>Material</option>
+                                        <option>Rings</option>
+                                        <option>Earrings</option>
+                                        <option>Bracelets</option>
+                                        <option>Necklaces</option>
                                     </select>
                                 </div>
 
                                 <div class="Price">
                                     <h3>Price</h3>
                                     <div class="price">
-                                        <label for="nameproduct">Price (VND) :</label>
+                                        <label for="nameproduct">Price :</label>
                                         <input type="number" name="price"
                                             id="price"
                                             onkeyup='formatNumber(this);' min=0
                                             maxlength=15>
                                     </div>
                                     <div class="price">
-                                        <label for="nameproduct">Discount (VND)
+                                        <label for="nameproduct">Discount :
                                             :</label>
                                         <input type="number" name="price"
                                             id="price"
@@ -165,6 +170,9 @@
                                 </div>
                             </section>
                         </div>
+                        </form>
+                       
+                   
 
                     </div>
                 </section>

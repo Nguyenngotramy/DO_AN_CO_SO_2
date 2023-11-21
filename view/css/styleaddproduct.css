@@ -40,17 +40,20 @@ body {
 
 .fillouttheforn input,
 .fillouttheforn textarea,
-.catogory select,
 .Price input {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
   box-sizing: border-box;
 }
-
-.variants select,
+.variants .option{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.variants select,.catogory select,
 .variants input {
-  width: 50%;
+  width: 45%;
   padding: 10px;
   margin: 5px 0;
   box-sizing: border-box;
