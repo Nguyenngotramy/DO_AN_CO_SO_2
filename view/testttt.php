@@ -9,6 +9,9 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <h1>hello</h1>
+    <?php
+        include("../database/connect.php");
+        echo($message);
+    ?>
 </body>
 </html>
