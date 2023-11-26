@@ -123,8 +123,8 @@
                                         </select>
                                         <input type="text" placeholder="value">
                                     </div>
-                                        <!-- <input style="background-color: black; color: white;" type="submit" value="add"> -->
-                                    <!-- </form> -->
+                                        <input style="background-color: black; color: white;" type="submit" value="add">
+                                     </form>
                                     </div>
                                 </div>
 
@@ -159,26 +159,9 @@
                                             onkeyup='formatNumber(this);' min=0
                                             maxlength=15>
                                     </div>
-                                    <div class="price">
-                                        <label for="nameproduct">Discount :
-                                            :</label>
-                                        <input type="number" name="price"
-                                            id="price"
-                                            onkeyup='formatNumber(this);' min=0
-                                            maxlength=15>
-                                    </div>
                                 </div>
-                                <input id="Publish-product" type="submit" value="Publish product">
-                                <?php
+                               <center> <input style="background-color: black; color: white; padding: 18px;  " type="submit" value="Publish product"></center>
 
-include_once("../database/connect.php");
-$conn = Database::getDB();
-if ($conn) {
- echo "Database connection successful!";
-} else {
- echo "Database connection failed. Error: " . mysqli_connect_error();
-}
- ?>
                             </section>
                         </div>
                         </form>
