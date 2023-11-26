@@ -1,18 +1,17 @@
-<?
+<?php
 
-class addProduct{
+class Product{
     private $productID;
     private $productName;
     private $description;
     private $origin;
     private $categoryID;
-    public function __construct($productID,$productName,$description,$origin,$categoryID){
-         $this->productID = $productID;
-         $this->productName = $productName;
-         $this->description = $description;
-         $this->origin = $origin;
-         $this->categoryID = $categoryID;
-    }
+    public function __construct(){
+        $this->productName = "";
+        $this->description = "";
+        $this->origin = "";
+        $this->categoryID =0;
+   }
     //getter and setters
     public function getProductID(){
         return $this->productID;

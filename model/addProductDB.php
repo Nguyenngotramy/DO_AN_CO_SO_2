@@ -1,14 +1,76 @@
-// Copyright 2023 chi
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+<?php
 
+include_once("../database/connect.php");
+include_once("../model/addProductDetailModel.php");
+include_once("../model/addProductModel.php");
+
+class AddProductDB {
+    public static function addProduct($product) {
+        $conn = Database::getDB();
+        $productID = $product->getProductID();
+        $productName = $product->getProductName();
+        $description = $product->getDescription();
+        $origin = $product->getOrigin();
+        $categoryID = $product->getCategoryID();
+
+        $query = 'INSERT INTO products
+                     (productName, description, origin, categoryID)
+                  VALUES
+                     (:productName, :description, :origin, :categoryID)';
+        
+        try {
+            $statement = $conn->prepare($query);
+            $statement->bindValue(':productName', $productName);
+            $statement->bindValue(':description', $description);
+            $statement->bindValue(':origin', $origin);
+            $statement->bindValue(':categoryID', $categoryID);
+            
+            if (!$statement->execute()) {
+                throw new Exception('Error executing SQL statement.');
+            }
+            
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            // Xử lý lỗi theo nhu cầu của bạn
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public static function addProductDetail($product) {
+        $conn = Database::getDB();
+
+        $productID = $product->getProductID();
+        $material = $product->getMaterial();
+        $size = $product->getSize();
+        $color = $product->getColor();
+        $weight = $product->getWeight();
+        $quantity = $product->getQuantity();
+        $price = $product->getPrice();
+
+        $query = 'INSERT INTO productdetails
+                     (productID, material, size, color, weight, quantity, price)
+                  VALUES
+                     (:productID, :material, :size, :color, :weight, :quantity, :price)';
+        
+        try {
+            $statement = $conn->prepare($query);
+            $statement->bindValue(':productID', $productID);
+            $statement->bindValue(':material', $material);
+            $statement->bindValue(':size', $size);
+            $statement->bindValue(':color', $color);
+            $statement->bindValue(':weight', $weight);
+            $statement->bindValue(':quantity', $quantity);
+            $statement->bindValue(':price', $price);
+            
+            if (!$statement->execute()) {
+                throw new Exception('Error executing SQL statement.');
+            }
+            
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            // Xử lý lỗi theo nhu cầu của bạn
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+}
+?>

@@ -1,14 +1,36 @@
-// Copyright 2023 chi
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+<?php
+include_once("../model/addProductDB.php");
+include_once("../model/addProductDetailModel.php");
+include_once("../model/addProductModel.php");
 
+
+$AddPDB = new AddProductDB();
+
+$action = filter_input(INPUT_POST, 'action');
+if ($action == 'add_product') {
+    
+    $nameproduct = filter_input(INPUT_POST, 'nameproduct');
+    $description = filter_input(INPUT_POST, 'description');  
+    $Originproduct = filter_input(INPUT_POST, 'Originproduct');
+    $categoryID = filter_input(INPUT_POST, 'categoryID', FILTER_VALIDATE_INT);
+    
+    if ($nameproduct == NULL || $description == NULL || $Originproduct == NULL || $categoryID === false) {
+        $error = "Invalid product data. Check all fields and try again.";
+        
+    } else {
+        $product = new Product();
+        $product->setProductName($nameproduct);
+        $product->setDescription($description);
+        $product->setOrigin($Originproduct);
+        $product->setCategoryID($categoryID);
+
+        // Add the Product object to the database
+        $AddPDB->addProduct($product);
+    
+        $success = "Product added successfully!";
+        
+        header("Location: ../view/addProducts.php");
+        exit();
+    }
+}
+?>

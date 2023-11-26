@@ -67,12 +67,11 @@
                         <!-- <i class="fas fa-user-cog"></i> -->
                     </div>
                     <div class="container-add-product">
-                        <div class="Publish-product">
                             <h3>Add new product</h3>
-                            <form action="/add_products" method="POST"
-                                enctype="multipart/form-data">
-                                <input type="submit" value="Publish product">
-                        </div>
+                           <form action="../controller/controller.php" method="post" id="add_product_form">
+        <input type="hidden" name="action" value="add_product" />
+                                
+                       
                         <div class="divilr">
                             <section class="fillouttheforn">
                                 <div class="Product-information">
@@ -85,6 +84,13 @@
                                         <input type="text" name="nameproduct"
                                             id="nameproduct" required>
                                     </div>
+                                    <div class="nameproduct">
+                                        <label for="description">Description of the
+                                            product
+                                            :</label>
+                                        <textarea name="description"
+                                            id="nameproduct" required></textarea>
+                                    </div>
                                     <div class="Originproduct">
                                         <label for="nameproduct">Origin of the
                                             product
@@ -92,13 +98,7 @@
                                         <input type="text" name="Originproduct"
                                             id="Xuatxu" required>
                                     </div>
-                                    <div class="nameproduct">
-                                        <label for="nameproduct">Name of the
-                                            product
-                                            :</label>
-                                        <textarea name="nameproduct"
-                                            id="nameproduct" required></textarea>
-                                    </div>
+                        
                                 </div>
 
                                 <div class="Media">
@@ -113,7 +113,7 @@
                                 <div class="variants">
                                     <h3>Variants</h3>
                                     <div>
-                                        <form>
+                                        <!-- <form> -->
                                             <div class="option">
                                         <select>
                                             <option>--Option--</option>
@@ -123,8 +123,8 @@
                                         </select>
                                         <input type="text" placeholder="value">
                                     </div>
-                                        <input style="background-color: black; color: white;" type="submit" value="add">
-                                    </form>
+                                        <!-- <input style="background-color: black; color: white;" type="submit" value="add"> -->
+                                    <!-- </form> -->
                                     </div>
                                 </div>
 
@@ -141,12 +141,12 @@
                             <section class="Catogory-Price">
                                 <div class="catogory">
                                     <h3>Category</h3>
-                                    <select>
+                                    <select name="categoryID">
                                         <option>--Option--</option>
-                                        <option>Rings</option>
-                                        <option>Earrings</option>
-                                        <option>Bracelets</option>
-                                        <option>Necklaces</option>
+                                        <option value="1">Rings</option>
+                                        <option value="2">Earrings</option>
+                                        <option value="3">Bracelets</option>
+                                        <option value="4">Necklaces</option>
                                     </select>
                                 </div>
 
@@ -168,6 +168,17 @@
                                             maxlength=15>
                                     </div>
                                 </div>
+                                <input id="Publish-product" type="submit" value="Publish product">
+                                <?php
+
+include_once("../database/connect.php");
+$conn = Database::getDB();
+if ($conn) {
+ echo "Database connection successful!";
+} else {
+ echo "Database connection failed. Error: " . mysqli_connect_error();
+}
+ ?>
                             </section>
                         </div>
                         </form>

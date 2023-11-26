@@ -1,17 +1,29 @@
 <?php
-const _DBname = 'trangsuc';
-const _User = 'root';
-const _Pw ='';
-const _Host = 'localhost';
-try{
-    $dsn = 'mysql:dbname'._DBname.';host='._Host;
-    $conn = new PDO($dsn,_User,_Pw);
-    $message = "Successed!";
-}catch(Error $e){
-    echo $e->getMessage();
-    $message = "Failed!";
-    die();
-    
+
+class Database {
+    private static $dsn = 'mysql:host=localhost;dbname=trangsuc';
+    private static $username = 'root';
+    private static $password = '';
+    private static $conn;
+
+    private function __construct() {}
+
+    public static function getDB () {
+        if (!isset(self::$conn)) {
+            try {
+                self::$conn = new PDO(self::$dsn,
+                                     self::$username,
+                                     self::$password);
+            } catch (PDOException $e) {
+                $error_message = $e->getMessage();
+                include('../errors/database_error.php');
+                exit();
+            }
+        }
+        return self::$conn;
+    }
 }
+
+
 ?>
 
