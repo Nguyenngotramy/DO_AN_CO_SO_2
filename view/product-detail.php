@@ -23,67 +23,56 @@
 </head>
 
 <body style="background-image: none;">
-    <div id="header">
-        <div class="elements">
-            <i class="fa fa-facebook"></i>
-            <i class="fa fa-twitter"></i>
-            <i class="fa fa-instagram"></i>
-        </div>
-        <span style="font-weight: bold; font-size: 13px;">FREE SHIPPING ON ALL ORDERS OVER 75$!</span>
-        <div class="elements">
-            <span>CART</span>
-            <span>SEARCH</span>
-            <span>HELP</span>
-        </div>
-    </div>
-
-    <div id="menu">
-        <div class="elements">
-            <span>HOME</span>
-            <span style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span style="display: flex;">COLLECTION <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span>FEEDBACK</span>
-        </div>
-        <b style="font-size: 25px; margin-left: -12.5%;">CONBONGLONGXIEN</b>
-        <div class="elements">
-            <i class="material-symbols-outlined">search</i>
-            <div>
-                <div class="circle">1</div>
-                <i class="material-symbols-outlined">shopping_bag</i>
-            </div>
-            <div>
-                <div class="circle">1</div>
-                <i class="material-symbols-outlined">favorite</i>
-            </div>
-            <i class="material-symbols-outlined">person</i>
-            <i class="material-symbols-outlined">menu</i>
-        </div>
-    </div>
+    <?php include('header.php') ?>
 
     <div id="product-frame">
         <div class="elements">
             <div class="product-images">
-                <img src="image/rings/ring1.png" id="ring1" onclick="getMainImage('ring1')">
-                <img src="image/rings/ring2.png" id="ring2" onclick="getMainImage('ring2')">
-                <img src="image/rings/ring3.png" id="ring3" onclick="getMainImage('ring3')">
+            <?php
+                include('../model/productdb.php');
+                $productID = $_GET['productID'];
+                $imageList = showImage($productID);
+                foreach ($imageList as $image) {
+            ?>
+                <img src="<?php echo $image['image']?>" id="<?php echo $image['id']?>" onclick="getMainImage(id)">
+                <?php }?>
+            </div>
+        </div>
+        <div class="elements" style="margin: 0 30px">
+            <div class="main-image" id="main-image">
+                <img src="<?php echo $imageList[0]['image'] ?>" id="mainimg">
             </div>
         </div>
         <div class="elements">
-            <div class="main-image" id="main-image">
-            <img src="image/rings/ring1.png">
-        </div>
-        </div>
-        <div class="elemetns">
             <div class="detail">
                 <ul name="path">
-                    <li><a href="header.html">HOME</a></li>
+                    <li><a href="home.html">HOME</a></li>
                     <li><a href="header.html">HOME</a></li>
                     <li><a href="header.html">HOME</a></li>
                 </ul>
-                <span name="product-name" style="font-size: 30px; font-weight: bold; margin: 20px 0 -10px 0;">Product's
-                    Name</span><br>
+                <?php
+                // $productID =  $_GET['productID'];
+                
+                
+                $productInfor = showInforOfProduct($productID);
+                $productDetails = showDetails($productID);
+                $colors = array();
+                $sizes = array();
+                foreach ($productDetails as $detail) {
+                    $color = $detail['color'];
+                    $size = $detail['size'];
+                    if (!in_array($color, $colors)) {
+                        $colors[] = $color;
+                    }
+                    
+                    if (!in_array($size, $sizes)) {
+                        $sizes[] = $size;
+                    }
+                }
+                ?>
+                <span name="product-name" style="font-size: 30px; font-weight: bold; margin: 20px 0 -10px 0;">
+                    <?php echo ($productInfor['productName']) ?>
+                </span><br>
                 <div class="inline">
                     <span class="material-symbols-outlined star">star</span>
                     <span class="material-symbols-outlined star">star</span>
@@ -101,11 +90,17 @@
                     out of the environment by mixing them with concrete to create building materials.</p>
                 <div class="inline">
                     <span style="font-size: 20px; margin-right: 10px;">Color</span>
-                    <div class="color" style="background-color: black;"></div>
-                    <div class="color" style="background-color: brown;"></div>
-                    <div class="color" style="background-color: yellow;"></div>
+                    <?php foreach ($colors as $color) { ?>
+                        <div class="color" style="background-color: <?php echo $color; ?>;"></div>
+                    <?php } ?>
                 </div>
-                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $95.00</span>
+                <div class="inline" style=" margin-top: 20px">
+                    <span style="font-size: 20px; margin-right: 20px;">Size</span>
+                    <?php foreach ($sizes as $size) { ?>
+                        <button class="size"><?php echo $size?></button>
+                    <?php } ?>
+                </div>
+                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $</span>
                 <div name="policy">
                     <div class="inline">
                         <a class="dialog-btn" href="#policy"><span class="material-symbols-outlined">
@@ -153,6 +148,7 @@
                             www.company.com for both local and overseas deliveries.</p>
                     </div>
                 </div>
+
                 <div id="size-guide" class="dialog" style="background-color: rgba(34, 34, 32, 0.304); ">
                     <div class="dialog-body">
                         <a href="#"><span class="material-symbols-outlined" style="margin-left: 100%;">
@@ -161,12 +157,14 @@
                         <img src="image/size-guide.png">
                     </div>
                 </div>
+
                 <div class="frame">
                     <div class="inline">
                         <span class="material-symbols-outlined" style="color: rgb(178, 178, 2);">shopping_bag</span>
                         <span>65 people have this in their carts right now. It's running out!</span>
                     </div>
                 </div>
+
                 <div class="can-buy">
                     <div class="inline" style="border-bottom: 1px solid lightgrey; padding: 5px 20px;">
                         <div class="quantity">
@@ -195,7 +193,6 @@
                 <li name="option" id="description" onclick="show('description')">Description</li>
                 <li name="option" id="add-inf" onclick="show('add-inf')">Additional Information</li>
                 <li name="option" id="review" onclick="show('review')">Review</li>
-                <li name="option" id="q-a" value="q-a">Q&A</li>
             </ul>
         </div>
         <div class="show-infor" id="show-infor">
@@ -205,122 +202,83 @@
         <div id="also-like">
             <span style="font-size: 25px; font-weight: bold;">Viewers Also Liked</span>
             <span style="float: right;">See All ></span><br>
-        <div class="featured-products">
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+            <div class="featured-products">
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
 
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="image/ring.png">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore">Read more</a>
+                    </div>
+                    <span>Embossed hoop earrings</span><br>
+                    <span>$144.00</span>
                 </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
             </div>
         </div>
-        </div>
-</div>
+    </div>
 
-<div id="contact">
-    <div>
-        <span style="font-size: 15px;">CUSTOMER SERVICES</span><br>
-        <b style="font-size: 25px;">0702.192.094</b><br>
-        <span style="font-size: 12px;">Monday – Friday: 9:00 - 20:00</span>
-    </div>
-    <div>
-        <span>NEWSLETTER</span><br>
-        <div style="margin-top: 10px;">
-            <input type="text" placeholder="Email">
-            <button>Submit</button>
-        </div>
-    </div>
-</div>
+    <?php include('footer.php') ?>
 
-<div id="footer">
-    <div>
-        <span>CAILONQUE</span><br>
-        <span>17 Phú Lộc 15, Hòa Minh, Liên Chiểu, TP Đà Nẵng</span><br>
-        <span>ĐT: 0702.192.094 - Fax: 0702.192.094 </span>
-    </div>
-    <div>
-        <span>VỀ CHÚNG TÔI</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-    </div>
-    <div>
-        <span>SẢN PHẨM</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-        <span>Hahaha</span><br>
-    </div>
-    <div>
-        <span>KẾT NỐI VỚI CHÚNG TÔI</span>
 
-    </div>
-</div>
-
-        
-        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function () {
             $(window).scroll(function () {
@@ -332,18 +290,9 @@
             })
         })
     </script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.11.0.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="app.js"></script>
 </body>
 

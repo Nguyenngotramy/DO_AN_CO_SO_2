@@ -18,57 +18,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-      />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
-<body>
-    <div id="header">
-        <div class="elements">
-            <i class="fa fa-facebook"></i>
-            <i class="fa fa-twitter"></i>
-            <i class="fa fa-instagram"></i>
-        </div>
-        <span style="font-weight: bold; font-size: 13px;">FREE SHIPPING ON ALL ORDERS OVER 75$!</span>
-        <div class="elements">
-            <span>CART</span>
-            <span>SEARCH</span>
-            <span>HELP</span>
-        </div>
-    </div>
+<body style="background-image: url('image/background.png');">
 
-    <div id="menu">
-        <div class="elements">
-            <span>HOME</span>
-            <span style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span style="display: flex;">COLLECTION <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span>FEEDBACK</span>
-        </div>
-        <b style="font-size: 25px; margin-left: -15%;">CONBONGLONGXIEN</b>
-        <div class="elements">
-            <i class="material-symbols-outlined">search</i>
-            <div>
-                <div class="circle">1</div>
-                <i class="material-symbols-outlined">shopping_bag</i>
-            </div>
-            <div>
-                <div class="circle">1</div>
-                <i class="material-symbols-outlined">favorite</i>
-            </div>
-            <i class="material-symbols-outlined">person</i>
-            <i class="material-symbols-outlined">menu</i>
-        </div>
-    </div>
-
+    <?php include('header.php') ?>
     <div id="introduce">
         <div class="left">
             <img src="image/snapedit_1700049236578.jpg">
-            <button>Xem ngay</button>
+            <button>See More</button>
         </div>
         <div class="right">
             <img src="image/370282530_356790323516987_6916764082966319400_n.png">
@@ -105,6 +64,10 @@
 
     <div id="show">
         <div id="special">
+            <?php
+            include('../model/categorydb.php');
+            $categoryList = showAllCategory();
+            ?>
             <div class="elements">
                 <img src="image/chibe1.png">
                 <div class="infor">
@@ -113,9 +76,10 @@
                     <span>My job is to bring out in people what they wouldn't dare do themselves</span><br>
                 </div>
                 <div class="btnSeeMore">
-                    <a href="#">See More Products</a>
+                    <a href="shop.php?categoryid=1">See More Products</a>
                 </div>
             </div>
+
             <div class="elements">
                 <div id="right">
                     <div class="earrings">
@@ -125,66 +89,90 @@
                             <b>Free Shipping On Over $50</b><br>
                         </div>
                         <div class="btnSeeMore">
-                            <a href="#">See More Products</a>
+                            <a href="shop.php?categoryid=2">See More Products</a>
                         </div>
                     </div>
                     <div class="grid">
                         <div style="display: block;
                         overflow: hidden;">
-                            <img src="image/chibe3.png">
-                            <div class="infor" style="top: 55%">
-                                <b style="font-size: 13px; letter-spacing: 3px;">NECKLACES</b><br><br>
-                                <b>Free Shipping On Over $50</b><br>
-
-                            </div>
+                            <a href="shop.php?categoryid=3">
+                                <img src="image/chibe3.png">
+                                <div class="infor" style="top: 55%">
+                                    <b style="font-size: 13px; letter-spacing: 3px;">NECKLACES</b><br><br>
+                                    <b>Free Shipping On Over $50</b><br>
+                                </div>
+                            </a>
                         </div>
                         <div style="display: block;
                     overflow: hidden;">
-                            <img src="image/chibe4.png">
-                            <div class="infor" style="top: 55%; left: 55%;">
-                                <b style="font-size: 13px; letter-spacing: 3px;">BRACELETS</b><br><br>
-                                <b>Free Shipping On Over $50</b><br>
+                            <a href="shop.php?categoryid=4">
+                                <img src="image/chibe4.png">
+                                <div class="infor" style="top: 55%; left: 55%;">
+                                    <b style="font-size: 13px; letter-spacing: 3px;">BRACELETS</b><br><br>
+                                    <b>Free Shipping On Over $50</b><br>
 
-                            </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="catalogues">
-            <div class="elements">
-                <div class="circle">
-                    <span>1</span>
+            <?php
+            foreach ($categoryList as $category) {
+                $quantity = countQuantityInCategory($category['categoryID']);
+                ?>
+                <div class="elements">
+                    <div class="circle">
+                        <span>
+                            <?php echo $quantity ?>
+                        </span>
+                    </div>
+                    <img src='<?php echo $category['categoryImage'] ?>'><br>
+                    <span style="text-transform: uppercase; font-weight: bold; font-size: 20px">
+                        <?php echo $category['categoryName'] ?>
+                    </span>
                 </div>
-                <img src="image/rings.png"><br>
-                <span>NOSE RINGS</span>
-            </div>
-            <div class="elements">
-                <div class="circle">
-                    <span>1</span>
-                </div>
-                <img src="image/earrings.png"><br>
-                <span>EARRINGS</span>
-            </div>
-            <div class="elements">
-                <div class="circle">
-                    <span>1</span>
-                </div>
-                <img src="image/bracelet.png"><br>
-                <span>BRACELETS</span>
-            </div>
-            <div class="elements">
-                <div class="circle">
-                    <span>1</span>
-                </div>
-                <img src="image/necklace.png"><br>
-                <span>NECKLACES</span>
-            </div>
+            <?php } ?>
         </div>
         <span style="font-size: 32px; display: flex; justify-content: center; font-weight: bold;">Featured
             Products</span><br>
         <span style="float: right;">See All ></span><br>
         <div class="featured-products">
+            <?php
+            include('../model/productdb.php');
+            $productList = showAllProduct();
+            foreach ($productList as $product) {
+                ?>
+                <div class="product">
+                    <div class="product-box">
+                        <img src="<?php echo $product['image'] ?>">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <a class="readmore" href="product-detail.php?productID=<?php echo $product['productID']?>">Read more</a>
+                    </div>
+                    <div style="height: 50px">
+                        <b>
+                            <?php echo $product['productName'] ?>
+                        </b><br>
+                    </div>
+                    <span">$
+                        <?php echo $product['price'] ?></span>
+                </div>
+            <?php } ?>
+            <!-- <div class="product">
+                <div class="product-box">
+                    <img src="image/ring.png">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                    <a class="readmore">Read more</a>
+                </div>
+                <span>Embossed hoop earrings</span><br>
+                <span>$144.00</span>
+            </div>
             <div class="product">
                 <div class="product-box">
                     <img src="image/ring.png">
@@ -196,15 +184,15 @@
                 <span>Embossed hoop earrings</span><br>
                 <span>$144.00</span>
             </div>
+            <div class="product">
+                <div class="product-box">
+                    <img src="image/ring.png">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                    <a class="readmore">Read more</a>
+                </div>
 
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
                 <span>Embossed hoop earrings</span><br>
                 <span>$144.00</span>
             </div>
@@ -238,7 +226,6 @@
                     </span>
                     <a class="readmore">Read more</a>
                 </div>
-                
                 <span>Embossed hoop earrings</span><br>
                 <span>$144.00</span>
             </div>
@@ -252,81 +239,24 @@
                 </div>
                 <span>Embossed hoop earrings</span><br>
                 <span>$144.00</span>
-            </div>
+            </div> -->
         </div>
     </div>
 
 
     <div id="slogan">
         <span>Back to the past</span><br>
-        <p>You can hide so much behind theatrics, and I don't need to do that any more. My relationships with producers or photographers - these are relationships that took years!</p>
+        <p>You can hide so much behind theatrics, and I don't need to do that any more. My relationships with producers
+            or photographers - these are relationships that took years!</p>
         <button>See All</button>
     </div>
 
-    <div id="contact">
-        <div>
-            <span style="font-size: 15px;">CUSTOMER SERVICES</span><br>
-            <b style="font-size: 25px;">0702.192.094</b><br>
-            <span style="font-size: 12px;">Monday – Friday: 9:00 - 20:00</span>
-        </div>
-        <div>
-            <span>NEWSLETTER</span><br>
-            <div style="margin-top: 10px;">
-                <input type="text" placeholder="Email">
-                <button>Submit</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="footer">
-        <div>
-            <span>CAILONQUE</span><br>
-            <span>17 Phú Lộc 15, Hòa Minh, Liên Chiểu, TP Đà Nẵng</span><br>
-            <span>ĐT: 0702.192.094 - Fax: 0702.192.094 </span>
-        </div>
-        <div>
-            <span>VỀ CHÚNG TÔI</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-        </div>
-        <div>
-            <span>SẢN PHẨM</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-        </div>
-        <div>
-            <span>KẾT NỐI VỚI CHÚNG TÔI</span>
 
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop()) {
-                    $('#menu').addClass('menu-scroll');
-                } else {
-                    $('#menu').removeClass('menu-scroll');
-                }
-            })
-        })
-    </script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.11.0.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
+    <?php include('footer.php') ?>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="app.js"></script>
 </body>
 

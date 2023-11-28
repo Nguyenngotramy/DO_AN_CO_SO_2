@@ -18,11 +18,13 @@ function show(option) {
   if (option == "description") {
     document.getElementById("description").style.borderBottom = "1px solid black";
   document.getElementById("description").style.color = "grey";
+  document.getElementById("show-infor").innerHTML =
+  '<div class="description">' +
+  '<p><?php echo json_encode($productInfor["description"]); ?></p>' +
+  '</div>';
 
-    document.getElementById("show-infor").innerHTML =
-      '<div class="description">' +
-      "<p>Our favorite jean meets our favorite decade. Made from premium non-stretch Japanese denim for a vintage-inspired look, the ’90s Cheeky Jean has an easy straight leg, an extra-high rise, and a butt-boosting rear fit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>" +
-      "</div>";
+
+
   } else if (option == "add-inf") {
     document.getElementById("show-infor").innerHTML =
       '<table style="border-spacing: 15px">' +
