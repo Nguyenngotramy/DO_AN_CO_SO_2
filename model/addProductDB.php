@@ -1,6 +1,6 @@
 <?php
 
-include_once("../database/connect.php");
+include_once("../database/connecttemp.php");
 include_once("../model/addProductDetailModel.php");
 include_once("../model/addProductModel.php");
 
@@ -38,7 +38,6 @@ class AddProductDB {
 
     public static function addProductDetail($product) {
         global $db;
-
         $productID = $product->getProductID();
         $material = $product->getMaterial();
         $size = $product->getSize();
