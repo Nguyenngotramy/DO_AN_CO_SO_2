@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <?php require('../database/connect.php')?>
+    <?php require('../database/connecttemp.php')?>
     <div id="header">
         <div class="elements">
             <i class="fa-brands fa-facebook"></i>

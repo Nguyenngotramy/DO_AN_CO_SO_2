@@ -40,17 +40,20 @@ body {
 
 .fillouttheforn input,
 .fillouttheforn textarea,
-.catogory select,
 .Price input {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
   box-sizing: border-box;
 }
-
-.variants select,
+.variants .option{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.variants select,.catogory select,
 .variants input {
-  width: 50%;
+  width: 45%;
   padding: 10px;
   margin: 5px 0;
   box-sizing: border-box;
@@ -64,7 +67,7 @@ body {
   box-sizing: border-box;
 }
 
-.Publish-product input[type="submit"] {
+ input[type="submit"] {
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
@@ -73,7 +76,8 @@ body {
   cursor: pointer;
 }
 
-.Publish-product input[type="submit"]:hover {
+
+ input[type="submit"]:hover {
   background-color: #45a049;
 }
 .divilr {

@@ -67,13 +67,11 @@
                         <!-- <i class="fas fa-user-cog"></i> -->
                     </div>
                     <div class="container-add-product">
-                        <div class="Publish-product">
                             <h3>Add new product</h3>
-                            <form action="/add_products" method="POST"
-                                enctype="multipart/form-data">
-                                <input type="submit" value="Publish product">
-                            </form>
-                        </div>
+                           <form action="../controller/controller.php" method="post" id="add_product_form">
+        <input type="hidden" name="action" value="add_product" />
+                                
+                       
                         <div class="divilr">
                             <section class="fillouttheforn">
                                 <div class="Product-information">
@@ -86,6 +84,13 @@
                                         <input type="text" name="nameproduct"
                                             id="nameproduct" required>
                                     </div>
+                                    <div class="nameproduct">
+                                        <label for="description">Description of the
+                                            product
+                                            :</label>
+                                        <textarea name="description"
+                                            id="nameproduct" required></textarea>
+                                    </div>
                                     <div class="Originproduct">
                                         <label for="nameproduct">Origin of the
                                             product
@@ -93,13 +98,7 @@
                                         <input type="text" name="Originproduct"
                                             id="Xuatxu" required>
                                     </div>
-                                    <div class="nameproduct">
-                                        <label for="nameproduct">Name of the
-                                            product
-                                            :</label>
-                                        <textarea name="nameproduct"
-                                            id="nameproduct" required></textarea>
-                                    </div>
+                        
                                 </div>
 
                                 <div class="Media">
@@ -114,6 +113,8 @@
                                 <div class="variants">
                                     <h3>Variants</h3>
                                     <div>
+                                        <!-- <form> -->
+                                            <div class="option">
                                         <select>
                                             <option>--Option--</option>
                                             <option>Color</option>
@@ -121,6 +122,9 @@
                                             <option>Material</option>
                                         </select>
                                         <input type="text" placeholder="value">
+                                    </div>
+                                        <input style="background-color: black; color: white;" type="submit" value="add">
+                                     </form>
                                     </div>
                                 </div>
 
@@ -137,34 +141,32 @@
                             <section class="Catogory-Price">
                                 <div class="catogory">
                                     <h3>Category</h3>
-                                    <select>
+                                    <select name="categoryID">
                                         <option>--Option--</option>
-                                        <option>Color</option>
-                                        <option>Size</option>
-                                        <option>Material</option>
+                                        <option value="1">Rings</option>
+                                        <option value="2">Earrings</option>
+                                        <option value="3">Bracelets</option>
+                                        <option value="4">Necklaces</option>
                                     </select>
                                 </div>
 
                                 <div class="Price">
                                     <h3>Price</h3>
                                     <div class="price">
-                                        <label for="nameproduct">Price (VND) :</label>
-                                        <input type="number" name="price"
-                                            id="price"
-                                            onkeyup='formatNumber(this);' min=0
-                                            maxlength=15>
-                                    </div>
-                                    <div class="price">
-                                        <label for="nameproduct">Discount (VND)
-                                            :</label>
+                                        <label for="nameproduct">Price :</label>
                                         <input type="number" name="price"
                                             id="price"
                                             onkeyup='formatNumber(this);' min=0
                                             maxlength=15>
                                     </div>
                                 </div>
+                               <center> <input style="background-color: black; color: white; padding: 18px;  " type="submit" value="Publish product"></center>
+
                             </section>
                         </div>
+                        </form>
+                       
+                   
 
                     </div>
                 </section>
