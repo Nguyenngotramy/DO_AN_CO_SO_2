@@ -6,7 +6,7 @@ include_once("../model/addProductModel.php");
 
 class AddProductDB {
     public static function addProduct($product) {
-        $conn = Database::getDB();
+       global $db;
         $productID = $product->getProductID();
         $productName = $product->getProductName();
         $description = $product->getDescription();
@@ -19,7 +19,7 @@ class AddProductDB {
                      (:productName, :description, :origin, :categoryID)';
         
         try {
-            $statement = $conn->prepare($query);
+            $statement = $db->prepare($query);
             $statement->bindValue(':productName', $productName);
             $statement->bindValue(':description', $description);
             $statement->bindValue(':origin', $origin);
@@ -37,7 +37,7 @@ class AddProductDB {
     }
 
     public static function addProductDetail($product) {
-        $conn = Database::getDB();
+        global $db;
 
         $productID = $product->getProductID();
         $material = $product->getMaterial();
@@ -53,7 +53,7 @@ class AddProductDB {
                      (:productID, :material, :size, :color, :weight, :quantity, :price)';
         
         try {
-            $statement = $conn->prepare($query);
+            $statement = $db->prepare($query);
             $statement->bindValue(':productID', $productID);
             $statement->bindValue(':material', $material);
             $statement->bindValue(':size', $size);
