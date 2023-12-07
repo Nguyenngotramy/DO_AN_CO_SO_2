@@ -63,7 +63,6 @@ public function getcoloritem() {
 }
 public function getmaterialitem() {
     global $db;
-    
     $query = 'SELECT * FROM material';
     try {
         $statement = $db->prepare($query);
@@ -115,7 +114,7 @@ public function getSizeitem() {
 
 
     public static function addProductDetail($product) {
-       global $db;
+        global $db;
 
         $productID = $product->getProductID();
         $materialID = $product->getMaterialID();
