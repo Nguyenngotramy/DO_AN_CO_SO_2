@@ -1,25 +1,27 @@
-<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8" />
-            <title>Attendance Dashboard | By Code Info</title>
-            <link rel="stylesheet" href="css/test.css" />
-            <link rel="stylesheet" href="css/styleaddproduct.css" />
-            <!-- Font Awesome Cdn Link -->
-            <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-            <link rel="preconnect" href="https://fonts.gstatic.com">
-            <link
-                href="https://fonts.googleapis.com/css2?family=Convergence&family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap"
-                rel="stylesheet">
 
-        </head>
+<!DOCTYPE html>
+<html lang="en">
 
-        <body>
-            <div class="container">
-                <nav>
-                    <ul class="menu-main-admin">
-                        <li><a href="#" class="logo">
+<head>
+    <meta charset="UTF-8" />
+    <title>Attendance Dashboard | By Code Info</title>
+    <link rel="stylesheet" href="css/test.css" />
+    <link rel="stylesheet" href="css/styleaddproduct.css" />
+    <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Convergence&family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <?php
+    include_once("../model/addProductDB.php");
+    $AddPDB = new AddProductDB();
+    ?>
+    <div class="container">
+        <nav>
+            <ul class="menu-main-admin">
+                         <li><a href="#" class="logo">
                                 <img src="./pic/logo.jpg">
                                 <span class="nav-item">Admin</span>
                             </a></li>
@@ -48,13 +50,14 @@
                                 <i class="fas fa-sign-out-alt"></i>
                                 <span class="nav-item">Log out</span>
                             </a></li>
-                    </ul>
-                </nav>
+                    
+            </ul>
+        </nav>
 
-                <section class="main">
-                    <div class="main-top">
-                        <ul>
-                            <a href>
+        <section class="main">
+            <div class="main-top">
+                <ul>
+                <a href>
                                 <li style="color:  rgb(85, 83, 83);">Admin/</li>
                             </a><a href>
                                 <li style="color: rgb(85, 83, 83);">Product/</li>
@@ -63,20 +66,24 @@
                                     Products
                                 </li>
                             </a>
-                        </ul>
-                        <!-- <i class="fas fa-user-cog"></i> -->
-                    </div>
-                    <div class="container-add-product">
-                            <h3>Add new product</h3>
-                           <form action="../controller/controller.php" method="post" id="add_product_form">
-        <input type="hidden" name="action" value="add_product" />
-                                
-                       
-                        <div class="divilr">
-                            <section class="fillouttheforn">
+                </ul>
+            </div>
+       
+            <div class="container-add-product">
+                <h3>Add new product</h3>
+                <form action="../controller/controller.php" method="post" id="add_product_form" enctype="multipart/form-data" >
+                <input type="hidden" name="action" value="add_product">
+                <div style="display: flex;" class="divilr">
+                    <section class="fillouttheforn">
                                 <div class="Product-information">
                                     <h3>Product information</h3>
-
+                                    <!-- <div class="nameproduct">
+                                        <label for="nameproduct">Id
+                                            product
+                                            :</label>
+                                        <input type="text" name="nameproduct"
+                                            id="nameproduct" required>
+                                    </div> -->
                                     <div class="nameproduct">
                                         <label for="nameproduct">Name of the
                                             product
@@ -101,76 +108,131 @@
                         
                                 </div>
 
-                                <div class="Media">
-                                    <h3>Media</h3>
-                                    <div class="upload-container">
-                                        <label for="file-input"
-                                            class="custom-button">Chọn Ảnh:</label>
-                                        <input type="file" id="file-input">
-                                    </div>
-                                </div>
+<div class="variant-container" id="variantsContainer">
 
-                                <div class="variants">
-                                    <h3>Variants</h3>
-                                    <div>
-                                        <!-- <form> -->
-                                            <div class="option">
-                                        <select>
-                                            <option>--Option--</option>
-                                            <option>Color</option>
-                                            <option>Size</option>
-                                            <option>Material</option>
-                                        </select>
-                                        <input type="text" placeholder="value">
-                                    </div>
-                                        <input style="background-color: black; color: white;" type="submit" value="add">
-                                     </form>
-                                    </div>
-                                </div>
+    <?php for ($i = 0; $i < 1; $i++) : ?>
+            <div class="variant">
+                <select name="variants[<?php echo $i; ?>][material_id]">
+                    <option>--Material--</option>
+                    <?php foreach ($AddPDB->getmaterialitem() as $material) : ?>
+                        <option style="color: black;" value="<?php echo $material->getIDmaterial(); ?>"><?php echo $material->getMaterialName(); ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-                                <div class="Inventory">
-                                    <h3>Inventory</h3>
-                                    <div class="quantity">
-                                        <label for="nameproduct">Quantity
-                                            :</label>
-                                        <input type="number">
-                                    </div>
-                                </div>
-                            </section>
+                <select name="variants[<?php echo $i; ?>][size_id]">
+                    <option>--Size--</option>
+                    <?php foreach ($AddPDB->getsizeitem() as $size) : ?>
+                        <option style="color: black;" value="<?php echo $size->getSizeID(); ?>"><?php echo $size->getSize(); ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-                            <section class="Catogory-Price">
+                <select name="variants[<?php echo $i; ?>][color_id]">
+                    <option>--Color--</option>
+                    <?php foreach ($AddPDB->getcoloritem() as $color) : ?>
+                        <option style="color: black;" value="<?php echo $color->getIDcolor(); ?>"><?php echo $color->getColor(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="button" onclick="addVariant()">Add variant</button>
+            </div>
+        <?php endfor; ?>
+    
+
+</div>
+                       
+                         <div class="Inventory">
+                        <h3>Weight</h3>
+                        <div class="weight">
+                            <label for="quantity">weight :</label>
+                            <input type="number" name="weight" id="quantity">
+                        </div>
+                         </div>
+                         <div class="Inventory">
+                        <h3>Inventory</h3>
+                        <div class="quantity">
+                            <label for="quantity">Quantity :</label>
+                            <input type="number" name="quantity" id="quantity">
+                        </div>
+                    </div>
+                    <div class="Inventory">
+                        <h3>Price</h3>
+                        <div class="price">
+                            <label for="quantity"> Price:</label>
+                            <input type="number" name="price" id="quantity">
+                        </div>
+                    </div>
+                    </section>
+               
+
+        <section class="Catogory-Price">
                                 <div class="catogory">
                                     <h3>Category</h3>
                                     <select name="categoryID">
                                         <option>--Option--</option>
-                                        <option value="1">Rings</option>
-                                        <option value="2">Earrings</option>
-                                        <option value="3">Bracelets</option>
-                                        <option value="4">Necklaces</option>
+                                        <?php
+                                        include('../model/categorydb.php');
+                                        $categoryList = showAllCategory();
+                                      foreach ($categoryList as $category) :
+                                          ?>
+                                       <option style="color: black;" value="<?php echo $category["categoryID"] ?>"><?php echo $category["categoryName"]   ?></option>
+                                       
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-
-                                <div class="Price">
-                                    <h3>Price</h3>
-                                    <div class="price">
-                                        <label for="nameproduct">Price :</label>
-                                        <input type="number" name="price"
-                                            id="price"
-                                            onkeyup='formatNumber(this);' min=0
-                                            maxlength=15>
+                                <div class="Media">
+                                    <h3>Media</h3>
+                                    <div class="upload-container">
+                                        <label for="file-input"
+                                        
+                                            class="custom-button">Chọn Ảnh:</label>
+                                            <input type="file" name="img" id="img" accept="image/*">
+                                            
                                     </div>
                                 </div>
+                                     
+                            
                                <center> <input style="background-color: black; color: white; padding: 18px;  " type="submit" value="Publish product"></center>
-
+                                      </form>
+                                    
                             </section>
-                        </div>
-                        </form>
-                       
-                   
+    </div>
+    
+</body>
+  
 
-                    </div>
-                </section>
-            </div>
-        </body>
-    </html>
-</span>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+
+var variantCount = 1;
+
+function addVariant() {
+    var newVariant = $(".variant:first").clone();
+    newVariant.find('select').each(function () {
+        this.name = this.name.replace(/\[\d+\]/, '[' + variantCount + ']');
+    });
+    const removeButton = $('<button type="button">Xóa</button>').click(function () {
+        removeVariant(this);
+    });
+    newVariant.append(removeButton);
+    $("#variantsContainer").append(newVariant);
+    variantCount++;
+}
+
+function removeVariant(button) {
+    $(button).closest('.variant').remove();
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+   
+   
+  
+
+   
