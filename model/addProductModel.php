@@ -7,6 +7,7 @@ class Product{
     private $origin;
     private $categoryID;
     public function __construct(){
+        $this->productID = "";
         $this->productName = "";
         $this->description = "";
         $this->origin = "";
@@ -44,3 +45,5 @@ class Product{
         $this->categoryID = $value;
     }
 }
+
+?>

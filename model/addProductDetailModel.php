@@ -1,40 +1,46 @@
-<?
- class addProductDetail{
+<?php
+ class ProductDetail{
     private $productID;
-    private $material;
-    private $size;
-    private $color;
+    private $materialID;
+    private $sizeID;
+    private $colorID;
     private $weight;
 
     private $quantity;
     private $price;
 
-    public function __construct($productID,$material,$size,$color,$weight,$quantity,$price){
+    public function __construct(){
+        $this->productID = 0;
+        $this->materialID = 0;
+        $this->sizeID = 0;
+        $this->colorID = 0;
+        $this->weight = 0;
+        $this->quantity = 0;
+        $this->price = 0;
+    }
+    public function getProductID(){
+        return $this->productID;
+    }
+    public function setProductId($productID){
         $this->productID = $productID;
-        $this->material = $material;
-        $this->size = $size;
-        $this->color = $color;
-        $this->weight = $weight;
-        $this->quantity = $quantity;
-        $this->price = $price;
     }
-    public function getMaterial(){
-        return $this->material;
+    public function getMaterialID(){
+        return $this->materialID;
         }
-    public function setMaterial($material){
-        $this->material=$material;
+    public function setMaterialID($materialID){
+        $this->materialID=$materialID;
     }
-    public function getSize(){
-        return $this->size;
+    public function getSizeID(){
+        return $this->sizeID;
     }
-    public function setSize($size){
-        $this->size=$size;
+    public function setSizeID($sizeID){
+        $this->sizeID=$sizeID;
         }
-     public function getColor(){
-        return $this->color;
+     public function getColorID(){
+        return $this->colorID;
         }
-    public function setColor($color){
-        $this->color=$color;
+    public function setColorID($colorID){
+        $this->colorID=$colorID;
     }
     public function getWeight(){
         return $this->weight;
@@ -58,5 +64,28 @@
     
        
 
+
+ }
+
+  class Productimg{
+    private $idProduct;
+    private $img;
+
+    public function __construct(){
+        $this->idProduct = 0;
+        $this->img = "";
+    }
+    public function getIdProduct(){
+        return $this->idProduct;
+    }
+    public function setIdProduct($idProduct){
+        $this->idProduct=$idProduct;
+    }
+    public function getImg(){
+        return $this->img;
+    }
+    public function setImg($img){
+        $this->img=$img;
+    }
 
  }
