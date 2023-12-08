@@ -19,6 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
     <script src="product-detail.js"></script>
+    <link rel=" stylesheet" href="css/checkout.css">
+   <link rel=" stylesheet" href="css/login_register.css">
+   <script src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -274,7 +277,14 @@
             </div>
         </div>
     </div>
+    <div>
+      <?php include('checkout.php') ?>
+   </div>
 
+    
+   <div>
+      <?php include('login_register.php') ?>
+   </div>
     <?php include('footer.php') ?>
 
 

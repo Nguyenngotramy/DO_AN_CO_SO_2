@@ -12,6 +12,9 @@
   <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styleshop.css">
   <link rel="stylesheet" href="css/stylecart.css">
+  <link rel=" stylesheet" href="css/checkout.css">
+   <link rel=" stylesheet" href="css/login_register.css">
+   <script src="script.js"></script>
 </head>
 
 <body>
@@ -70,6 +73,14 @@
         </div>
       </div>
     </div> -->
+    <div>
+      <?php include('checkout.php') ?>
+   </div>
+
+    
+   <div>
+      <?php include('login_register.php') ?>
+   </div>
     <?php include('header.php')?>
   
       

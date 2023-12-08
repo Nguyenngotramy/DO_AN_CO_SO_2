@@ -19,7 +19,11 @@
   <link href="/your-path-to-uicons/css/uicons-rounded-bold.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet"> -->
    <link rel="stylesheet" href="css/styleshop.css">
-   <link rel="stylesheet" href="app.css">
+   <link rel=" stylesheet" href="app.css">
+   <link rel=" stylesheet" href="css/checkout.css">
+   <link rel=" stylesheet" href="css/login_register.css">
+   <script src="script.js"></script>
+   
 </head>
 
 <body>
@@ -247,112 +251,19 @@
      </div> -->
 
 
+     
+     <div>
+      <?php include('checkout.php') ?>
+   </div>
 
-      <div id="cart-div-control" class="hidden">
-         <div id="icon-controler">
-            <a id="choose-exit"><i class="fa-solid fa-xmark" style="color: #000000;"></i></a>
-            <div id="icon-controler-main">
-               <a href="#" id="choose1"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
-               <a href="#"><i class="fa-regular fa-heart" style="color: #000000;"></i></a>
-               <a href="#"><i class="fa-sharp fa-solid fa-rotate" style="color: #000000;"></i></a>
-            </div>
-         </div>
-         <div id="limit">
-            <div id="text-limit">There products are limit, check out within</div>
-            <div class="countdown">
-               <div class="digit" id="minutes">5</div><label>:</label>
-               <div class="digit" id="seconds">00</div>
-            </div>
-         </div>
-
-         <div id="product-in-icon-cart">
-            <div id="divi-pic">
-               <img src="img/37000208_OR_B-450x450.webp" />
-               <div id="name-p-in-cart">
-                  <p>Product name</p>
-                  <p>$95.00 x <b>2</b></p>
-               </div>
-            </div>
-            <a href="#"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
-
-         </div>
-
-         <div id="sub-total-in-div-cart">
-            <p><b>Sub total</b></p>
-            <p><b>$290.00</b></p>
-         </div>
-
-         <div id="Button-Viewcart-checkout">
-            <a href="#" id="Viewcart">
-               <li>View cart</li>
-            </a>
-            <a href="#" id="Viewcart">
-               <li>Check out</li>
-            </a>
-         </div>
-
-      </div>
+    
+   <div>
+      <?php include('login_register.php') ?>
    </div>
    <div>
       <?php include('footer.php') ?>
    </div>
-   <script>
-      const element = document.getElementById("circal");
-      element.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("disapp");
-         document1.classList.toggle('visible');
-         document1.classList.toggle('hidden');
-      }
-   </script>
-   <script>
-      const element1 = document.getElementById("circal1");
-      element1.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("disapp1");
-         document1.classList.toggle('visible');
-         document1.classList.toggle('hidden');
-      }
-   </script>
-   <script>
-      const element2 = document.getElementById("circal2");
-      element2.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("disapp2");
-         document1.classList.toggle('visible');
-         document1.classList.toggle('hidden');
-      }
-   </script>
-   <script>
-      const element3 = document.getElementById("circal3");
-      element3.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("disapp3");
-         document1.classList.toggle('visible');
-         document1.classList.toggle('hidden');
-      }
-   </script>
-   <!-- icon-cart -->
-   <script>
-      const element4 = document.getElementById("choose-cart");
-      element4.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("cart-div-control");
-         document1.classList.toggle('visible');
-      }
-      const element5 = document.getElementById("choose-exit");
-      element5.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document1 = document.getElementById("cart-div-control");
-         document1.classList.toggle('hidden');
-      }
-   </script>
+  
    <script>
       let totalSeconds = 5 * 60;
       let minutesDisplay = document.getElementById('minutes');
@@ -379,7 +290,7 @@
    </script>
 
    <!-- login- Register -->
-   <div id="log-in-cart" class="hidden">
+   <!-- <div id="log-in-cart" class="hidden">
       <div style="display: flex;">
          <div id="right-icon-login">
             <a id="choose-exit-login"><i class="fa-solid fa-xmark" style="color: #000000;"></i></a>
@@ -444,52 +355,48 @@
 
          </div>
       </div>
-   </div>
+   </div> -->
    <script>
-      const element6 = document.getElementById("tt-Register");
-      element6.addEventListener("click", myFunction);
+const element = document.getElementById("circal");
+element.addEventListener("click", myFunction);
 
-      function myFunction() {
-         const document61 = document.getElementById("form-login");
-         const document62 = document.getElementById("form-login1");
+function myFunction() {
+   const document1 = document.getElementById("disapp");
+   document1.classList.toggle('visible');
+   document1.classList.toggle('hidden');
+}
+</script>
+<script>
+const element1 = document.getElementById("circal1");
+element1.addEventListener("click", myFunction);
 
-         document61.classList.toggle('hidden')
-         document62.classList.toggle('hidden');
+function myFunction() {
+   const document1 = document.getElementById("disapp1");
+   document1.classList.toggle('visible');
+   document1.classList.toggle('hidden');
+}
+</script>
+<script>
+const element2 = document.getElementById("circal2");
+element2.addEventListener("click", myFunction);
 
-      }
-      const element7 = document.getElementById("tt-Signin");
-      element7.addEventListener("click", myFunction);
+function myFunction() {
+   const document1 = document.getElementById("disapp2");
+   document1.classList.toggle('visible');
+   document1.classList.toggle('hidden');
+}
+</script>
+<script>
+const element3 = document.getElementById("circal3");
+element3.addEventListener("click", myFunction);
 
-      function myFunction() {
-         const document71 = document.getElementById("form-login");
-         const document72 = document.getElementById("form-login1");
+function myFunction() {
+   const document1 = document.getElementById("disapp3");
+   document1.classList.toggle('visible');
+   document1.classList.toggle('hidden');
+}
 
-         document71.classList.toggle('hidden')
-         document72.classList.toggle('hidden');
-
-      }
-   </script>
-   <script>
-      const element8 = document.getElementById("choose-exit-login");
-      element8.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document8 = document.getElementById("log-in-cart");
-         document8.classList.toggle('hidden')
-
-
-      }
-      const element9 = document.getElementById("log-in-user");
-      element9.addEventListener("click", myFunction);
-
-      function myFunction() {
-         const document9 = document.getElementById("log-in-cart");
-         document9.classList.toggle('hidden')
-
-
-      }
-   </script>
-
+</script>
 
 </body>
 

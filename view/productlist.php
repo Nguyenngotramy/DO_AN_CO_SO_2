@@ -121,10 +121,10 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Depart</th>
-                                        <th>Date</th>
-                                        <th>Join Time</th>
-                                        <th>Logout Time</th>
+                                        <th>Decription</th>
+                                        <th>Origin</th>
+                                        <th>Category</th>
+                                        <th>Img</th>
                                         <th>Details</th>
                                     </tr>
                                 </thead>
@@ -145,7 +145,8 @@
                                         <td>03-24-22</td>
                                         <td>9:00AM</td>
                                         <td>4:00PM</td>
-                                        <td><button>View</button></td>
+                                        <td><button>View</button>
+                                        <button>Delete</button></td>
                                     </tr>
                                     <tr>
                                         <td>03</td>

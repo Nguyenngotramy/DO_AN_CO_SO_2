@@ -1,0 +1,151 @@
+/* login-register */
+#log-in-cart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: #ffffff;
+    z-index: 101;
+    width: 600px;
+  }
+  #right-icon-login {
+    float: left;
+    font-size: 18px;
+    padding: 10px;
+    background: #d7d7d7;
+    text-align: center;
+    width: 10%;
+    color: #000000;
+  }
+  #left-form-login {
+    display: grid;
+    float: right;
+    font-size: 18px;
+    width: 92%;
+    background: #fafafa;
+    height: 100vh;
+    color: #000000;
+  }
+  #log-in-cart #right-icon-login #choose-exit-login {
+    text-decoration: none;
+    list-style: none;
+  }
+  #log-in-cart #right-icon-login #choose-exit-login i {
+    padding: 6px 12px;
+  }
+  #log-in-cart #right-icon-login #text-logo {
+    padding: 6px 12px;
+    color: #000000;
+    transform: rotate(90deg);
+    /* transform-origin: top left; */
+    margin-top: 250px;
+    display: flex;
+  }
+  #left-form-login #title-login {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    border-bottom: 1px solid #000000;
+    margin: 0 30px;
+    height: 25px;
+  }
+  #left-form-login #title-login div:hover {
+    cursor: pointer;
+    color: #d7d7d7;
+  }
+  #left-form-login #form-login {
+    padding: 15px;
+    margin-bottom: 480px;
+  }
+  #left-form-login #form-login1 {
+    padding: 15px;
+    margin-bottom: 480px;
+  }
+  #left-form-login #form-login #Form-login-input {
+    display: grid;
+    font-size: 18px;
+    margin: 15px 10px;
+  }
+  #left-form-login #form-login1 #Form-login-input {
+    display: grid;
+    font-size: 18px;
+    margin: 15px 10px;
+  }
+  #left-form-login #form-login #Form-login-input,
+  #checkbox-Remember label {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+  }
+  #left-form-login #form-login1 #Form-login-input label {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+  }
+  #left-form-login #form-login #Form-login-input input {
+    padding: 15px;
+    margin: 20px 15px;
+  }
+  #left-form-login #form-login1 #Form-login-input input {
+    padding: 15px;
+    margin: 20px 15px;
+  }
+  #left-form-login #form-login #checkbox-Remember {
+    margin: 0px 20px;
+  }
+  
+  #left-form-login #form-login #checkbox-Remember #remember {
+    position: relative;
+    padding-left: 30px; /* Khoảng cách giữa checkbox và văn bản */
+    cursor: pointer;
+  }
+  #left-form-login #form-login #submit-login-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #left-form-login #form-login #submit-login-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #left-form-login #form-login #submit-login-main #submit-login {
+    padding: 15px;
+    background-color: #000000;
+    color: #fafafa;
+    width: 90%;
+    margin: 10px 10px;
+    font-size: 18px;
+    border: none;
+  }
+  #left-form-login #form-login1 #submit-login-main #submit-login {
+    padding: 15px;
+    background-color: #000000;
+    color: #fafafa;
+    width: 90%;
+    margin: 10px 20px;
+    font-size: 18px;
+    border: none;
+  }
+  #left-form-login #form-login #Lostpass {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000000;
+    padding: 10px;
+  }
+  #left-form-login #form-login1 #regis {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+    padding: 10px;
+  }
+  .visible {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
