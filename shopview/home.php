@@ -8,7 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="../view/app.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,16 +21,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
-<body style="background-image: url('image/background.png');">
+<body style="background-image: url('../view/image/background.png');">
 
-    <?php include('header.php') ?>
+    <?php include('../view/header.php') ?>
     <div id="introduce">
         <div class="left">
-            <img src="image/snapedit_1700049236578.jpg">
+            <img src="../view/image/snapedit_1700049236578.jpg">
             <button>See More</button>
         </div>
         <div class="right">
-            <img src="image/370282530_356790323516987_6916764082966319400_n.png">
+            <img src="../view/image/370282530_356790323516987_6916764082966319400_n.png">
         </div>
     </div>
 
@@ -69,7 +69,7 @@
             $categoryList = showAllCategory();
             ?>
             <div class="elements">
-                <img src="image/chibe1.png">
+                <img src="../view/image/chibe1.png">
                 <div class="infor">
                     <b style="font-size: 13px; letter-spacing: 3px;">RINGS</b><br>
                     <b>Free Shipping On Over $50</b><br>
@@ -83,7 +83,7 @@
             <div class="elements">
                 <div id="right">
                     <div class="earrings">
-                        <img src="image/chibe2.png">
+                        <img src="../view/image/chibe2.png">
                         <div class="infor">
                             <b style="font-size: 13px; letter-spacing: 3px;">EARRINGS</b><br><br>
                             <b>Free Shipping On Over $50</b><br>
@@ -96,7 +96,7 @@
                         <div style="display: block;
                         overflow: hidden;">
                             <a href="shop.php?categoryid=3">
-                                <img src="image/chibe3.png">
+                                <img src="../view/image/chibe3.png">
                                 <div class="infor" style="top: 55%">
                                     <b style="font-size: 13px; letter-spacing: 3px;">NECKLACES</b><br><br>
                                     <b>Free Shipping On Over $50</b><br>
@@ -106,7 +106,7 @@
                         <div style="display: block;
                     overflow: hidden;">
                             <a href="shop.php?categoryid=4">
-                                <img src="image/chibe4.png">
+                                <img src="../view/image/chibe4.png">
                                 <div class="infor" style="top: 55%; left: 55%;">
                                     <b style="font-size: 13px; letter-spacing: 3px;">BRACELETS</b><br><br>
                                     <b>Free Shipping On Over $50</b><br>
@@ -162,84 +162,6 @@
                         <?php echo $product['price'] ?></span>
                 </div>
             <?php } ?>
-            <!-- <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div>
-            <div class="product">
-                <div class="product-box">
-                    <img src="image/ring.png">
-                    <span class="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <a class="readmore">Read more</a>
-                </div>
-                <span>Embossed hoop earrings</span><br>
-                <span>$144.00</span>
-            </div> -->
         </div>
     </div>
 
@@ -253,11 +175,11 @@
 
 
 
-    <?php include('footer.php') ?>
+    <?php include('../view/footer.php') ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="app.js"></script>
+    <script src="../view/app.js"></script>
 </body>
 
 </html>

@@ -16,7 +16,6 @@ if ($action == 'add_product') {
     
     if ($nameproduct == NULL || $description == NULL || $Originproduct == NULL || $categoryID === false) {
         $error = "Invalid product data. Check all fields and try again.";
-        
     } else {
         $product = new Product();
         $product->setProductName($nameproduct);

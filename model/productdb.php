@@ -53,4 +53,30 @@
         $statement->closeCursor();
         return $imageList;
     }
+
+    function getAllColor() {
+        global $db;
+        $query = 'SELECT color.color
+        FROM productdetails
+        inner JOIN color on productdetails.colorID = color.colorID
+        GROUP by color.color';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $colorList = $statement->fetchAll();
+        $statement->closeCursor();
+        return $colorList;
+    }
+
+    function getAllSize() {
+        global $db;
+        $query = 'SELECT size.size
+        FROM productdetails
+        inner JOIN size on productdetails.sizeID = size.sizeID
+        GROUP by size.size';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $sizeList = $statement->fetchAll();
+        $statement->closeCursor();
+        return $sizeList;
+    }
 ?>

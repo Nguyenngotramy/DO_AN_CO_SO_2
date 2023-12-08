@@ -44,12 +44,11 @@
 
     <div id="menu">
         <div class="elements">
-            <span>HOME</span>
-            <span style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span style="display: flex;">COLLECTION <span class="material-symbols-outlined"
-                    style="margin: 1px;">expand_more</span></span>
-            <span>FEEDBACK</span>
+            <a>HOME</a>
+            <a style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
+                    style="margin: 1px;">expand_more</span></a>
+            <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
+            <a>FEEDBACK</a>
         </div>
         <b style="font-size: 25px; margin-left: -13%;">CONBONGLONGXIEN</b>
         <div class="elements">

@@ -1,8 +1,6 @@
 var lastSelectedOption = null;
 function show(option) {
-  
   var listOption = document.getElementsByClassName('option');
-
   if (lastSelectedOption) {
     lastSelectedOption.style.color = 'black';
     lastSelectedOption.style.borderBottom = 'none';
