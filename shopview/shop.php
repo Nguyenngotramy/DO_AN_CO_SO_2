@@ -6,30 +6,37 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="app.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <!-- <link href="/https://www.flaticon.com/uicons/interface-icons/css/uicons-rounded-regular.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-bold.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet"> -->
+<<<<<<< HEAD:view/shop.php
    <link rel="stylesheet" href="css/styleshop.css">
    <link rel=" stylesheet" href="app.css">
    <link rel=" stylesheet" href="css/checkout.css">
    <link rel=" stylesheet" href="css/login_register.css">
    <script src="script.js"></script>
    
+=======
+   <link rel="stylesheet" href="../view/css/styleshop.css">
+   <link rel="stylesheet" href="../view/app.css">
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+>>>>>>> 81f816f6752a40b098be56a01fbbb2dcd3704f95:shopview/shop.php
 </head>
 
 <body>
-   <?php include('header.php') ?>
+   <?php include('../view/header.php') ?>
    <div id="title-shop" style="margin-top: 84px;">
-      <img src="img/banner1_shop.png" alt="">
+      <img src="../view/img/banner1_shop.png" alt="">
       <ul>
          <a>
             <li id="choose"><span>HOME</span></li>
@@ -45,18 +52,22 @@
          <div id="leftsidebar">
             <div id="FilterBy">
                <div id="By">
-                  <label>Filter By</label>
+                  <label>Filter By Categories</label>
                   <a id="circal"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
                </div>
                <div id="disapp">
-                  <div id="By">
-                     <span>Fattern #1</span>
-                     <span id="num">2</span>
-                  </div>
-                  <div id="By">
-                     <span>Fattern #2</span>
-                     <span id="num">2</span>
-                  </div>
+                  <?php
+                  include('../model/categorydb.php');
+                  $categoryList = showAllCategory();
+                  foreach ($categoryList as $category) {
+                     ?>
+                     <div id="By">
+                        <span>
+                           <?php echo $category['categoryName'] ?>
+                        </span>
+                        <input type="checkbox" value="<?php echo $category['categoryName'] ?>" id="categoryName" class="selection categoryName-select">
+                     </div>
+                  <?php } ?>
                </div>
             </div>
 
@@ -83,34 +94,20 @@
                </div>
 
                <div id="disapp2">
-                  <div id="By">
-                     <div id="Filter_choose">
-                        <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
+                  <?php
+                  include('../model/productdb.php');
+                  $colorList = getAllColor();
+                  foreach ($colorList as $color) { ?>
+                     <div id="By">
+                        <div id="Filter_choose">
+                           <div href="#" id="color" style="background: <?php echo $color['color'] ?>;"></div><span>
+                              <?php echo $color['color'] ?>
+                           </span>
+                           
+                        </div>
+                        <input type="checkbox" value="<?php echo $color['color'] ?>" id="color" class="selection color-select">
                      </div>
-                     <span id="num">2</span>
-                  </div>
-
-
-                  <div id="By">
-                     <div id="Filter_choose">
-                        <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
-                     </div>
-                     <span id="num">2</span>
-                  </div>
-
-                  <div id="By">
-                     <div id="Filter_choose">
-                        <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
-                     </div>
-                     <span id="num">2</span>
-                  </div>
-
-                  <div id="By">
-                     <div id="Filter_choose">
-                        <div href="#" id="color" style="background: #000000;"></div><span>Black</span>
-                     </div>
-                     <span id="num">2</span>
-                  </div>
+                  <?php } ?>
                </div>
             </div>
 
@@ -120,29 +117,24 @@
                   <a id="circal3"><i class="fa-solid fa-minus" style="color: #000000;"></i></a>
                </div>
                <div id="disapp3">
+                  <?php
+                     $sizeList = getAllSize();
+                     foreach($sizeList as $size) {
+                  ?>
                   <div id="By">
-                     <span>10K</span>
-                     <span id="num">2</span>
+                     <span><?php echo $size['size']?></span>
+                     <input type="checkbox" value="<?php echo $size['size']?>" id="size" class="selection size-select">
                   </div>
-
-                  <div id="By">
-                     <span>20K</span>
-                     <span id="num">2</span>
-                  </div>
-
-                  <div id="By">
-                     <span>24K</span>
-                     <span id="num">2</span>
-                  </div>
+                  <?php }?>
                </div>
             </div>
-
+            
          </div>
 
 
          <div id="rightsidebar">
             <div id="bannershop">
-               <img src="img/banner.png" alt="">
+               <img src="../view/img/banner.png" alt="">
                <div>
                   <a href="#">
                      <li id="choose">NOSE RINGS</li>
@@ -188,38 +180,46 @@
             <div id="FilterShow">
                <p>Show 1-12 of 20 results</p>
             </div>
-            <div id="product-shop">
-               <?php
-               include('../model/productdb.php');
-               $productList = showAllProduct();
-               foreach ($productList as $product) {
-                  ?>
-                  <div id="product-detail">
-                     <div id="image">
-                        <img src="<?php echo $product['image'] ?>" alt="Không tín hiệu">
-                        <div id="icon-product">
-                           <a href="#"><i class="fa-regular fa-heart" style="color: #000000;"></i></a>
-                           <a href="#" id="hidden"><i class="fa-solid fa-rotate" style="color: #000000;"></i></a>
-                           <a href="#" id="hidden"><i class="fa-regular fa-eye" style="color: #000000;"></i></i></a>
-                        </div>
-                        <a href="product-detail.php?productID=<?php echo $product['productID']?>">
-                           <li id="readmore">Read more</li>
-                        </a>
-                     </div>
-                     <a href="">
-                        <li id="name-product">
-                           <?php echo $product['productName'] ?>
-                        </li>
-                     </a>
-                     <p id="price-product">
-                        <?php echo $product['price'] ?>
-                     </p>
-
-                  </div>
-               <?php } ?>
+            <div id="product-shop" class="product-shop">
+               
 
             </div>
+            <script>
+            $(document).ready(function(){
+               filter_data();
 
+               function filter_data() {
+                  var action = 'getdata';
+                  var categoryName = get_filter('categoryName-select');
+                  var size = get_filter('size-select');
+                  var color = get_filter('color-select');
+
+                  $.ajax({
+                     url: "getdata.php",
+                     method: "POST",
+                     data: {action:action, categoryName:categoryName, size:size, color:color},
+                     success:function(data){
+                        $('.product-shop').html(data);
+                     }
+                  });
+               }
+
+               function get_filter(class_name) {
+                  var filter = [];
+                  $('.'+class_name+':checked').each(function() {
+                     filter.push($(this).val());
+                     for($i=0; $i<=filter.length; $i++) {
+                        console.log(filter[$i]);
+                     }
+                  })
+                  return filter;
+               }
+
+               $('.selection').click(function(){
+                  filter_data();
+               })
+            })
+            </script>
 
             <div id="numberpage">
                <ul>
@@ -233,23 +233,6 @@
          </div>
       </div>
 
-      <!-- Email -->
-      <!-- <div id="contact">
-      <div id="phone">
-         <h3>CUSTOMER SERVICES</h3>
-         <h1>(+777) 450-15-415</h1>
-         <p>Monday-Friday: 9:00-20:00</p>
-      </div>
-      <div id="email">
-          <h3>NEWSLETTER</h3>
-          <form action="" method="post">
-            <input  id="y-email" type="email" placeholder="Your-Email">
-            <input id="submit" type="submit">
-          </form>
-          <h3>Sign up to get the latest on new Products, Promotions, Design news and more</h3>
-     </div>
-     </div> -->
-
 
      
      <div>
@@ -261,7 +244,7 @@
       <?php include('login_register.php') ?>
    </div>
    <div>
-      <?php include('footer.php') ?>
+      <?php include('../view/footer.php') ?>
    </div>
   
    <script>

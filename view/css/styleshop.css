@@ -215,6 +215,16 @@ body {
          background-color: #7d7d7d;
          color: #060606;
       }
+
+input[type="checkbox"] {
+  background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
 /* right */
 #rightsidebar {
   width: 75%;
@@ -389,10 +399,11 @@ body {
   text-decoration: none;
 }
 #rightsidebar #product-shop #product-detail a #name-product {
-  color: #060606;
+  color: black;
   list-style: none;
   font-size: 14px;
   margin: 16px 0px;
+  font-weight: bold;
 }
 #rightsidebar #numberpage {
   justify-content: center;
