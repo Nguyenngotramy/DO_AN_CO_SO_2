@@ -18,14 +18,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
-<<<<<<< HEAD:view/product-detail.php
-    <script src="product-detail.js"></script>
-    <link rel=" stylesheet" href="css/checkout.css">
-   <link rel=" stylesheet" href="css/login_register.css">
+
+    <link rel=" stylesheet" href="../view/css/checkout.css">
+   <link rel=" stylesheet" href="../view/css/login_register.css">
    <script src="script.js"></script>
-=======
+
     <script src="../view/product-detail.js"></script>
->>>>>>> 81f816f6752a40b098be56a01fbbb2dcd3704f95:shopview/product-detail.php
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -282,18 +281,16 @@
         </div>
     </div>
     <div>
-      <?php include('checkout.php') ?>
+      <?php include('../view/checkout.php') ?>
    </div>
 
-<<<<<<< HEAD:view/product-detail.php
+
     
    <div>
-      <?php include('login_register.php') ?>
-   </div>
-    <?php include('footer.php') ?>
-=======
+      <?php include('../view/login_register.php') ?>
+                    </div>
     <?php include('../view/footer.php') ?>
->>>>>>> 81f816f6752a40b098be56a01fbbb2dcd3704f95:shopview/product-detail.php
+
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

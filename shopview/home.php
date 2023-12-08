@@ -18,9 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
-    <script src="script.js"></script>
-    <link rel=" stylesheet" href="css/checkout.css">
-   <link rel=" stylesheet" href="css/login_register.css">
+    <script src="../view/script.js"></script>
+    <link rel=" stylesheet" href="../view/css/checkout.css">
+   <link rel=" stylesheet" href="../view/css/login_register.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -176,12 +176,12 @@
         <button>See All</button>
     </div>
     <div>
-      <?php include('checkout.php') ?>
+      <?php include('../view/checkout.php') ?>
    </div>
 
     
    <div>
-      <?php include('login_register.php') ?>
+      <?php include('../view/login_register.php') ?>
    </div>
 
     <?php include('../view/footer.php') ?>

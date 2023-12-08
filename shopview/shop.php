@@ -18,19 +18,15 @@
    <!-- <link href="/https://www.flaticon.com/uicons/interface-icons/css/uicons-rounded-regular.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-bold.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet"> -->
-<<<<<<< HEAD:view/shop.php
-   <link rel="stylesheet" href="css/styleshop.css">
-   <link rel=" stylesheet" href="app.css">
-   <link rel=" stylesheet" href="css/checkout.css">
-   <link rel=" stylesheet" href="css/login_register.css">
-   <script src="script.js"></script>
-   
-=======
+
    <link rel="stylesheet" href="../view/css/styleshop.css">
-   <link rel="stylesheet" href="../view/app.css">
+   <link rel=" stylesheet" href="../view/app.css">
+   <link rel=" stylesheet" href="../view/css/checkout.css">
+   <link rel=" stylesheet" href="../view/css/login_register.css">
+   <script src="../view/script.js"></script>
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
->>>>>>> 81f816f6752a40b098be56a01fbbb2dcd3704f95:shopview/shop.php
+
 </head>
 
 <body>
@@ -236,12 +232,12 @@
 
      
      <div>
-      <?php include('checkout.php') ?>
+      <?php include('../view/checkout.php') ?>
    </div>
 
     
    <div>
-      <?php include('login_register.php') ?>
+      <?php include('../view/login_register.php') ?>
    </div>
    <div>
       <?php include('../view/footer.php') ?>
