@@ -54,14 +54,17 @@
                <div id="disapp">
                   <?php
                   include('../model/categorydb.php');
+
                   $categoryList = showAllCategory();
+
                   foreach ($categoryList as $category) {
                      ?>
                      <div id="By">
                         <span>
                            <?php echo $category['categoryName'] ?>
                         </span>
-                        <input type="checkbox" value="<?php echo $category['categoryName'] ?>" id="categoryName" class="selection categoryName-select">
+                        <input type="checkbox" value="<?php echo $category['categoryName'] ?>" id="categoryName"
+                           class="selection categoryName-select">
                      </div>
                   <?php } ?>
                </div>
@@ -99,9 +102,10 @@
                            <div href="#" id="color" style="background: <?php echo $color['color'] ?>;"></div><span>
                               <?php echo $color['color'] ?>
                            </span>
-                           
+
                         </div>
-                        <input type="checkbox" value="<?php echo $color['color'] ?>" id="color" class="selection color-select">
+                        <input type="checkbox" value="<?php echo $color['color'] ?>" id="color"
+                           class="selection color-select">
                      </div>
                   <?php } ?>
                </div>
@@ -114,17 +118,19 @@
                </div>
                <div id="disapp3">
                   <?php
-                     $sizeList = getAllSize();
-                     foreach($sizeList as $size) {
-                  ?>
-                  <div id="By">
-                     <span><?php echo $size['size']?></span>
-                     <input type="checkbox" value="<?php echo $size['size']?>" id="size" class="selection size-select">
-                  </div>
-                  <?php }?>
+                  $sizeList = getAllSize();
+                  foreach ($sizeList as $size) {
+                     ?>
+                     <div id="By">
+                        <span>
+                           <?php echo $size['size'] ?>
+                        </span>
+                        <input type="checkbox" value="<?php echo $size['size'] ?>" id="size" class="selection size-select">
+                     </div>
+                  <?php } ?>
                </div>
             </div>
-            
+
          </div>
 
 
@@ -177,52 +183,78 @@
                <p>Show 1-12 of 20 results</p>
             </div>
             <div id="product-shop" class="product-shop">
-               
+
 
             </div>
             <script>
-            $(document).ready(function(){
-               filter_data();
-
-               function filter_data() {
-                  var action = 'getdata';
-                  var categoryName = get_filter('categoryName-select');
-                  var size = get_filter('size-select');
-                  var color = get_filter('color-select');
-
-                  $.ajax({
-                     url: "getdata.php",
-                     method: "POST",
-                     data: {action:action, categoryName:categoryName, size:size, color:color},
-                     success:function(data){
-                        $('.product-shop').html(data);
-                     }
-                  });
-               }
-
-               function get_filter(class_name) {
-                  var filter = [];
-                  $('.'+class_name+':checked').each(function() {
-                     filter.push($(this).val());
-                     for($i=0; $i<=filter.length; $i++) {
-                        console.log(filter[$i]);
-                     }
-                  })
-                  return filter;
-               }
-
-               $('.selection').click(function(){
+               $(document).ready(function () {
                   filter_data();
+                  var pageNumber;
+
+                  function selectPage(link) {
+                     pageNumber = link.dataset.page;
+                     console.log(pageNumber);
+                  }
+
+                  function filter_data() {
+                     var action = 'getdata';
+                     var categoryName = get_filter('categoryName-select');
+                     var size = get_filter('size-select');
+                     var color = get_filter('color-select');
+                     var page = pageNumber;
+                     console.log(page);
+                     $.ajax({
+                        url: "getdata.php",
+                        method: "POST",
+                        data: { action: action, categoryName: categoryName, size: size, color: color, pageNumber: pageNumber},
+                        success: function (data) {
+                           $('.product-shop').html(data);
+                        }
+                     });
+                  }
+
+                  function get_filter(class_name) {
+                     var filter = [];
+                     $('.' + class_name + ':checked').each(function () {
+                        filter.push($(this).val());
+                        for ($i = 0; $i <= filter.length; $i++) {
+                           console.log(filter[$i]);
+                        }
+                     })
+                     return filter;
+                  }
+
+
+
+                  $('.selection').click(function () {
+                     filter_data();
+                  })
+
+                  $('a.pageNumber').click(function () {
+                     selectPage(this);
+                     filter_data();
+                  });
                })
-            })
             </script>
 
             <div id="numberpage">
                <ul>
-                  <li><a href="#" id="choose">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
+                  <?php
+                  $limit = 12;
+                  $count = countProduct();
+                  $total_page = ceil($count / $limit);
+                  for ($i = 1; $i <= $total_page; $i++) {
+                     ?>
+                     <li><a href="#" name="pageNumber" class="pageNumber" data-page="<?php echo $i ?>">
+                           <?php echo $i ?>
+                        </a></li>
+                  <?php } ?>
+                  <!-- <script>
+                     function selectPage(link) {
+                     pageNumber = link.dataset.page;
+                     console.log(pageNumber);
+                  }
+                  </script> -->
                </ul>
             </div>
 
@@ -230,152 +262,84 @@
       </div>
 
 
-     
-     <div>
-      <?php include('../view/checkout.php') ?>
-   </div>
 
-    
-   <div>
-      <?php include('../view/login_register.php') ?>
-   </div>
-   <div>
-      <?php include('../view/footer.php') ?>
-   </div>
-  
-   <script>
-      let totalSeconds = 5 * 60;
-      let minutesDisplay = document.getElementById('minutes');
-      let secondsDisplay = document.getElementById('seconds');
-
-      function updateDisplay() {
-         let minutes = Math.floor(totalSeconds / 60);
-         let seconds = totalSeconds % 60;
-
-         minutesDisplay.textContent = minutes;
-         secondsDisplay.textContent = seconds;
-      }
-
-      function countdownTimer() {
-         if (totalSeconds <= 0) {
-            clearInterval(countdown);
-            return;
-         }
-         totalSeconds--;
-         updateDisplay();
-      }
-
-      let countdown = setInterval(countdownTimer, 1000);
-   </script>
-
-   <!-- login- Register -->
-   <!-- <div id="log-in-cart" class="hidden">
-      <div style="display: flex;">
-         <div id="right-icon-login">
-            <a id="choose-exit-login"><i class="fa-solid fa-xmark" style="color: #000000;"></i></a>
-            <span id="text-logo">GODTHISM</span>
-         </div>
-
-         <div id="left-form-login">
-            <div id="title-login">
-               <div id="tt-Signin">Sign in</div>
-               <div id="tt-Register">Register</div>
-            </div>
-            <div id="form-login">
-               <form action method="post">
-                  <div id="Form-login-input">
-                     <label>Email *</label>
-                     <input id="user-email" type="email">
-                  </div>
-                  <div id="Form-login-input">
-                     <label>Password *</label>
-                     <input id="password" type="password">
-                  </div>
-                  <div id="checkbox-Remember">
-                     <input type="checkbox" name id="remember">
-                     <label> Remember me</label>
-                  </div>
-                  <div id="submit-login-main">
-                     <input id="submit-login" type="submit" value="Login">
-                  </div>
-               </form>
-               <a href id="Lostpass">Lost your password ?</a>
-            </div>
-
-            <div id="form-login1" class="hidden">
-               <form action method="post">
-                  <div id="Form-login-input">
-                     <label> Username </label>
-                     <input id="user-email" type="email">
-                  </div>
-                  <div id="Form-login-input">
-                     <label> Email </label>
-                     <input id="user-email" type="email">
-                  </div>
-                  <center> <label id="regis">A password will be sent
-                        to your
-                        email
-                        address.</label><br>
-                     <label id="regis">Your personal data will be
-                        used to
-                        support
-                        your
-                        experience throughout this website,
-                        to manage access to your account, and for
-                        other
-                        purposes described in our privacy policy.</label>
-                  </center>
-                  <div id="submit-login-main">
-                     <input id="submit-login" type="submit" value="Register">
-                  </div>
-               </form>
-
-            </div>
-
-         </div>
+      <div>
+         <?php include('../view/checkout.php') ?>
       </div>
-   </div> -->
-   <script>
-const element = document.getElementById("circal");
-element.addEventListener("click", myFunction);
 
-function myFunction() {
-   const document1 = document.getElementById("disapp");
-   document1.classList.toggle('visible');
-   document1.classList.toggle('hidden');
-}
-</script>
-<script>
-const element1 = document.getElementById("circal1");
-element1.addEventListener("click", myFunction);
 
-function myFunction() {
-   const document1 = document.getElementById("disapp1");
-   document1.classList.toggle('visible');
-   document1.classList.toggle('hidden');
-}
-</script>
-<script>
-const element2 = document.getElementById("circal2");
-element2.addEventListener("click", myFunction);
+      <div>
+         <?php include('../view/login_register.php') ?>
+      </div>
+      <div>
+         <?php include('../view/footer.php') ?>
+      </div>
 
-function myFunction() {
-   const document1 = document.getElementById("disapp2");
-   document1.classList.toggle('visible');
-   document1.classList.toggle('hidden');
-}
-</script>
-<script>
-const element3 = document.getElementById("circal3");
-element3.addEventListener("click", myFunction);
+      <script>
+         let totalSeconds = 5 * 60;
+         let minutesDisplay = document.getElementById('minutes');
+         let secondsDisplay = document.getElementById('seconds');
 
-function myFunction() {
-   const document1 = document.getElementById("disapp3");
-   document1.classList.toggle('visible');
-   document1.classList.toggle('hidden');
-}
+         function updateDisplay() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
 
-</script>
+            minutesDisplay.textContent = minutes;
+            secondsDisplay.textContent = seconds;
+         }
+
+         function countdownTimer() {
+            if (totalSeconds <= 0) {
+               clearInterval(countdown);
+               return;
+            }
+            totalSeconds--;
+            updateDisplay();
+         }
+
+         let countdown = setInterval(countdownTimer, 1000);
+      </script>
+      <script>
+         const element = document.getElementById("circal");
+         element.addEventListener("click", myFunction);
+
+         function myFunction() {
+            const document1 = document.getElementById("disapp");
+            document1.classList.toggle('visible');
+            document1.classList.toggle('hidden');
+         }
+      </script>
+      <script>
+         const element1 = document.getElementById("circal1");
+         element1.addEventListener("click", myFunction);
+
+         function myFunction() {
+            const document1 = document.getElementById("disapp1");
+            document1.classList.toggle('visible');
+            document1.classList.toggle('hidden');
+         }
+      </script>
+      <script>
+         const element2 = document.getElementById("circal2");
+         element2.addEventListener("click", myFunction);
+
+         function myFunction() {
+            const document1 = document.getElementById("disapp2");
+            document1.classList.toggle('visible');
+            document1.classList.toggle('hidden');
+         }
+      </script>
+      <script>
+         const element3 = document.getElementById("circal3");
+         element3.addEventListener("click", myFunction);
+
+         function myFunction() {
+            const document1 = document.getElementById("disapp3");
+            document1.classList.toggle('visible');
+            document1.classList.toggle('hidden');
+         }
+
+      </script>
 
 </body>
 

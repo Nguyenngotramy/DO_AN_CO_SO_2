@@ -1,4 +1,14 @@
 <?php
+    function countProduct() {
+        global $db;
+        $query = 'SELECT COUNT(*) FROM `products`';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $count = $statement->fetchColumn();
+        $statement->closeCursor();
+        return $count;
+    }
+
     function showAllProduct() {
         global $db;
         $query = 'SELECT products.productID, products.productName, products.categoryID, productimages.image, productdetails.price
@@ -7,6 +17,18 @@
         INNER JOIN productdetails ON products.productID = productdetails.productID
         GROUP BY products.productID;';
         $statement = $db->prepare($query);
+        $statement->execute();
+        $productList = $statement->fetchAll();
+        $statement->closeCursor();
+        return $productList;
+    }
+
+    function showProductPage($start, $limit) {
+        global $db;
+        $query = "SELECT * FROM `products` LIMIT $start, $limit";
+        $statement = $db->prepare($query);
+        // $statement->bindValue(1, $start);
+        // $statement->bindValue(2, $limit);
         $statement->execute();
         $productList = $statement->fetchAll();
         $statement->closeCursor();

@@ -1,14 +1,22 @@
 <?php
     require_once("../database/connecttemp.php");
+    include('../model/productdb.php');
     if(isset($_POST['action'])) {
+        if (isset($_POST['pageNumber'])) {
+            $page = $_POST['pageNumber'];
+         } else {
+            $page = 1;
+         }
+         $limit = 12;
+         $start = ($page - 1) * $limit;
         global $db;
-        $query = "SELECT products.productID, products.productName, products.categoryID, color.color, size.size, productimages.image, productdetails.price
+        $query = "SELECT products.productID, products.productName, products.categoryID, color.color, size.size, productimages.image, productdetails.price 
         FROM products
         INNER JOIN categories ON categories.categoryID = products.categoryID
         INNER JOIN productimages ON products.productID = productimages.productID
         INNER JOIN productdetails ON products.productID = productdetails.productID
         INNER JOIN color ON color.colorID = productdetails.colorID
-        INNER JOIN size ON size.sizeID = productdetails.sizeID
+        LEFT JOIN size ON size.sizeID = productdetails.sizeID
         WHERE products.productID is not NULL";
         if(isset($_POST['categoryName'])) {
             $categoryName_filter = implode("','", $_POST['categoryName']);
@@ -23,7 +31,8 @@
             $query .= " AND size.size IN ('".$size_filter."')";
         }
         // echo $query;
-        $query .= " GROUP BY products.productID";
+        $query .= " GROUP BY products.productID
+        LIMIT $start, $limit";
         $statement = $db->prepare($query);
         $statement->execute();
         $productList = $statement->fetchAll();
