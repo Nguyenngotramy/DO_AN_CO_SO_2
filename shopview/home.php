@@ -18,6 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
+    <script src="../view/script.js"></script>
+    <link rel=" stylesheet" href="../view/css/checkout.css">
+   <link rel=" stylesheet" href="../view/css/login_register.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -172,8 +175,14 @@
             or photographers - these are relationships that took years!</p>
         <button>See All</button>
     </div>
+    <div>
+      <?php include('../view/checkout.php') ?>
+   </div>
 
-
+    
+   <div>
+      <?php include('../view/login_register.php') ?>
+   </div>
 
     <?php include('../view/footer.php') ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

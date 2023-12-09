@@ -55,13 +55,13 @@
             <i class="material-symbols-outlined">search</i>
             <div>
                 <div class="circle">1</div>
-                <i class="material-symbols-outlined">shopping_bag</i>
+                <i onclick="myFunctionCheckout()" class="material-symbols-outlined" >shopping_bag</i>
             </div>
             <div>
                 <div class="circle">1</div>
                 <i class="material-symbols-outlined">favorite</i>
             </div>
-            <i class="fa-regular fa-user" style="font-size: 23px"></i>
+            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
             <i class="material-symbols-outlined">menu</i>
         </div>
     </div>

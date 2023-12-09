@@ -8,7 +8,6 @@ $AddPDB = new AddProductDB();
 $action = filter_input(INPUT_POST, 'action');
 
 if ($action == 'add_product') {
-<<<<<<< HEAD
     
     $nameproduct = filter_input(INPUT_POST, 'nameproduct');
     $description = filter_input(INPUT_POST, 'description');  
@@ -18,19 +17,7 @@ if ($action == 'add_product') {
     if ($nameproduct == NULL || $description == NULL || $Originproduct == NULL || $categoryID === false) {
         $error = "Invalid product data. Check all fields and try again.";
     } else {
-=======
-    try {
-        $nameproduct = filter_input(INPUT_POST, 'nameproduct');
-        $description = filter_input(INPUT_POST, 'description');  
-        $Originproduct = filter_input(INPUT_POST, 'Originproduct');
-        $categoryID = filter_input(INPUT_POST, 'categoryID', FILTER_VALIDATE_INT);
-        
-        if ($nameproduct == NULL || $description == NULL || $Originproduct == NULL || $categoryID === false) {
-            throw new Exception("Invalid product data. Check all fields and try again.");
-        }
 
-       
->>>>>>> e7b460b092cb6eba533adde7b41d4ffcab52d4c7
         $product = new Product();
         $product->setProductName($nameproduct);
         $product->setDescription($description);
@@ -97,11 +84,7 @@ if ($action == 'add_product') {
        
         header("Location: ../view/addProducts.php");
         exit();
-    } catch (Exception $e) {
-        // Xử lý lỗi theo nhu cầu của bạn
-        $error = 'Error: ' . $e->getMessage();
-    }
-  
-
+    } 
 }
+
 ?>

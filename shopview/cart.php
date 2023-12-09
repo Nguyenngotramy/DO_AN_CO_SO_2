@@ -10,8 +10,11 @@
   <link href="/https://www.flaticon.com/uicons/interface-icons/css/uicons-rounded-regular.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-bold.css" rel="stylesheet">
   <link href="/your-path-to-uicons/css/uicons-rounded-solid.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styleshop.css">
-  <link rel="stylesheet" href="css/stylecart.css">
+  <link rel="stylesheet" href="../view/css/styleshop.css">
+  <link rel="stylesheet" href="../view/css/stylecart.css">
+  <link rel=" stylesheet" href="../view/css/checkout.css">
+   <link rel=" stylesheet" href="../view/css/login_register.css">
+   <script src="script.js"></script>
 </head>
 
 <body>
@@ -70,7 +73,15 @@
         </div>
       </div>
     </div> -->
-    <?php include('header.php')?>
+    <div>
+      <?php include('../view/checkout.php') ?>
+   </div>
+
+    
+   <div>
+      <?php include('../view/login_register.php') ?>
+   </div>
+    <?php include('../view/header.php')?>
   
       
     <div id="title-cart">

@@ -51,7 +51,7 @@ public function getcoloritem() {
         foreach ($statement as $result) {
             $color = new Color();
             $color->setIDcolor($result['colorID']);
-            $color->setColor($result['colorname']);
+            $color->setColor($result['color']);
             $colors[] = $color;
         }
 
