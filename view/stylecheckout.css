@@ -1,0 +1,20 @@
+#checkout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    background-color: grey;
+    margin-top: 87px;
+}
+
+#checkout ul{
+    display: flex;
+}
+
+#checkout li{
+    margin: 0 20px;
+}
+
+#checkout li:first-child {
+    list-style: none;
+}

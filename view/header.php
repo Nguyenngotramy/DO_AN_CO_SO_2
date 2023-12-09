@@ -50,7 +50,7 @@
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b style="font-size: 25px; margin-left: -13%;">CONBONGLONGXIEN</b>
+        <b style="font-size: 25px; margin-left: -10%;">CONBONGLONGXIEN</b>
         <div class="elements">
             <i class="material-symbols-outlined">search</i>
             <div>
