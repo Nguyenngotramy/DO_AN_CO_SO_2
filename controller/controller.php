@@ -2,9 +2,11 @@
 include_once("../model/addProductDB.php");
 include_once("../model/addProductDetailModel.php");
 include_once("../model/addProductModel.php");
-
+include_once("../model/register_loginDB.php");
+include_once("../model/registerModel.php");
+ 
 $AddPDB = new AddProductDB();
-
+$Regislogin = new Register_login();
 $action = filter_input(INPUT_POST, 'action');
 
 if ($action == 'add_product') {
@@ -82,9 +84,46 @@ if ($action == 'add_product') {
             }
             
        
-        header("Location: ../view/addProducts.php");
+        header("Location: ../admin/addProducts.php");
         exit();
     } 
 }
+
+if ($action == 'register_user'){
+    $userName = filter_input(INPUT_POST,'Username');
+    $email = filter_input(INPUT_POST,'Email');
+    $password = filter_input(INPUT_POST,'Password');
+    if ($userName == NULL || $email == NULL || $password == NULL){
+        $error = "Invalid product data. Check all fields and try again.";
+    } else {
+        $user = new UserRegister();
+        $user->setUsername($userName);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        $Regislogin->register($user);
+        $mess = "Register sucess!!";
+    }
+    
+    header("Location: ../shopview/shop.php");
+    exit();
+}
+if ($action == 'login') {
+    $email = filter_input(INPUT_POST, 'emaillogin');
+    $password = filter_input(INPUT_POST, 'pwlogin');
+    $result =  $Regislogin->getInfor($email, $password);
+    $role = $result[0]['role'];
+    session_start();
+    ob_start();
+    if ($role == 1) {
+        $_SESSION['role'] = $role;
+        header('location: ../admin/addProducts.php');
+    } else {
+        $_SESSION['role'] = $role;
+        $_SESSION['userID'] = $result[0]['userID'];
+        $_SESSION['userName'] = $result[0]['userName'];
+        header('location: ../shopview/shop.php');
+    }
+}
+
 
 ?>

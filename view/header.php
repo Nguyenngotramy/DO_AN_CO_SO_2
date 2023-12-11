@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +28,13 @@
 </head>
 
 <body>
-    <?php require('../database/connecttemp.php')?>
+<?php session_start();
+      ob_start();
+?>
+    <?php require('../database/connecttemp.php');
+          
+    ?>
+
     <div id="header">
         <div class="elements">
             <i class="fa-brands fa-facebook"></i>
@@ -61,7 +68,23 @@
                 <div class="circle">1</div>
                 <i class="material-symbols-outlined">favorite</i>
             </div>
+            <?php  
+          
+             if (isset($_SESSION['userName']) && ($_SESSION['userName'] != "")) : ?>
+           <a href="shop.php?loginsuccess"><?php echo $_SESSION['userName']; ?></a>
+           <a href="shop.php?exit"><?php echo "Log out" ?></a>
+           <?php
+            if (isset($_GET['exit'])) {
+            session_unset();
+            session_destroy();
+            header('Location: ../shopview/home.php');
+            exit();
+             }
+?>
+        <?php else : ?>
             <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
+        <?php endif; ?>
+        
             <i class="material-symbols-outlined">menu</i>
         </div>
     </div>
