@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
+    <script src="../view/script.js"></script>
     <link
         rel="stylesheet"
         type="text/css"
@@ -81,7 +82,7 @@
              }
 ?>
         <?php else : ?>
-            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
+            <i id="user-login" onclick="myFunctionLoginForm(), myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
         <?php endif; ?>
         
             <i class="material-symbols-outlined">menu</i>

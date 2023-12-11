@@ -41,6 +41,7 @@
         if($result>0) {
         foreach($productList as $product) {
             $output .= '<div id="product-detail">
+            <a href="product-detail.php?productID='.$product['productID'].'">
             <div id="image">
                <img src="'.$product['image'].'" alt="Không tín hiệu">
                <div id="icon-product">
@@ -51,7 +52,8 @@
                <a id="readmore" href="product-detail.php?productID='.$product['productID'].'">Add to cart
                </a>
             </div>
-            <a href="">
+            </a>
+            <a href="product-detail.php?productID='.$product['productID'].'">
                <li id="name-product">
                '.$product['productName'].'
                </li>

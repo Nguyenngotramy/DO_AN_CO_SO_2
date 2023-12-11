@@ -3,7 +3,7 @@
     include_once("../controller/controller.php");
   
     ?>
-<div id="log-in-cart"  class="hidden">
+<div id="log-in-cart">
       <div style="display: flex;">
          <div id="right-icon-login">
             <a id="choose-exit-login"><i onclick="myFunctionExitLogin()" class="fa-solid fa-xmark" style="color: #000000;"></i></a>
@@ -12,8 +12,8 @@
 
          <div id="left-form-login">
             <div id="title-login">
-               <div id="tt-Signin" onclick="myFunctionFormlogin()">Sign in</div>
-               <div id="tt-Register" onclick="myFunctionFormlogin()">Register</div>
+               <div id="tt-Signin" onclick="myFunctionFormlogin('signin')">Sign in</div>
+               <div id="tt-Register" onclick="myFunctionFormlogin('register')">Register</div>
             </div>
             <div id="form-login">
             <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data" >
@@ -38,7 +38,7 @@
                <div><?php  ?></div>
             </div>
 
-            <div id="form-login1" class="hidden">
+            <div id="form-login1">
             <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data" >
                 <input type="hidden" name="action" value="register_user">
                 <?php

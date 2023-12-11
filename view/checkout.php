@@ -1,4 +1,4 @@
-<div id="cart-div-control" class="hidden" style="transition: linear 2s;">
+<div id="cart-div-control">
    <div id="icon-controler">
       <a id="choose-exit"><i onclick="myFunctionExit()" class="fa-solid fa-xmark" style="color: #000000;"></i></a>
       <div id="icon-controler-main">

@@ -20,10 +20,10 @@
     <script src='main.js'></script>
 
     <link rel=" stylesheet" href="../view/css/checkout.css">
-   <link rel=" stylesheet" href="../view/css/login_register.css">
-   <script src="script.js"></script>
+    <link rel=" stylesheet" href="../view/css/login_register.css">
+    <script src="script.js"></script>
 
-    <script src="../view/product-detail.js"></script>
+    <script src="../view/productdetails.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
@@ -34,14 +34,14 @@
     <div id="product-frame">
         <div class="elements">
             <div class="product-images">
-            <?php
+                <?php
                 include('../model/productdb.php');
                 $productID = $_GET['productID'];
                 $imageList = showImage($productID);
                 foreach ($imageList as $image) {
-            ?>
-                <img src="<?php echo $image['image']?>" id="<?php echo $image['id']?>" onclick="getMainImage(id)">
-                <?php }?>
+                    ?>
+                    <img src="<?php echo $image['image'] ?>" id="<?php echo $image['id'] ?>" onclick="getMainImage(id)">
+                <?php } ?>
             </div>
         </div>
         <div class="elements" style="margin: 0 30px">
@@ -58,19 +58,18 @@
                 </ul>
                 <?php
                 // $productID =  $_GET['productID'];
-                
-                
                 $productInfor = showInforOfProduct($productID);
                 $productDetails = showDetails($productID);
                 $colors = array();
                 $sizes = array();
+
                 foreach ($productDetails as $detail) {
                     $color = $detail['color'];
                     $size = $detail['size'];
                     if (!in_array($color, $colors)) {
                         $colors[] = $color;
                     }
-                    
+
                     if (!in_array($size, $sizes)) {
                         $sizes[] = $size;
                     }
@@ -103,10 +102,12 @@
                 <div class="inline" style=" margin-top: 20px">
                     <span style="font-size: 20px; margin-right: 20px;">Size</span>
                     <?php foreach ($sizes as $size) { ?>
-                        <button class="size"><?php echo $size?></button>
+                        <button class="size">
+                            <?php echo $size ?>
+                        </button>
                     <?php } ?>
                 </div>
-                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $</span>
+                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $<?php echo ($productInfor['price']) ?></span>
                 <div name="policy">
                     <div class="inline">
                         <a class="dialog-btn" href="#policy"><span class="material-symbols-outlined">
@@ -192,105 +193,84 @@
 
         </div>
     </div>
-
     <div id="more-infor">
         <div class="bar">
+            <?php
+            include('getInforData.php');
+            $description = json_encode(descriptionProduct($productInfor), JSON_HEX_QUOT);
+            $encodedDescription = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
+
+            $additionInfor = json_encode(additionInfor($colors, $sizes), JSON_HEX_QUOT);
+            $encodedAdditionInfor = htmlspecialchars($additionInfor, ENT_QUOTES, 'UTF-8');
+
+            ?>
             <ul class="ul-main">
-                <li name="option" id="description" onclick="show('description')">Description</li>
-                <li name="option" id="add-inf" onclick="show('add-inf')">Additional Information</li>
+                <li name="option" id="description" onclick="show('description', <?php echo $encodedDescription ?>)">
+                    Description
+                </li>
+                <li name="option" id="add-inf" onclick="show('add-inf', <?php echo $encodedAdditionInfor ?>)">Additional
+                    Information</li>
                 <li name="option" id="review" onclick="show('review')">Review</li>
             </ul>
         </div>
         <div class="show-infor" id="show-infor">
-            <script>show('description')</script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    console.log(<?php echo $description ?>);
+                    show('description', <?php echo $description ?>);
+                    //Hề hước vl đéo hiểu???
+                });
+            </script>
         </div>
+
+
+
+
 
         <div id="also-like">
             <span style="font-size: 25px; font-weight: bold;">Viewers Also Liked</span>
             <span style="float: right;">See All ></span><br>
             <div class="featured-products">
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
+                <?php
+                $productList = showAllProduct();
+                foreach ($productList as $product) {
+                    ?>
+                    <div class="product">
+                        <a href="product-detail.php?productID=<?php echo $product['productID'] ?>"
+                            style="text-decoration: none; color: black">
+                            <div class="product-box">
+                                <img src="<?php echo $product['image'] ?>">
+                                <span class="material-symbols-outlined">
+                                    favorite
+                                </span>
+                                <a class="readmore"
+                                    href="product-detail.php?productID=<?php echo $product['productID'] ?>">Read
+                                    more</a>
+                            </div>
+                        </a>
+                        <a href="product-detail.php?productID=<?php echo $product['productID'] ?>"
+                            style="text-decoration: none; color: black">
+                            <div style="height: 50px">
+                                <b>
+                                    <?php echo $product['productName'] ?>
+                                </b><br>
+                            </div>
+                        </a>
+                        <span>$<?php echo $product['price'] ?></span>
                     </div>
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
-
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
-                    </div>
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
-                    </div>
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
-                    </div>
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
-                    </div>
-
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
-                <div class="product">
-                    <div class="product-box">
-                        <img src="image/ring.png">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore">Read more</a>
-                    </div>
-                    <span>Embossed hoop earrings</span><br>
-                    <span>$144.00</span>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
     <div>
-      <?php include('../view/checkout.php') ?>
-   </div>
+        <?php include('../view/checkout.php') ?>
+    </div>
 
 
-    
-   <div>
-      <?php include('../view/login_register.php') ?>
-                    </div>
+    <div>
+        <?php include('../view/login_register.php') ?>
+    </div>
     <?php include('../view/footer.php') ?>
-
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -304,8 +284,8 @@
                 }
             })
         })
-    </script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    </scrip >
+            <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../view/app.js"></script>

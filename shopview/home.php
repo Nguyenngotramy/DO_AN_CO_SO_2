@@ -20,7 +20,7 @@
     <script src='main.js'></script>
     <script src="../view/script.js"></script>
     <link rel=" stylesheet" href="../view/css/checkout.css">
-   <link rel=" stylesheet" href="../view/css/login_register.css">
+    <link rel=" stylesheet" href="../view/css/login_register.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -149,18 +149,23 @@
             foreach ($productList as $product) {
                 ?>
                 <div class="product">
-                    <div class="product-box">
-                        <img src="<?php echo $product['image'] ?>">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                        <a class="readmore" href="product-detail.php?productID=<?php echo $product['productID']?>">Read more</a>
-                    </div>
-                    <div style="height: 50px">
-                        <b>
-                            <?php echo $product['productName'] ?>
-                        </b><br>
-                    </div>
+                    <a href="product-detail.php?productID=<?php echo $product['productID'] ?>" style="text-decoration: none; color: black">
+                        <div class="product-box">
+                            <img src="<?php echo $product['image'] ?>">
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                            <a class="readmore" href="product-detail.php?productID=<?php echo $product['productID'] ?>">Read
+                                more</a>
+                        </div>
+                    </a>
+                    <a href="product-detail.php?productID=<?php echo $product['productID'] ?>" style="text-decoration: none; color: black">
+                        <div style="height: 50px">
+                            <b>
+                                <?php echo $product['productName'] ?>
+                            </b><br>
+                        </div>
+                    </a>
                     <span">$
                         <?php echo $product['price'] ?></span>
                 </div>
@@ -176,13 +181,13 @@
         <button>See All</button>
     </div>
     <div>
-      <?php include('../view/checkout.php') ?>
-   </div>
+        <?php include('../view/checkout.php') ?>
+    </div>
 
-    
-   <div>
-      <?php include('../view/login_register.php') ?>
-   </div>
+
+    <div>
+        <?php include('../view/login_register.php') ?>
+    </div>
 
     <?php include('../view/footer.php') ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

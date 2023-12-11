@@ -1,11 +1,11 @@
 /* Làm ẩn hiện bên thanh filter */
-.visible {
-    display: block;
+/* .visible {
+  transform: translateX(0%);
   }
   
   .hidden {
-    display: block;
-  }
+    transform: translateX(100%);
+  } */
   
   /* cart-icon */
   #cart-div-control {
@@ -17,6 +17,8 @@
     background: #ffffff;
     z-index: 101;
     width: 500px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
   }
   #cart-div-control #icon-controler {
     display: flex;
