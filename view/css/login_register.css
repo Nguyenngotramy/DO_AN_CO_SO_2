@@ -33,10 +33,15 @@
   #log-in-cart #right-icon-login #choose-exit-login {
     text-decoration: none;
     list-style: none;
+    cursor: pointer;
+    
   }
   #log-in-cart #right-icon-login #choose-exit-login i {
     padding: 6px 12px;
+    font-size: 20px;
+    
   }
+
   #log-in-cart #right-icon-login #text-logo {
     padding: 6px 12px;
     color: #000000;
@@ -77,12 +82,22 @@
     width: 81%;
   }
   #left-form-login #form-login2 {
+    position: absolute;
+    margin-top: 80px;
     padding: 15px;
     margin-bottom: 480px;
+    transform: translateX(-150%);
+    transition: transform 0.5s ease;
+    width: 81%;
   }
   #left-form-login #form-login3 {
+    position: absolute;
+    margin-top: 80px;
     padding: 15px;
     margin-bottom: 480px;
+    transform: translateX(-150%);
+    transition: transform 0.5s ease;
+    width: 81%;
   }
   #left-form-login #form-login #Form-login-input {
     display: grid;

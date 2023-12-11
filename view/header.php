@@ -41,7 +41,7 @@
             <i class="fa-brands fa-instagram"></i>
             <i class="fa-brands fa-twitter"></i>
         </div>
-        <span style="font-weight: bold; font-size: 13px;">FREE SHIPPING ON ALL ORDERS OVER 75$!</span>
+        <span style="font-weight: bold; font-size: 13px; margin-left: 48px;">FREE SHIPPING ON ALL ORDERS OVER 75$!</span>
         <div class="elements">
             <span>CART</span>
             <span>SEARCH</span>
@@ -82,7 +82,7 @@
              }
 ?>
         <?php else : ?>
-            <i id="user-login" onclick="myFunctionLoginForm(), myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
+            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
         <?php endif; ?>
         
             <i class="material-symbols-outlined">menu</i>
