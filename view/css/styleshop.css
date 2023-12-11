@@ -378,22 +378,22 @@ input[type="checkbox"] {
   margin-top: 5%;
 }
 #rightsidebar #product-shop #product-detail #image #readmore {
-  background-color: #060606;
-  color: #f8f8f8;
-  text-align: center;
+  width: 100%; 
+  background-color: black; 
+  color: white; 
+  height: 10%; 
+  display: flex;
+  align-items: center; 
   position: absolute;
-  bottom: 0px;
-  z-index: 1;
-  width: 100%;
-  list-style: none;
-  padding: 12px 0px;
-  bottom: -45px;
+  padding: 3% 0; 
+  bottom: -39px;
+  justify-content: center;
   transition: 0.25s ease-in-out;
 }
+
+
 #rightsidebar #product-shop #product-detail #image:hover #readmore {
   bottom: 0;
-  
-  /* max-width: 100%; */
 }
 #rightsidebar #product-shop #product-detail a {
   text-decoration: none;

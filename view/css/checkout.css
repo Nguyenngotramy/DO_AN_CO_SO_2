@@ -4,7 +4,7 @@
   }
   
   .hidden {
-    display: none;
+    display: block;
   }
   
   /* cart-icon */
@@ -28,6 +28,7 @@
   #cart-div-control #icon-controler #icon-controler-main{
     display: flex;
     margin-top: 10px;
+    cursor: pointer;
   }
   
   #cart-div-control #icon-controler #choose-exit {
@@ -35,7 +36,12 @@
     text-decoration: none;
     list-style: none;
     font-size: 20px;
-  
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  #cart-div-control #icon-controler #choose-exit:hover {
+    transform: rotate(180deg)
   }
   
   #cart-div-control #limit {
