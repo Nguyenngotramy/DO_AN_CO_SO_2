@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
       function myFunctionFormlogin(choice) {
          var x = document.getElementById("form-login");
          var y = document.getElementById("form-login1");
@@ -28,6 +29,62 @@
             
          // }
        }
+=======
+      // function myFunctionFormlogin() {
+      //    var x = document.getElementById("form-login");
+      //    var y = document.getElementById("form-login1");
+      //    if (x.style.display === "none") {
+      //       x.classList.toggle('visible');
+      //       y.classList.toggle('hidden');
+            
+      //    }else {
+      //       x.classList.toggle('hidden');
+      //       y.classList.toggle('visible');
+            
+      //    }
+      //    if (y.style.display === "none") {
+      //       x.classList.toggle('hidden');
+      //       y.classList.toggle('visible');
+      //    }else {
+      //       x.classList.toggle('visible');
+      //       y.classList.toggle('hidden');
+            
+      //    }
+      //  }
+
+      //  function myFunctionForget() {
+      //    var x = document.getElementById("form-login");
+      //    var y = document.getElementById("form-login2");
+      //    if (x.style.display === "none") {
+      //       x.classList.toggle('visible');
+      //       y.classList.toggle('hidden');
+            
+      //    }else {
+      //       x.classList.toggle('hidden');
+      //       y.classList.toggle('visible');
+            
+      //    }
+      //    if (y.style.display === "none") {
+      //       x.classList.toggle('hidden');
+      //       y.classList.toggle('visible');
+      //    }else {
+      //       x.classList.toggle('visible');
+      //       y.classList.toggle('hidden');
+            
+      //    }
+         
+      // }
+      function toggleLoginForm(formId) {
+         // Hide all forms
+         document.getElementById('form-login').classList.add('hidden');
+         document.getElementById('form-login1').classList.add('hidden');
+         document.getElementById('form-login2').classList.add('hidden');
+         document.getElementById('form-login3').classList.add('hidden');
+ 
+         // Show the selected form
+         document.getElementById(formId).classList.remove('hidden');
+     }
+>>>>>>> b3576621064d51e26432d000fec628896c80468c
       function myFunctionLoginForm() {
          var form = document.getElementById("log-in-cart");
          form.style.transform = 'translateX(0%)';

@@ -21,15 +21,7 @@ class Register_login{
         }
 
     }
-    public static function checkUser($email,$password){
-        global $db;
-        $query = "SELECT * FROM user WHERE email ='".$email."' AND password = '".$password."'";
-        $statement = $db->prepare($query);
-        $statement->execute();
-        $result =$statement->fetchAll();
-        if (count($result)>0) return $result[0]['role'];
-        else return 0;
-    }
+   
     public static function getInfor($email,$password){
         global $db;
         $query = "SELECT * FROM user WHERE email ='".$email."' AND password = '".$password."'";

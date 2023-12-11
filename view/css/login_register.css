@@ -76,12 +76,30 @@
     transition: transform 0.5s ease;
     width: 81%;
   }
+  #left-form-login #form-login2 {
+    padding: 15px;
+    margin-bottom: 480px;
+  }
+  #left-form-login #form-login3 {
+    padding: 15px;
+    margin-bottom: 480px;
+  }
   #left-form-login #form-login #Form-login-input {
     display: grid;
     font-size: 18px;
     margin: 15px 10px;
   }
   #left-form-login #form-login1 #Form-login-input {
+    display: grid;
+    font-size: 18px;
+    margin: 15px 10px;
+  }
+  #left-form-login #form-login2 #Form-login-input {
+    display: grid;
+    font-size: 18px;
+    margin: 15px 10px;
+  }
+  #left-form-login #form-login3 #Form-login-input {
     display: grid;
     font-size: 18px;
     margin: 15px 10px;
@@ -97,11 +115,29 @@
     color: #bbbbbb;
     margin: 0px 10px;
   }
+  #left-form-login #form-login2 #Form-login-input label {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+  }
+  #left-form-login #form-login3 #Form-login-input label {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+  }
   #left-form-login #form-login #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
   }
   #left-form-login #form-login1 #Form-login-input input {
+    padding: 15px;
+    margin: 20px 15px;
+  }
+  #left-form-login #form-login2 #Form-login-input input {
+    padding: 15px;
+    margin: 20px 15px;
+  }
+  #left-form-login #form-login3 #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
   }
@@ -142,6 +178,25 @@
     font-size: 18px;
     border: none;
   }
+  #left-form-login #form-login2 #submit-login-main #submit-login {
+    padding: 15px;
+    background-color: #000000;
+    color: #fafafa;
+    width: 90%;
+    margin: 10px 20px;
+    font-size: 18px;
+    border: none;
+  }
+  #left-form-login #form-login3 #submit-login-main #submit-login {
+    padding: 15px;
+    background-color: #000000;
+    color: #fafafa;
+    width: 40%;
+    margin: 10px 20px;
+    font-size: 18px;
+    border: none;
+    
+  }
   #left-form-login #form-login #Lostpass {
     text-decoration: none;
     font-size: 18px;
@@ -149,6 +204,18 @@
     padding: 10px;
   }
   #left-form-login #form-login1 #regis {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+    padding: 10px;
+  }
+  #left-form-login #form-login2 #regis {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin: 0px 10px;
+    padding: 10px;
+  }
+  #left-form-login #form-login3 #regis {
     font-size: 18px;
     color: #bbbbbb;
     margin: 0px 10px;

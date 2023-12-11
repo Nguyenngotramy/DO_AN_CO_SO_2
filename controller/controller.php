@@ -4,9 +4,13 @@ include_once("../model/addProductDetailModel.php");
 include_once("../model/addProductModel.php");
 include_once("../model/register_loginDB.php");
 include_once("../model/registerModel.php");
- 
+include_once("../model/Loss_passDB.php");
+include_once("sendGmail.php");
 $AddPDB = new AddProductDB();
 $Regislogin = new Register_login();
+$Lossp = new LossPassDB();
+$SendGmail = new sendGmail();
+
 $action = filter_input(INPUT_POST, 'action');
 
 if ($action == 'add_product') {
@@ -124,6 +128,17 @@ if ($action == 'login') {
         header('location: ../shopview/shop.php');
     }
 }
-
+if($action == 'losspw'){
+    $email = filter_input(INPUT_POST, 'Emaillosspw');
+    $result = $Lossp->getEmailToCheck($email);
+    if($result == 0){
+        echo "Email not found";
+        }else{
+            $newpassword = substr(md5 (rand(0,900000)),0,8);
+            $Lossp->changePassword($email,$newpassword);
+            $SendGmail->SendGmailToChangePassword($email,$newpassword);
+          
+}
+}
 
 ?>
