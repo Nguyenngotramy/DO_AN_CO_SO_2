@@ -12,8 +12,8 @@
 
          <div id="left-form-login">
             <div id="title-login">
-               <div id="tt-Signin" onclick="myFunctionFormlogin()">Sign in</div>
-               <div id="tt-Register" onclick="myFunctionFormlogin()">Register</div>
+               <div id="tt-Signin" onclick="toggleLoginForm('form-login')">Sign in</div>
+               <div id="tt-Register" onclick="toggleLoginForm('form-login1')">Register</div>
             </div>
             <div id="form-login">
             <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data" >
@@ -30,11 +30,11 @@
                      <input type="checkbox" name id="remember">
                      <label> Remember me</label>
                   </div>
-                  <div id="submit-login-main">
+                  <div id="submit-login-main" >
                      <input id="submit-login" type="submit" value="Login">
                   </div>
                </form>
-               <a href id="Lostpass">Lost your password ?</a>
+               <a id="Lostpass" onclick="toggleLoginForm('form-login2')">Lost your password ?</a>
                <div><?php  ?></div>
             </div>
 
@@ -60,6 +60,41 @@
                      <input id="submit-login" type="submit" value="Register">
                   </div>
                </form>
+
+            </div>
+
+            <div id="form-login2" class="hidden">
+            <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data" >
+                <input type="hidden" name="action" value="losspw">
+                  <div id="Form-login-input">
+                     <label> Email </label>
+                     <input id="user-email" type="email" name="Emaillosspw">
+                  </div>
+                  <lable>Password will send to your email, Please check after send</lable>
+                  <div id="submit-login-main">
+                     <input id="submit-login" onclick="toggleLoginForm('form-login3')" type="submit" value="Send">
+                  </div>
+            </form>
+
+            </div>
+
+            <div id="form-login3" class="hidden">
+            <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data" >
+                <input type="hidden" name="action" value="newpass">
+                  <div id="Form-login-input">
+                     <label>New password</label>
+                     <input id="user-email" type="password" name="Email">
+                  </div>
+                  <div id="Form-login-input">
+                     <label>New password</label>
+                     <input id="user-email" type="password" name="Email">
+                  </div>
+                  
+                  <div id="submit-login-main" style="display:flex ;">
+                     <input id="submit-login" type="submit" value="Submit">
+                     <input id="submit-login" type="submit" value="Next">
+                  </div>
+            </form>
 
             </div>
 
