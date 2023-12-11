@@ -27,7 +27,13 @@
 </head>
 
 <body>
-    <?php require('../database/connecttemp.php')?>
+<?php session_start();
+      ob_start();
+?>
+    <?php require('../database/connecttemp.php');
+          
+    ?>
+
     <div id="header">
         <div class="elements">
             <i class="fa-brands fa-facebook"></i>
@@ -50,24 +56,35 @@
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b style="font-size: 25px; margin-left: -10%;">BELL BIJOUX </b>
+        <b style="font-size: 25px; margin-left: -10%;">CONBONGLONGXIEN</b>
         <div class="elements">
-            <a><i class="material-symbols-outlined">search</i></a>
+            <i class="material-symbols-outlined">search</i>
             <div>
-                <a>
                 <div class="circle">1</div>
                 <i onclick="myFunctionCheckout()" class="material-symbols-outlined" >shopping_bag</i>
-</a>
             </div>
             <div>
-                <a>
                 <div class="circle">1</div>
                 <i class="material-symbols-outlined">favorite</i>
-</a>
             </div>
-
-            <a><i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i></a>
-            <a><i class="material-symbols-outlined">menu</i></a>
+            <?php  
+          
+             if (isset($_SESSION['userName']) && ($_SESSION['userName'] != "")) : ?>
+           <a href="shop.php?loginsuccess"><?php echo $_SESSION['userName']; ?></a>
+           <a href="shop.php?exit"><?php echo "Log out" ?></a>
+           <?php
+            if (isset($_GET['exit'])) {
+            session_unset();
+            session_destroy();
+            header('Location: ../shopview/home.php');
+            exit();
+             }
+?>
+        <?php else : ?>
+            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
+        <?php endif; ?>
+        
+            <i class="material-symbols-outlined">menu</i>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
