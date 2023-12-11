@@ -161,7 +161,7 @@
                      <li><i class="fa-solid fa-fire" style="color: #ff4000;"></i>BEST SELLER</li>
                   </a>
                   <a href="">
-                     <li><i class="fa-solid fa-ranking-star" style="color: #4d8eff;"></i></i>TOP RATED</li>
+                     <li><i class="fa-solid fa-ranking-star" style="color: #4d8eff;"></i>TOP RATED</li>
                   </a>
                   <a href="">
                      <li><i class="fa-solid fa-bolt-lightning" style="color: #ffc800;"></i>ON SALE</li>
@@ -183,7 +183,7 @@
                <p>Show 1-12 of 20 results</p>
             </div>
             <div id="product-shop" class="product-shop">
-
+                  <!--chỗ để hiện sp nè-->
 
             </div>
             <script>
@@ -208,7 +208,7 @@
                         method: "POST",
                         data: { action: action, categoryName: categoryName, size: size, color: color, pageNumber: pageNumber},
                         success: function (data) {
-                           $('.product-shop').html(data);
+                           $('.product-shop').html(data); // hiện sp ra chỗ div class product-shop
                         }
                      });
                   }
@@ -249,12 +249,6 @@
                            <?php echo $i ?>
                         </a></li>
                   <?php } ?>
-                  <!-- <script>
-                     function selectPage(link) {
-                     pageNumber = link.dataset.page;
-                     console.log(pageNumber);
-                  }
-                  </script> -->
                </ul>
             </div>
 
@@ -271,9 +265,8 @@
       <div>
          <?php include('../view/login_register.php') ?>
       </div>
-      <div>
-         <?php include('../view/footer.php') ?>
-      </div>
+   </div>
+   <?php include('../view/footer.php') ?>
 
       <script>
          let totalSeconds = 5 * 60;

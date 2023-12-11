@@ -48,8 +48,7 @@
                   <a href="#" id="hidden"><i class="fa-solid fa-rotate" style="color: #000000;"></i></a>
                   <a href="#" id="hidden"><i class="fa-regular fa-eye" style="color: #000000;"></i></i></a>
                </div>
-               <a href="product-detail.php?productID='.$product['productID'].'">
-                  <li id="readmore">Read more</li>
+               <a id="readmore" href="product-detail.php?productID='.$product['productID'].'">Add to cart
                </a>
             </div>
             <a href="">

@@ -50,19 +50,24 @@
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b style="font-size: 25px; margin-left: -10%;">CONBONGLONGXIEN</b>
+        <b style="font-size: 25px; margin-left: -10%;">BELL BIJOUX </b>
         <div class="elements">
-            <i class="material-symbols-outlined">search</i>
+            <a><i class="material-symbols-outlined">search</i></a>
             <div>
+                <a>
                 <div class="circle">1</div>
                 <i onclick="myFunctionCheckout()" class="material-symbols-outlined" >shopping_bag</i>
+</a>
             </div>
             <div>
+                <a>
                 <div class="circle">1</div>
                 <i class="material-symbols-outlined">favorite</i>
+</a>
             </div>
-            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
-            <i class="material-symbols-outlined">menu</i>
+
+            <a><i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i></a>
+            <a><i class="material-symbols-outlined">menu</i></a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
