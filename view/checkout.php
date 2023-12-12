@@ -19,22 +19,13 @@
          <div class="digit" id="seconds">00</div>
       </div>
    </div>
-
-   <div id="product-in-icon-cart">
-      <div id="divi-pic">
-         <img src="img/37000208_OR_B-450x450.webp" />
-         <div id="name-p-in-cart">
-            <p>Product name</p>
-            <p>$95.00 x <b>2</b></p>
-         </div>
-      </div>
-      <a href="#"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
+   <div id="list">
 
    </div>
 
    <div id="sub-total-in-div-cart">
       <p><b>Sub total</b></p>
-      <p><b>$290.00</b></p>
+      <p><b id="total"> </b></p>
    </div>
 
    <div id="Button-Viewcart-checkout">

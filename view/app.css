@@ -643,11 +643,14 @@ body{
 }
 
 .btnAdd{
-    padding: 2.3%;
+    padding: 3%;
     width: 200px;
     background-color: white;
     border: 1px solid black;
-    margin-left: 20px
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btnAdd:hover{
