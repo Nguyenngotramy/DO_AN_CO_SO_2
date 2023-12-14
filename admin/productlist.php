@@ -3,7 +3,7 @@
         <head>
             <meta charset="UTF-8" />
             <title>Attendance Dashboard | By Code Info</title>
-            <link rel="stylesheet" href="css/test.css" />
+            <link rel="stylesheet" href="../view/css/test.css" />
             <!-- Font Awesome Cdn Link -->
             <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -101,8 +101,17 @@
                         <div class="Filter-Search-Category-Stock-Add">
                             <input type="text" placeholder="Search Product">
                             <select id="Category">
-                                <option value="Lactay">Category</option>
-                                <option value="tRAF mY">tRA MY</option>
+                            <option>--Category--</option>
+                                        <?php
+                                        include_once('../model/addProductDB.php');
+                                        $AddPDB = new AddProductDB();
+                                        include('../model/categorydb.php');
+                                        $categoryList = showAllCategory();
+                                      foreach ($categoryList as $category) :
+                                          ?>
+                                       <option style="color: black;" value="<?php echo $category["categoryID"] ?>"><?php echo $category["categoryName"]   ?></option>
+                                       
+                                        <?php endforeach; ?>
                             </select>
                             <select id="Stock">
                                 <option value="Lactay">Stock</option>
@@ -114,6 +123,7 @@
                     </div>
 
                     <section class="attendance">
+                        
                         <div class="attendance-list">
                             <h1>Product List</h1>
                             <table class="table">
@@ -125,47 +135,39 @@
                                         <th>Origin</th>
                                         <th>Category</th>
                                         <th>Img</th>
+                                        <th>Price</th>
                                         <th>Details</th>
+                                        
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                    include_once("../model/ProductAdminDB.php");
+                                    $PAd = new ProductAd();
+                                    $ProductList = $PAd->getListProduct();
+                                    foreach($ProductList as $product){ ?>
                                     <tr>
-                                        <td>01</td>
-                                        <td>Sam David</td>
-                                        <td>Design</td>
-                                        <td>03-24-22</td>
-                                        <td>8:00AM</td>
-                                        <td>3:00PM</td>
-                                        <td><button>View</button></td>
-                                    </tr>
-                                    <tr class="active">
-                                        <td>02</td>
-                                        <td>Balbina Kherr</td>
-                                        <td>Coding</td>
-                                        <td>03-24-22</td>
-                                        <td>9:00AM</td>
-                                        <td>4:00PM</td>
+                                        <td><?= $product["productID"] ?></td>
+                                        <td><?= $product["productName"] ?></td>
+                                        <td><?= $product["description"]?></td>
+                                        <td><?= $product["origin"]?></td>
+                                        <td><?= $product["categoryName"]?></td>
+                                        <?php
+                                          $id = $product["productID"];
+                                          $imgList = $PAd->Listimg($id);
+                                          $Price = $PAd->getPrice($id);
+                                        foreach($imgList as $img) {?>
+                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
+                                        <?php  }?>
+                                    <td><?= $Price ?></td>
                                         <td><button>View</button>
-                                        <button>Delete</button></td>
+                                        <button>Update</button>
+                                        <button>Delete</button>
+                                    </td>
                                     </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>Badan John</td>
-                                        <td>testing</td>
-                                        <td>03-24-22</td>
-                                        <td>8:00AM</td>
-                                        <td>3:00PM</td>
-                                        <td><button>View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>Sara David</td>
-                                        <td>Design</td>
-                                        <td>03-24-22</td>
-                                        <td>8:00AM</td>
-                                        <td>3:00PM</td>
-                                        <td><button>View</button></td>
-                                    </tr>
+                                    <?php }?>
+                                   
                                     <!-- <tr >
                     <td>05</td>
                     <td>Salina</td>
