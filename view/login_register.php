@@ -36,6 +36,7 @@ include_once("../controller/controller.php");
                </div>
             </form>
             <a id="Lostpass" onclick="myFunctionFormlogin('lostpass')">Lost your password ?</a>
+            <a id="submit-login" onclick="myFunctionFormlogin('submit-login')">Change your password ?</a>
             <div>
                <?php ?>
             </div>

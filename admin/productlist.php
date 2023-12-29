@@ -161,9 +161,10 @@
                                         <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
                                         <?php  }?>
                                     <td><?= $Price ?></td>
-                                        <td><button>View</button>
-                                        <button>Update</button>
-                                        <button>Delete</button>
+                                        <td style="display: grid;">
+                                        <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">View</a>
+                                        <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Update</a>
+                                        <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Delete</a>
                                     </td>
                                     </tr>
                                     <?php }?>

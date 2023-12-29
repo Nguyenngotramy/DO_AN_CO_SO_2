@@ -137,7 +137,8 @@ if($action == 'losspw'){
             $newpassword = substr(md5 (rand(0,900000)),0,8);
             $Lossp->changePassword($email,$newpassword);
             $SendGmail->SendGmailToChangePassword($email,$newpassword);
-          
+            header('location: ../shopview/home.php');
+            exit();
 }
 }
 
