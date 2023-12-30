@@ -1,12 +1,15 @@
 <?php
 include_once("../model/addProductDB.php");
+include_once("../model/ProductAdminDB.php");
 include_once("../model/addProductDetailModel.php");
 include_once("../model/addProductModel.php");
 include_once("../model/register_loginDB.php");
 include_once("../model/registerModel.php");
 include_once("../model/Loss_passDB.php");
+include_once("../admin/editProduct.php");
 include_once("sendGmail.php");
 $AddPDB = new AddProductDB();
+$UpdatePDB = new ProductAd();
 $Regislogin = new Register_login();
 $Lossp = new LossPassDB();
 $SendGmail = new sendGmail();
@@ -158,5 +161,70 @@ if($action == 'losspw'){
             exit();
 }
 }
+
+if ($action == 'edit_product') {
+    // Validate product information
+    $id = filter_input(INPUT_POST, 'productid', FILTER_VALIDATE_INT);
+    $nameproduct = filter_input(INPUT_POST, 'nameproduct');
+    $description = filter_input(INPUT_POST, 'description');
+    $Originproduct = filter_input(INPUT_POST, 'Originproduct');
+    $categoryID = filter_input(INPUT_POST, 'categoryID', FILTER_VALIDATE_INT);
+
+    if ($nameproduct === NULL || $description === NULL || $Originproduct === NULL || $categoryID === false) {
+        $error = "Invalid product data. Check all fields and try again.";
+    } else {
+        // Update product
+        $product = new Product();
+        $product->setProductName($nameproduct);
+        $product->setDescription($description);
+        $product->setOrigin($Originproduct);
+        $product->setCategoryID($categoryID);
+        $UpdatePDB->UpdateProduct($product, $id);
+
+
+        $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_INT);
+        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
+        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
+        
+        $productdetail1 = new ProductDetail();
+      
+        $productdetail1->setWeight($weight);
+        $productdetail1->setQuantity($quantity);
+        $productdetail1->setPrice($price);
+        $UpdatePDB->UpdateWQPDetail( $productdetail1,$id);
+
+        // Validate product details
+        $variousDetails = filter_input(INPUT_POST, 'variousDetails', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+        if (!is_array($variousDetails)) {
+            $error = "Invalid product details. Check all fields and try again.";
+        } else {
+            foreach ($variousDetails as $detail) {
+                $materialID = filter_var($detail['materialID'], FILTER_VALIDATE_INT);
+                $sizeID = filter_var($detail['sizeID'], FILTER_VALIDATE_INT);
+                $colorID = filter_var($detail['colorID'], FILTER_VALIDATE_INT);
+                $idvarious = filter_var($detail['variousid'], FILTER_VALIDATE_INT);
+
+                if ($materialID === false || $sizeID === false || $colorID === false || $idvarious === false) {
+                    $error = "Invalid product details. Check all fields and try again.";
+                    break; // Exit the loop if any detail is invalid
+                }
+
+                // Update product details
+                $productdetail = new ProductDetail();
+                $productdetail->setProductID($id);
+                $productdetail->setMaterialID($materialID);
+                $productdetail->setSizeID($sizeID);
+                $productdetail->setColorID($colorID);
+                $UpdatePDB->UpdateProductDetail($productdetail, $idvarious);
+            }
+
+            header('location: ../admin/productlist.php');
+            exit(); // Ensure script termination after header redirection
+        }
+    }
+}
+?>
+
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 include_once("../database/connecttemp.php");
+include_once("../model/addProductModel.php");
+include_once("../model/addProductDetailModel.php");
 class ProductAd{
      function getListProduct(){
         global $db;
@@ -48,12 +50,12 @@ class ProductAd{
     }
     function getVariousByID($id){
         global $db;
-        $query = 'SELECT material.materialID,size.sizeID ,color.colorID, material.materialName,size.size, color.color
+        $query = 'SELECT productdetails.id, material.materialID,size.sizeID ,color.colorID, material.materialName,size.size, color.color
         FROM productdetails 
         INNER JOIN material on productdetails.materialID = material.materialID
          INNER JOIN size on productdetails.sizeID = size.sizeID 
          INNER JOIN color on productdetails.colorID = color.colorID 
-         WHERE productdetails.productID= :id';
+         WHERE productdetails.productID= :id ';
          $statement = $db->prepare($query);
           $statement->bindValue(":id",$id);
           $statement->execute();
@@ -74,22 +76,86 @@ class ProductAd{
       return $various;
     }
 
-    public static function UpdateProduct($product,$id) {
+
+
+    public static function UpdateProduct($product, $id) {
         global $db;
+    
         $productName = $product->getProductName();
         $description = $product->getDescription();
         $origin = $product->getOrigin();
         $categoryID = $product->getCategoryID();
-
+    
         $query = 'UPDATE `products`
-         SET `productName`=:productName,`description`=:descripton,`origin`=:origin,`categoryID`=:categoryID WHERE `productID`=:id';
-        
+                  SET `productName` = :productName, `description` = :description, `origin` = :origin, `categoryID` = :categoryID
+                  WHERE `productID` = :id';
+    
         try {
+    
             $statement = $db->prepare($query);
             $statement->bindValue(':productName', $productName);
             $statement->bindValue(':description', $description);
             $statement->bindValue(':origin', $origin);
             $statement->bindValue(':categoryID', $categoryID);
+            $statement->bindValue(':id', $id);
+    
+            if (!$statement->execute()) {
+                throw new Exception('Error executing SQL statement.');
+            }
+    
+            $db->commit();
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    
+    public static function UpdateProductDetail($product, $id) {
+        global $db;
+    
+        $productID = $product->getProductID();
+        $materialID = $product->getMaterialID();
+        $sizeID = $product->getSizeID();
+        $colorID = $product->getColorID();
+    
+        $query = 'UPDATE `productdetails` 
+                  SET `materialID` = :materialID, `sizeID` = :sizeID, `colorID` = :colorID 
+                  WHERE `id` = :id AND `productID` = :productID
+                  ORDER BY `productdetails`.`id` ASC ';
+    
+        try {
+            $statement = $db->prepare($query);
+    
+            $statement->bindValue(':materialID', $materialID);
+            $statement->bindValue(':sizeID', $sizeID);
+            $statement->bindValue(':colorID', $colorID);
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':productID', $productID);
+    
+            if (!$statement->execute()) {
+                throw new Exception('Error executing SQL statement.');
+            }
+    
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            // Handle the error (log, redirect, etc.) instead of echoing it directly
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    public static function UpdateWQPDetail($product,$id) {
+        global $db;
+        $weight = $product->getWeight();
+        $quantity = $product->getQuantity();
+        $price = $product->getPrice();
+
+        $query = 'UPDATE `productdetails` SET`weight`=:weight,`quantity`=:quantity,`price`=:price WHERE  `productID`=:id';
+        
+        try {
+            $statement = $db->prepare($query);
+         
+            $statement->bindValue(':weight', $weight);
+            $statement->bindValue(':quantity', $quantity);
+            $statement->bindValue(':price', $price);
             $statement->bindValue(':id', $id);
             
             if (!$statement->execute()) {
@@ -101,7 +167,34 @@ class ProductAd{
             // Xử lý lỗi theo nhu cầu của bạn
             echo 'Error: ' . $e->getMessage();
         }
-    }
+     }
+
+    //  public static function Updateimg($product,$id) {
+    //     global $db;
+    //     $weight = $product->getWeight();
+    //     $quantity = $product->getQuantity();
+    //     $price = $product->getPrice();
+
+    //     $query = 'UPDATE `productimages` SET `image`=:img WHERE `id`=1 AND `productID`=1';
+        
+    //     try {
+    //         $statement = $db->prepare($query);
+         
+    //         $statement->bindValue(':weight', $weight);
+    //         $statement->bindValue(':quantity', $quantity);
+    //         $statement->bindValue(':price', $price);
+    //         $statement->bindValue(':id', $id);
+            
+    //         if (!$statement->execute()) {
+    //             throw new Exception('Error executing SQL statement.');
+    //         }
+            
+    //         $statement->closeCursor();
+    //     } catch (Exception $e) {
+    //         // Xử lý lỗi theo nhu cầu của bạn
+    //         echo 'Error: ' . $e->getMessage();
+    //     }
+    //  }
     
     function deleteProduct($idProduct){
         global $db;
