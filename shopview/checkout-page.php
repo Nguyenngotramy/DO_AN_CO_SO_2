@@ -8,7 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="../view/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -24,6 +24,9 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
     <div id="header">
         <div class="elements">
             <i class="fa-brands fa-facebook"></i>
@@ -40,7 +43,7 @@
 
     <div id="menu">
         <div class="elements" style="margin-right: 321px; margin-left: 10px">
-            <a>HOME</a>
+            <a href>HOME</a>
             <a style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
                     style="margin: 1px;">expand_more</span></a>
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
@@ -99,7 +102,14 @@
             <div id="your-order">
                 <span style="font-weight: bold; margin-bottom: 20px; font-size: 20px;">Your order</span>
                 <div class="order-list">
-                    <div class="elements">
+                    <?php
+                        include('cartFunction.php');
+                        $checkoutList = showCheckoutList();
+                        // var_dump($checkoutList);
+                        foreach($checkoutList as $p) {
+                    ?>
+                    
+                    <!-- <div class="elements">
                         <div style="display: flex; align-items: center;">
                             <img
                                 src="https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL_B-60x60.webp">
@@ -107,32 +117,30 @@
                             <span style="font-size: 15px; font-weight: bold; color: grey;"> x 2</span>
                         </div>
                         <span style="font-size: 15px; color: grey;">$44.00</span>
-                    </div>
+                    </div> -->
+                    
                     <div class="elements">
                         <div style="display: flex; align-items: center;">
                             <img
-                                src="https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL_B-60x60.webp">
-                            <span class="product-name">Faceted crystal hoop earrings </span>
-                            <span style="font-size: 15px; font-weight: bold; color: grey;"> x 2</span>
+                                src="<?php echo $p[1]?>">
+                            <span class="product-name"><?php echo $p[2]?></span>
+                            <span style="font-size: 15px; font-weight: bold; color: grey;"> x <?php echo $p[4]?></span>
                         </div>
-                        <span style="font-size: 15px; color: grey;">$44.00</span>
-                    </div>
-                    <div class="elements">
-                        <div style="display: flex; align-items: center;">
-                            <img
-                                src="https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL_B-60x60.webp">
-                            <span class="product-name">Faceted crystal hoop earrings </span>
-                            <span style="font-size: 15px; font-weight: bold; color: grey;"> x 2</span>
-                        </div>
-                        <span style="font-size: 15px; color: grey;">$44.00</span>
-                    </div>
+                        <span style="font-size: 15px; color: grey;">$<?php echo ($p[3]*$p[4])?></span>
+                    </div> 
+                    <?php }?>
 
                 </div>
 
                 <div class="subtotal" style="margin: 15px 0;">
                     <div style="display: flex; justify-content: space-between;">
                         <b>Subtotal</b>
-                        <span>$657.00</span>
+                        <?php
+                            $total = total();
+                            $total = str_replace(',', '', $total);
+                            $total = filter_var($total, FILTER_VALIDATE_FLOAT);
+                        ?>
+                        <span>$<?php echo $total?></span>
                     </div>
                 </div>
 
@@ -145,7 +153,7 @@
                 </div>
                 <div class="total">
                     <span>TOTAL</span>
-                    <span>$682.00</span>
+                    <span>$<?php echo($total+25)?></span>
                 </div>
                 <div class="payment">
                     <input type="radio" value="" name="payment" checked="checked" id="bank"><label for="bank">Direct

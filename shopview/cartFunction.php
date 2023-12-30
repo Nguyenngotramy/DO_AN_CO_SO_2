@@ -21,7 +21,7 @@ function showCartItems()
         }
         $user_id = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'guest';
         $cartJson = json_encode($_SESSION['cart']);
-        setcookie('cart_' . $user_id, $cartJson, time() + 3600, '/');
+        setcookie('cart_' . $user_id, $cartJson, time() + (30 * 86400), '/');
     }
     return $cartHTML;
 }
@@ -63,4 +63,18 @@ function countCart() {
     }   
     return $count;
 }
+
+function showCheckoutList() {
+    $checkoutList = [];
+    if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $pd) {
+            if (is_array($pd)) {
+                $checkoutList[] = $pd;
+            }
+        }
+        return $checkoutList;
+    }
+
+}
+
 ?>
