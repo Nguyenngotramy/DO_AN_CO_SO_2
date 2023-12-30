@@ -386,7 +386,7 @@ input[type="checkbox"] {
   align-items: center; 
   position: absolute;
   padding: 3% 0; 
-  bottom: -39px;
+  bottom: -42px;
   justify-content: center;
   transition: 0.25s ease-in-out;
 }

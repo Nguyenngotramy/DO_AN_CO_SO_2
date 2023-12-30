@@ -129,3 +129,13 @@ function getMainImage(image) {
     '<img src="' + imageSrc + '">';
 }
 
+function getElement(className, element) {
+  var array = document.getElementsByClassName(className);
+  for(var i=0; i<array.length; i++) {
+    array[i].style.border = 'none';
+    array[i].classList.remove('selected');
+  }
+  element.style.border = '2px solid black';
+   element.classList.add('selected');
+  // console.log(element.classList);
+}

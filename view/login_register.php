@@ -8,7 +8,7 @@ include_once("../controller/controller.php");
       <div id="right-icon-login">
          <a id="choose-exit-login"><i onclick="myFunctionExitLogin()" class="fa-solid fa-xmark"
                style="color: #000000;"></i></a>
-         <span id="text-logo">GODTHISM</span>
+         <span id="text-logo">SERENE</span>
       </div>
 
       <div id="left-form-login">
