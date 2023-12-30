@@ -14,26 +14,34 @@
     </div>
 <div id="footer">
         <div>
-            <span>CAILONQUE</span><br>
-            <span>17 Phú Lộc 15, Hòa Minh, Liên Chiểu, TP Đà Nẵng</span><br>
-            <span>ĐT: 0702.192.094 - Fax: 0702.192.094 </span>
+            <b style="font-size: 25px; margin-bottom: 10px">SERENE</b><br>
+            <br>
+            <span style="margin-top: 10px;">Address: 470 Đ. Trần Đại Nghĩa, Khu đô thị, Ngũ Hành Sơn, Đà Nẵng</span><br>
+            <span>Phone: (+777) 450-15-415 - Fax: (+777) 450-15-415 </span>
         </div>
         <div>
-            <span>VỀ CHÚNG TÔI</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
+            <b style="font-weight: bold">INFORMATION</b><br>
+            <br>
+            <a>About Us</a><br>
+            <a>Privacy Policy</a><br>
+            <a>Terms of use</a><br>
         </div>
         <div>
-            <span>SẢN PHẨM</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
-            <span>Hahaha</span><br>
+            <b>CATEGORIES</b><br>
+            <br>
+            <a>Ring</a><br>
+            <a>Earring</a><br>
+            <a>Bracelet</a><br>
+            <a>Necklace</a><br>
         </div>
         <div>
-            <span>KẾT NỐI VỚI CHÚNG TÔI</span>
-
+            <b>CONNECT WITH US THROUGH: </b><br>
+            <div style="font-size: 25px; margin-top: 15px;">
+            <a href="https://www.facebook.com/nhinav905001/" style="color: white"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/hanhinguyen59/" style="color: white"><i class="fa-brands fa-instagram"></i></a>
+            <a><i class="fa-brands fa-twitter" style="color: white"></i></a>
+            <a href="https://www.youtube.com/channel/UCO45OrMkH2b_G7YBJMtmnjw"><i class="fa-brands fa-youtube" style="color: white"></i></a>
+</div>
+            
         </div>
     </div>

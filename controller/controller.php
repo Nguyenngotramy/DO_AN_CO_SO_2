@@ -135,6 +135,16 @@ if ($action == 'login') {
         $_SESSION['userName'] = $result[0]['userName'];
         header('location: ../shopview/shop.php');
     }
+    $user_id = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'guest';
+    if (isset($_COOKIE['cart_' . $user_id])) {
+        $cartJson = $_COOKIE['cart_' . $user_id];
+
+        // Đọc thông tin giỏ hàng từ cookie
+        $cart = json_decode($cartJson, true);
+
+        // Lưu thông tin giỏ hàng vào session
+        $_SESSION['cart'] = $cart;
+    }
 }
 }
 if($action == 'losspw'){

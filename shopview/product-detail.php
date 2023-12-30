@@ -51,11 +51,6 @@
         </div>
         <div class="elements">
             <div class="detail">
-                <ul name="path">
-                    <li><a href="home.html">HOME</a></li>
-                    <li><a href="header.html">HOME</a></li>
-                    <li><a href="header.html">HOME</a></li>
-                </ul>
                 <?php
                 // $productID =  $_GET['productID'];
                 $productInfor = showInforOfProduct($productID);
@@ -75,7 +70,8 @@
                     }
                 }
                 ?>
-                <span id="productName" name="product-name" style="font-size: 30px; font-weight: bold; margin: 20px 0 -10px 0;">
+                <span id="productName" name="product-name"
+                    style="font-size: 30px; font-weight: bold; margin: 20px 0 -10px 0;">
                     <?php echo ($productInfor['productName']) ?>
                 </span><br>
                 <div class="inline">
@@ -96,18 +92,21 @@
                 <div class="inline">
                     <span style="font-size: 20px; margin-right: 10px;">Color</span>
                     <?php foreach ($colors as $color) { ?>
-                        <div class="color" style="background-color: <?php echo $color; ?>;"></div>
+                        <button class="color" style="background-color: <?php echo $color; ?>;"
+                            onclick="getElement('color', this)" value="<?php echo $color; ?>"></button>
                     <?php } ?>
                 </div>
                 <div class="inline" style=" margin-top: 20px">
                     <span style="font-size: 20px; margin-right: 20px;">Size</span>
                     <?php foreach ($sizes as $size) { ?>
-                        <button class="size" value="<?php echo $size ?>">
+                        <button class="size" value="<?php echo $size ?>" onclick="getElement('size', this)">
                             <?php echo $size ?>
                         </button>
                     <?php } ?>
                 </div>
-                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $<span id="price"><?php echo ($productInfor['price']) ?></span></span>
+                <span name="price" style="font-size: 20px; margin: 30px 0;">Price: $<span id="price">
+                        <?php echo ($productInfor['price']) ?>
+                    </span></span>
                 <div name="policy">
                     <div class="inline">
                         <a class="dialog-btn" href="#policy"><span class="material-symbols-outlined">
@@ -179,7 +178,8 @@
                             <input type="text" value="1" id="quantity">
                             <button name="cal" onclick="quantity('plus')">+</button>
                         </div>
-                        <a class="btnAdd" onclick="myFunctionCheckout()" data-page="<?php echo ($productInfor['productID']) ?>">Add to Cart</a>
+                        <a class="btnAdd" onclick="myFunctionCheckout()"
+                            data-page="<?php echo ($productInfor['productID']) ?>">Add to Cart</a>
                         <span class="material-symbols-outlined" style="margin-left: 20px;">favorite</span>
                     </div>
                     <div class="inline" style="padding: 20px;">
@@ -256,7 +256,9 @@
                                 </b><br>
                             </div>
                         </a>
-                        <span>$<?php echo $product['price'] ?></span>
+                        <span>$
+                            <?php echo $product['price'] ?>
+                        </span>
                     </div>
                 <?php } ?>
             </div>
@@ -286,92 +288,54 @@
         })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    $(document).on('click', '.btnAdd', function (e) {
-        e.preventDefault();
-        // let $data = $(this).closest('.row');
-        // let $image = $data.find('img').attr('src');
-        // let $name = $data.find('h4').text();
-        // let $priceText = $data.find('h5').text();
-        // let $price = $priceText.replace("$", "");
-        // let $pdID = $(this).data('page');
-        // let $quantity = 1;
-        let $pdID = $(this).data('page');
-        let $image = document.getElementById('mainimg').src;
-        let $productName = document.getElementById('productName').textContent;
-        let $price = document.getElementById('price').textContent;
-        let $quantity = document.getElementById('quantity').value;
-        // console.log($pdID);
-        // console.log($image);
-        // var $colorOption; 
-        // var $sizeOption;
+    <script>
+        $(document).on('click', '.btnAdd', function (e) {
+            e.preventDefault();
+            let $pdID = $(this).data('page');
+            let $image = document.getElementById('mainimg').src;
+            let $productName = document.getElementById('productName').textContent;
+            let $price = document.getElementById('price').textContent;
+            let $quantity = document.getElementById('quantity').value;
+            console.log($pdID);
+            console.log($image);
+            let $colorOption;
+            let selectedColor = $('.color.selected').attr('value');
+            $colorOption = selectedColor;
+            let $sizeOption;
+            let selectedSize = $('.size.selected').attr('value');
+            $sizeOption = selectedSize;
+            console.log($colorOption);
+            console.log($sizeOption);
+            $.ajax({
+                type: "POST",
+                url: "addCart.php",
+                data: {
+                    pdID: $pdID,
+                    image: $image,
+                    productName: $productName,
+                    price: $price,
+                    quantity: $quantity,
+                    color: $colorOption,
+                    size: $sizeOption
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var cartHTML = data.html;
+                    var total = data.total;
+                    var count = data.count;
+                    $('#list').html(cartHTML);
+                    $('#total').html(total);
+                    $('#amount').html(count);
+                    console.log(data);
+                }
+            });
 
-        // var colorOptions = document.querySelectorAll('.color');
-        // colorOptions.forEach(function(colorOptionElement) {
-        // colorOptionElement.addEventListener('click', function() {
-        //     var selectedColor = window.getComputedStyle(colorOptionElement).backgroundColor;
-        //     colorOption = selectedColor;
-        // });
 
-        // var sizeOptions = document.querySelectorAll('.size');
-        // sizeOptions.forEach(function(sizeOptionElement) {
-        //     sizeOptionElement.addEventListener('click', function() {
-        //     var selectedSize = window.getComputedStyle(sizeOptionElement).value;
-        //     sizeOption = selectedSize;
-        // });
-    // });
-        $.ajax({
-            type: "POST",
-            url: "addCart.php",
-            data: {
-                pdID: $pdID,
-                image: $image,
-                productName: $productName,
-                price: $price,
-                quantity: $quantity
-                // color: $colorOption;
-                // size: $sizeOption;
-            },
-            dataType: 'json',
-            success: function (data) {
-                var cartHTML = data.html;
-                var total = data.total;
-                $('#list').html(cartHTML);
-                $('#total').html(total);
-                // console.log(data);
-            }
         });
+    </script>
 
 
-    });
-</script>
-
-<script>
-    $(document).on('click', '.delete', function (e) {
-        e.preventDefault();
-        let $pdID = $(this).data('page');
-        console.log('click!');
-        console.log($pdID);
-        $.ajax({
-            type: "POST",
-            url: "deleteItem.php",
-            data: {
-                pdID: $pdID,
-            },
-            dataType: 'json',
-            success: function (data) {
-                // console.log(data);
-                var cartHTML = data.html;
-                var total = data.total;
-                $('#list').empty();
-                $('#list').html(cartHTML);
-                $('#total').html(total);
-            }
-        });
-
-    });
-</script>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../view/app.js"></script>

@@ -20,19 +20,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
     <script src="../view/script.js"></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-      />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
 <body>
-<?php session_start();
-      ob_start();
-?>
+    <?php
+    session_start();
+
+    ob_start();
+    ?>
     <?php require('../database/connecttemp.php');
-          
+
     ?>
 
     <div id="header">
@@ -41,7 +39,8 @@
             <i class="fa-brands fa-instagram"></i>
             <i class="fa-brands fa-twitter"></i>
         </div>
-        <span style="font-weight: bold; font-size: 13px; margin-left: 48px;">FREE SHIPPING ON ALL ORDERS OVER 75$!</span>
+        <span style="font-weight: bold; font-size: 13px; margin-left: 69px;">FREE SHIPPING ON ALL ORDERS OVER
+            75$!</span>
         <div class="elements">
             <span>CART</span>
             <span>SEARCH</span>
@@ -50,41 +49,49 @@
     </div>
 
     <div id="menu">
-        <div class="elements">
-            <a>HOME</a>
-            <a style="display: flex;">CATALOGUES <span class="material-symbols-outlined"
+        <div class="elements" style="margin-right: 321px; margin-left: 10px">
+            <a href="../shopview/home.php">HOME</a>
+            <a href="#catalogues" style="display: flex;">CATEGORIES <span class="material-symbols-outlined"
                     style="margin: 1px;">expand_more</span></a>
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b style="font-size: 25px; margin-left: -10%;">CONBONGLONGXIEN</b>
-        <div class="elements">
+        <b style="font-size: 25px; margin-right: 420px">SERENE</b>
+        <div class="elements" style="width: 270px;">
             <i class="material-symbols-outlined">search</i>
             <div>
-                <div class="circle">1</div>
-                <i onclick="myFunctionCheckout()" class="material-symbols-outlined" >shopping_bag</i>
+                <div class="circle" id="amount">
+                </div>
+                <i onclick="myFunctionCheckout()" class="material-symbols-outlined">shopping_bag</i>
             </div>
             <div>
                 <div class="circle">1</div>
                 <i class="material-symbols-outlined">favorite</i>
             </div>
-            <?php  
-          
-             if (isset($_SESSION['userName']) && ($_SESSION['userName'] != "")) : ?>
-           <a href="shop.php?loginsuccess"><?php echo $_SESSION['userName']; ?></a>
-           <a href="shop.php?exit"><?php echo "Log out" ?></a>
-           <?php
-            if (isset($_GET['exit'])) {
-            session_unset();
-            session_destroy();
-            header('Location: ../shopview/home.php');
-            exit();
-             }
-?>
-        <?php else : ?>
-            <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
-        <?php endif; ?>
-        
+            <?php
+
+            if (isset($_SESSION['userName']) && ($_SESSION['userName'] != "")): ?>
+                <a href="shop.php?loginsuccess">
+                    <?php echo $_SESSION['userName']; ?>
+                </a>
+                <a href="shop.php?exit">
+                    <?php echo "Log out" ?>
+                </a>
+                <?php
+                if (isset($_GET['exit'])) {
+                    session_unset();
+                    if (isset($_SESSION['userID'])) {
+                        $user_id = $_SESSION['userID'];
+                        setcookie('cart_' . $user_id, '', time() - 3600, '/');
+                    }
+                    header('Location: ../shopview/home.php');
+                    exit();
+                }
+                ?>
+            <?php else: ?>
+                <i id="user-login" onclick="myFunctionLoginForm()" class="fa-regular fa-user" style="font-size: 23px"></i>
+            <?php endif; ?>
+
             <i class="material-symbols-outlined">menu</i>
         </div>
     </div>
