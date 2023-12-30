@@ -73,6 +73,35 @@ class ProductAd{
       $statement->closeCursor();
       return $various;
     }
+
+    public static function UpdateProduct($product,$id) {
+        global $db;
+        $productName = $product->getProductName();
+        $description = $product->getDescription();
+        $origin = $product->getOrigin();
+        $categoryID = $product->getCategoryID();
+
+        $query = 'UPDATE `products`
+         SET `productName`=:productName,`description`=:descripton,`origin`=:origin,`categoryID`=:categoryID WHERE `productID`=:id';
+        
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':productName', $productName);
+            $statement->bindValue(':description', $description);
+            $statement->bindValue(':origin', $origin);
+            $statement->bindValue(':categoryID', $categoryID);
+            $statement->bindValue(':id', $id);
+            
+            if (!$statement->execute()) {
+                throw new Exception('Error executing SQL statement.');
+            }
+            
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            // Xử lý lỗi theo nhu cầu của bạn
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
     
     function deleteProduct($idProduct){
         global $db;

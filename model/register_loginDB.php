@@ -22,9 +22,9 @@ class Register_login{
 
     }
    
-    public static function getInfor($email,$password){
+    public static function getInfor($email){
         global $db;
-        $query = "SELECT * FROM user WHERE email ='".$email."' AND password = '".$password."'";
+        $query = "SELECT * FROM user WHERE email ='".$email."'";
         $statement = $db->prepare($query);
         $statement->execute();
         $result =$statement->fetchAll();
