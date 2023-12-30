@@ -94,14 +94,15 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                 <div style="display: flex;" class="divilr">
               <?php  
               $PAd = new ProductAd();
-              $id = $_GET['id'];
+              $id = $_GET['idPE'];
               $ProductByID = $PAd->getProductByID($id);
           
    ?>
                     <section class="fillouttheforn">
                                 <div class="Product-information">
                                     <h3>Product information</h3>
-                                   
+                                    <input style="display:none;" type="text" name="productid"
+                                            id="nameproduct" value="<?php echo $id ?>" required>
                                     <div class="nameproduct">
                                         <label for="nameproduct">Name of the
                                             product
@@ -132,29 +133,30 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
 $VariousByID = $PAd->getVariousByID($id);
 
 foreach ($VariousByID as $various):
-    ?>
-    <select>
+?>
+    <input style="display: none;" type="text" name="variousDetails[<?= $various["id"] ?>][variousid]" id="idvariou" value="<?= $various["id"] ?>" required>
+    <select name="variousDetails[<?= $various["id"] ?>][materialID]">
         <?php foreach ($AddPDB->getmaterialitem() as $material) :
             $selected = ($various["materialID"] == $material->getIDmaterial()) ? 'selected' : '';
-            ?>
+        ?>
             <option style="color: black;" value="<?php echo $material->getIDmaterial(); ?>" <?php echo $selected; ?>>
                 <?php echo $material->getMaterialName(); ?>
             </option>
         <?php endforeach; ?>
     </select>
-    <select>
+    <select name="variousDetails[<?= $various["id"] ?>][sizeID]">
         <?php foreach ($AddPDB->getsizeitem() as $size) :
             $selected = ($various["sizeID"] == $size->getSizeID()) ? 'selected' : '';
-            ?>
+        ?>
             <option style="color: black;" value="<?php echo $size->getSizeID() ?>" <?php echo $selected; ?>>
                 <?php echo $size->getSize(); ?>
             </option>
         <?php endforeach; ?>
     </select>
-    <select>
+    <select name="variousDetails[<?= $various["id"] ?>][colorID]">
         <?php foreach ($AddPDB->getcoloritem() as $color) :
             $selected = ($various["colorID"] == $color->getIDcolor()) ? 'selected' : '';
-            ?>
+        ?>
             <option style="color: black;" value="<?php echo $color->getIDcolor(); ?>" <?php echo $selected; ?>>
                 <?php echo $color->getColor(); ?>
             </option>
@@ -162,6 +164,8 @@ foreach ($VariousByID as $various):
     </select>
 <?php endforeach; ?>
 
+
+    
   <?php  for ($i = 0; $i < 1; $i++) : ?>
             <div class="variant">
                 <select name="variants[<?php echo $i; ?>][material_id]">

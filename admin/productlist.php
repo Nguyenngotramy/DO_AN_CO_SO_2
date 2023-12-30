@@ -162,8 +162,8 @@
                                         <?php  }?>
                                     <td><?= $Price ?></td>
                                         <td style="display: grid;">
-                                        <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">View</a>
-                                        <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Update</a>
+                                        <a href="../admin/editProduct.php?idPD=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">View</a>
+                                        <a href="../admin/editProduct.php?idPE=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Update</a>
                                         <a href="../admin/editProduct.php?id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Delete</a>
                                     </td>
                                     </tr>
