@@ -96,7 +96,8 @@ if ($action == 'add_product') {
 if ($action == 'register_user'){
     $userName = filter_input(INPUT_POST,'Username');
     $email = filter_input(INPUT_POST,'Email');
-    $password = filter_input(INPUT_POST,'Password');
+    $passwordf = filter_input(INPUT_POST,'Password');
+    $password = password_hash( $passwordf, PASSWORD_DEFAULT);
     if ($userName == NULL || $email == NULL || $password == NULL){
         $error = "Invalid product data. Check all fields and try again.";
     } else {
@@ -114,10 +115,14 @@ if ($action == 'register_user'){
 if ($action == 'login') {
     $email = filter_input(INPUT_POST, 'emaillogin');
     $password = filter_input(INPUT_POST, 'pwlogin');
-    $result =  $Regislogin->getInfor($email, $password);
-    $role = $result[0]['role'];
     session_start();
     ob_start();
+    $result =  $Regislogin->getInfor($email);
+    $pw = $result[0]['password'];
+    if (password_verify($password,$pw )) {
+  
+    $role = $result[0]['role'];
+  
     if ($role == 1) {
         $_SESSION['role'] = $role;
         header('location: ../admin/addProducts.php');
@@ -138,16 +143,19 @@ if ($action == 'login') {
         $_SESSION['cart'] = $cart;
     }
 }
+}
 if($action == 'losspw'){
     $email = filter_input(INPUT_POST, 'Emaillosspw');
     $result = $Lossp->getEmailToCheck($email);
     if($result == 0){
         echo "Email not found";
         }else{
-            $newpassword = substr(md5 (rand(0,900000)),0,8);
+            $newpasswordf = substr(md5 (rand(0,900000)),0,8);
+            $newpassword = password_hash(  $newpasswordf, PASSWORD_DEFAULT);
             $Lossp->changePassword($email,$newpassword);
-            $SendGmail->SendGmailToChangePassword($email,$newpassword);
-          
+            $SendGmail->SendGmailToChangePassword($email,$newpasswordf);
+            header('location: ../shopview/home.php');
+            exit();
 }
 }
 
