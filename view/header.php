@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
     <script src='main.js'></script>
     <script src="../view/script.js"></script>
+    <script src="../view/sc.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
@@ -48,32 +49,37 @@
         </div>
     </div>
 
-    <div id="menu">
-        <div class="elements" style="margin-right: 321px; margin-left: 10px">
+    <div id="menu" style=" justify-content: space-between;">
+    <!-- style="margin-right: 321px; margin-left: 10px" -->
+        <div class="elements" >
             <a href="../shopview/home.php">HOME</a>
             <a href="#catalogues" style="display: flex;">CATEGORIES <span class="material-symbols-outlined"
                     style="margin: 1px;">expand_more</span></a>
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b style="font-size: 25px; margin-right: 420px">SERENE</b>
+        <b >SERENE</b> 
+        <!--  style="font-size: 25px; margin-right: 420px" -->
         <div class="elements" style="width: 270px;">
             <i class="material-symbols-outlined">search</i>
             <div>
                 <div class="circle" id="amount">
                 </div>
                 <i onclick="myFunctionCheckout()" class="material-symbols-outlined">shopping_bag</i>
+               
+                <!-- <i onclick=" myFunctionLoginFormSigned() " class="material-symbols-outlined">shopping_bag</i> -->
             </div>
             <div>
                 <div class="circle">1</div>
-                <i class="material-symbols-outlined">favorite</i>
+                <i onclick="myFunctionLoginFormSigned()" class="material-symbols-outlined">favorite</i>
             </div>
             <?php
 
             if (isset($_SESSION['userName']) && ($_SESSION['userName'] != "")): ?>
-                <a href="shop.php?loginsuccess">
+                <a href="#" onclick="myFunctionLoginFormSigned()">
                     <?php echo $_SESSION['userName']; ?>
                 </a>
+                <!-- <i onclick="myFunctionLoginFormSigned()" class="material-symbols-outlined">lock</i> -->
                 <a href="shop.php?exit">
                     <?php echo "Log out" ?>
                 </a>

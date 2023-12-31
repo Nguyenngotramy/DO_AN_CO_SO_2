@@ -23,7 +23,9 @@
    <link rel=" stylesheet" href="../view/app.css">
    <link rel=" stylesheet" href="../view/css/checkout.css">
    <link rel=" stylesheet" href="../view/css/login_register.css">
+   <link rel=" stylesheet" href="../view/css/newpass.css">
    <script src="../view/script.js"></script>
+   <script src="../view/sc.js"></script>
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
@@ -262,6 +264,9 @@
 
       <div>
          <?php include('login_register.php') ?>
+      </div>
+      <div>
+         <?php include('../view/password_change_form.php') ?>
       </div>
    </div>
    <?php include('../view/footer.php') ?>

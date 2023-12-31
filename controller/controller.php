@@ -128,11 +128,14 @@ if ($action == 'login') {
   
     if ($role == 1) {
         $_SESSION['role'] = $role;
+        $_SESSION['userID'] = $result[0]['userID'];
+        $_SESSION['userName'] = $result[0]['userName'];
         header('location: ../admin/addProducts.php');
     } else {
         $_SESSION['role'] = $role;
         $_SESSION['userID'] = $result[0]['userID'];
         $_SESSION['userName'] = $result[0]['userName'];
+       
         header('location: ../shopview/shop.php');
     }
     $user_id = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'guest';
@@ -161,6 +164,14 @@ if($action == 'losspw'){
             exit();
 }
 }
+if ($action == 'newpass'){
+  $email =filter_input(INPUT_POST,'emailNP');
+    $newpasswordf = filter_input(INPUT_POST,'password1');
+    $newpassword = password_hash(  $newpasswordf, PASSWORD_DEFAULT);
+    $Lossp->changePassword($email,$newpassword);
+    header('location: ../shopview/home.php');
+}
+
 
 if ($action == 'edit_product') {
     // Validate product information
@@ -193,6 +204,31 @@ if ($action == 'edit_product') {
         $productdetail1->setPrice($price);
         $UpdatePDB->UpdateWQPDetail( $productdetail1,$id);
 
+        $imgDetails = filter_input(INPUT_POST, 'imgDetails', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+        if (is_array($imgDetails)) {
+            foreach ($imgDetails as $imgDetail) {
+                $idimg = filter_var($imgDetail['imgid'], FILTER_VALIDATE_INT);
+                $image = $_FILES['imgDetails']['name'][$imgDetail['image']];
+                $uploadDir = 'C:/xampp/htdocs/DO_AN_CO_SO_2/view/img/';
+                $uploadPath = $uploadDir . $image;
+
+                // Check if the file was uploaded without errors
+                if (isset($_FILES['imgDetails']['error'][$imgDetail['image']]) && $_FILES['imgDetails']['error'][$imgDetail['image']] === UPLOAD_ERR_OK) {
+                    if (move_uploaded_file($_FILES['imgDetails']['tmp_name'][$imgDetail['image']], $uploadPath)) {
+                        // File uploaded successfully, update image details in the database
+                        $UpdatePDB->Updateimg("R.png", $idimg, $id);
+                    } else {
+                        // Handle upload failure
+                        echo "Upload failed!";
+                    }
+                } else {
+                    // Handle file upload error
+                    echo "File upload error.";
+                }
+            }
+        }
+        
         // Validate product details
         $variousDetails = filter_input(INPUT_POST, 'variousDetails', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
@@ -222,9 +258,22 @@ if ($action == 'edit_product') {
             header('location: ../admin/productlist.php');
             exit(); // Ensure script termination after header redirection
         }
+        
     }
 }
-?>
+
+
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+if ($action == 'delete') {
+    $idProduct = isset($_GET['id']) ? $_GET['id'] : null;
+    $UpdatePDB->deleteProduct($idProduct);
+    // Redirect or perform additional actions after deletion
+    header('Location: ../admin/productlist.php');
+    exit();
+}
+
+
 
 
 ?>

@@ -14,18 +14,21 @@
 </head>
 
 <body>
-<?php
+
+
+ 
+    <div class="container">
+    <div>
+         <?php include('../admin/rightbar.php') ?>
+      </div>
+      <?php
 include_once('../model/addProductDB.php');
 $AddPDB = new AddProductDB();
   include_once("../model/ProductAdminDB.php");
  
-session_start();
-ob_start();
+
 if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
 ?>
-
- 
-    <div class="container">
         <nav>
             <ul class="menu-main-admin">
                          <li><a href="#" class="logo">
@@ -42,36 +45,9 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
              }
 ?>
             <?php endif ?>
-                            </a></li>
-                        <li><a href="#">
-                                <i class="fas fa-menorah"></i>
-                                <span class="nav-item">Dashboard</span>
-                            </a></li>
-                        <li><a href="#">
-                                <i class="fas fa-comment"></i>
-                                <span class="nav-item">Message</span>
-                            </a></li>
-                        <li><a href="#">
-                                <i class="fas fa-database"></i>
-                                <span class="nav-item">Report</span>
-                            </a></li>
-                        <li><a href="#">
-                                <i class="fas fa-chart-bar"></i>
-                                <span class="nav-item">Product</span>
-                            </a></li>
-                        <li><a href="#">
-                                <i class="fas fa-cog"></i>
-                                <span class="nav-item">Setting</span>
-                            </a></li>
-
-                        <li><a href="addProducts.php?exit" class="logout">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span class="nav-item">Log out</span>
-                            </a></li>
-                    
-            </ul>
-        </nav>
-
+            <div>
+         <?php include('../admin/rightbar.php') ?>
+      </div>
         <section class="main">
             <div class="main-top">
                 <ul>
@@ -89,7 +65,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
        
             <div class="container-add-product">
                 <h3>Add new product</h3>
-                <form action="../controller/controller.php" method="post" id="edit_product_form" enctype="multipart/form-data" >
+                <form action="../controller/controller.php" method="post" id="edit_product_form"  enctype="multipart/form-data">
                 <input type="hidden" name="action" value="edit_product">
                 <div style="display: flex;" class="divilr">
               <?php  
@@ -242,21 +218,27 @@ foreach ($VariousByID as $various):
     <label for="file-input" class="custom-button">Chọn Ảnh:</label>
     
     <?php
-    $ImgByID = $PAd->Listimg($id);
-    foreach ($ImgByID as $img) :
-    ?>
-        <input type="file" id="img" name="img[]" accept="image/*" style="display: none;">
-        <label style="color: black; padding: 4px; border-color: black; border: 1px solid;" for="img" class="custom-button">Chọn lại Ảnh</label>
-        <span id="selected-img"><?= $img["image"] ?></span><br>
-    <?php endforeach ?>
-</div>
+$ImgByID = $PAd->Listimg($id);
+foreach ($ImgByID as $img) : ?>
+    <!-- HTML Form -->
+   
+        <label for="img<?= $img['id'] ?>">Choose a file for Image <?= $img['id'] ?>:</label>
+        <input type="file" id="img<?= $img['id'] ?>" name="imgDetails[<?= $img['id'] ?>][image]" accept="image/*" style="display: none;">
+        <span id="selected-img<?= $img['id'] ?>"><?= $img['image'] ?></span><br>
 
-<script>
-    document.getElementById('img').addEventListener('change', function() {
-        var fileName = this.value.split('\\').pop();
-        document.getElementById('selected-img').textContent = fileName;
-    });
-</script>
+        <label style="color: black; padding: 4px; border-color: black; border: 1px solid;" for="img<?= $img['id'] ?>" class="custom-button">Chọn lại Ảnh</label><br>
+
+        <script>
+            document.getElementById('img<?= $img['id'] ?>').addEventListener('change', function() {
+                var fileName = this.value.split('\\').pop();
+                var id = this.id.replace('img', ''); // Extract the ID from the input ID
+                document.getElementById('selected-img<?= $img['id'] ?>').textContent = fileName;
+            });
+        </script>
+  
+<?php   endforeach ?>
+
+
 
                                 </div>
                                      

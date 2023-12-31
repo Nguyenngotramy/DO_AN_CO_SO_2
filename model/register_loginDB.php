@@ -29,5 +29,32 @@ class Register_login{
         $statement->execute();
         $result =$statement->fetchAll();
        return $result;
+
 }
+public static function getEmail($id){
+    global $db;
+    $query = "SELECT * FROM user WHERE userID ='".$id."'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result =$statement->fetch(PDO::FETCH_ASSOC);
+   return $result;
+
 }
+public static function changepassword($password, $email){
+    global $db;
+    $query = "UPDATE `user` SET `password`= :password WHERE `email`= :email";
+
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $password);
+        $statement->execute();
+        $statement->closeCursor();
+    } catch (PDOException $e) {
+        // Handle the exception (e.g., log the error, display an error message)
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+}
+
