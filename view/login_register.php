@@ -82,7 +82,7 @@ include_once("../controller/controller.php");
             </form>
 
          </div>
-
+          
          <div id="form-login3">
             <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data">
                <input type="hidden" name="action" value="newpass">
@@ -102,7 +102,7 @@ include_once("../controller/controller.php");
             </form>
 
          </div>
-
+         
       </div>
    </div>
 </div>

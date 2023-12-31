@@ -35,6 +35,7 @@ function myFunctionLoginForm() {
   var x = document.getElementById("form-login");
   x.style.transform = "translateX(0%)";
 }
+
 function myFunctionCheckout() {
   var x = document.getElementById("cart-div-control");
   x.style.transform = "translateX(0%)";
@@ -44,6 +45,7 @@ function myFunctionExit() {
   // x.classList.toggle('hidden');
   x.style.transform = "translateX(100%)";
 }
+
 function myFunctionExitLogin() {
   var form = document.getElementById("log-in-cart");
   var formlogin = document.getElementById("form-login");

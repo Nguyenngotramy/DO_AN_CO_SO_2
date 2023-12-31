@@ -17,7 +17,7 @@ class ProductAd{
     }
     function Listimg($id){
         global $db;
-        $query= 'SELECT image FROM `productimages` WHERE productID = :id';
+        $query= 'SELECT * FROM `productimages` WHERE productID = :id';
         $statement = $db->prepare($query);
         $statement->bindValue(":id",$id);
         $statement->execute();
@@ -109,7 +109,7 @@ class ProductAd{
             echo 'Error: ' . $e->getMessage();
         }
     }
-    
+  
     public static function UpdateProductDetail($product, $id) {
         global $db;
     
@@ -169,37 +169,69 @@ class ProductAd{
         }
      }
 
-    //  public static function Updateimg($product,$id) {
-    //     global $db;
-    //     $weight = $product->getWeight();
-    //     $quantity = $product->getQuantity();
-    //     $price = $product->getPrice();
-
-    //     $query = 'UPDATE `productimages` SET `image`=:img WHERE `id`=1 AND `productID`=1';
-        
-    //     try {
-    //         $statement = $db->prepare($query);
-         
-    //         $statement->bindValue(':weight', $weight);
-    //         $statement->bindValue(':quantity', $quantity);
-    //         $statement->bindValue(':price', $price);
-    //         $statement->bindValue(':id', $id);
-            
-    //         if (!$statement->execute()) {
-    //             throw new Exception('Error executing SQL statement.');
-    //         }
-            
-    //         $statement->closeCursor();
-    //     } catch (Exception $e) {
-    //         // Xử lý lỗi theo nhu cầu của bạn
-    //         echo 'Error: ' . $e->getMessage();
-    //     }
-    //  }
-    
-    function deleteProduct($idProduct){
+     public static function Updateimg($image, $id, $productid) {
         global $db;
-        
-        $query ='DELETE FROM `products` WHERE ProductID = :id; DELETE FROM productdetails WHERE ProductID = :id';
+    
+        $query = 'UPDATE `productimages` SET `image`=:img WHERE `id`=:id AND `productID`=:productid';
+    
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':img', $image);
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':productid', $productid);
+    
+            if (!$statement->execute()) {
+                $errorInfo = $statement->errorInfo();
+                throw new Exception('Error executing SQL statement. SQLSTATE: ' . $errorInfo[0] . ', Error code: ' . $errorInfo[1] . ', Error message: ' . $errorInfo[2]);
+            }
+    
+            $statement->closeCursor();
+        } catch (Exception $e) {
+            // Handle the error as needed
+            echo 'Error: ' . $e->getMessage();
+        }
     }
+    
+    
+    
+    public static function deleteProduct($idProduct) {
+        global $db;
+    
+        try {
+            // Start a transaction to ensure atomicity
+            $db->beginTransaction();
+    
+            // Delete records from productimages
+            $queryImages = 'DELETE FROM `productimages` WHERE `productID` = :id';
+            $stmtImages = $db->prepare($queryImages);
+            $stmtImages->bindParam(':id', $idProduct, PDO::PARAM_INT);
+          
+    
+            // Delete records from productdetails
+            $queryDetails = 'DELETE FROM `productdetails` WHERE `productID` = :id';
+            $stmtDetails = $db->prepare($queryDetails);
+            $stmtDetails->bindParam(':id', $idProduct, PDO::PARAM_INT);
+          
+    
+            // Delete record from products
+            $queryProducts = 'DELETE FROM `products` WHERE `productID` = :id';
+            $stmtProducts = $db->prepare($queryProducts);
+            $stmtProducts->bindParam(':id', $idProduct, PDO::PARAM_INT);
+            $stmtImages->execute();
+            $stmtDetails->execute();
+            $stmtProducts->execute();
+    
+            // Commit the transaction if all queries executed successfully
+            $db->commit();
+    
+        } catch (Exception $e) {
+            // An error occurred, rollback the transaction
+            $db->rollBack();
+    
+            // Handle the error as needed
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    
 
 }
