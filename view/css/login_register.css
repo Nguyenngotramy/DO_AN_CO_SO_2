@@ -54,10 +54,11 @@
     font-size: 18px;
     display: flex;
     justify-content: space-between;
-    padding: 25px;
-    border-bottom: 1px solid #000000;
-    margin: 0 30px;
-    height: 25px;
+    /* padding: 25px; */
+    border-bottom: 1px solid lightgrey;
+    margin: 7% 10%;
+    height: 32px;
+    
   }
   #left-form-login #title-login div:hover {
     cursor: pointer;
@@ -71,6 +72,7 @@
     transform: translateX(-150%);
     transition: transform 0.5s ease;
     width: 81%;
+    margin-left: 30px;
   }
   #left-form-login #form-login1 {
     position: absolute;
@@ -80,6 +82,7 @@
     transform: translateX(-150%);
     transition: transform 0.5s ease;
     width: 81%;
+    margin-left: 30px;
   }
   #left-form-login #form-login2 {
     position: absolute;
@@ -89,6 +92,7 @@
     transform: translateX(-150%);
     transition: transform 0.5s ease;
     width: 81%;
+    margin-left: 30px;
   }
   #left-form-login #form-login3 {
     position: absolute;
@@ -98,6 +102,7 @@
     transform: translateX(-150%);
     transition: transform 0.5s ease;
     width: 81%;
+    margin-left: 30px;
   }
   #left-form-login #form-login #Form-login-input {
     display: grid;
@@ -143,18 +148,22 @@
   #left-form-login #form-login #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
+    border: 1px solid lightgrey;
   }
   #left-form-login #form-login1 #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
+    border: 1px solid lightgrey;
   }
   #left-form-login #form-login2 #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
+    border: 1px solid lightgrey;
   }
   #left-form-login #form-login3 #Form-login-input input {
     padding: 15px;
     margin: 20px 15px;
+    border: 1px solid lightgrey;
   }
   #left-form-login #form-login #checkbox-Remember {
     margin: 0px 20px;

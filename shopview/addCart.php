@@ -1,6 +1,7 @@
 <?php
     include('cartFunction.php');
     session_start();
+    
     // $expireTime = 60 * 60; // 1 hour
     // session_set_cookie_params($expireTime); 
     if (!isset($_SESSION['cart'])) {

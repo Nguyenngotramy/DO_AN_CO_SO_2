@@ -36,7 +36,7 @@
       <a href="#" id="Viewcart">
          <li>View cart</li>
       </a>
-      <a href="#" id="Viewcart">
+      <a href="../shopview/checkout-page.php" id="Viewcart">
          <li>Check out</li>
       </a>
    </div>

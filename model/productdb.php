@@ -101,4 +101,60 @@
         $statement->closeCursor();
         return $sizeList;
     }
+
+    function createOrder($userID, $firstName, $lastName, $address, $phoneNumber, $orderNotes) {
+        global $db;
+        $orderID = 0;
+        $query = 'INSERT INTO `order`(`userID`, `firstName`, `lastName`, `address`, `phoneNumber`, `orderNotes`, `date`, `status`)
+        VALUES (?,?,?,?,?,?, NOW(), 0)';
+        $statement = $db->prepare($query);
+        $statement->bindValue(1,$userID);
+        $statement->bindValue(2,$firstName);
+        $statement->bindValue(3,$lastName);
+        $statement->bindValue(4,$address);
+        $statement->bindValue(5,$phoneNumber);
+        $statement->bindValue(6,$orderNotes);
+        $statement->execute();
+        $orderID = $db->lastInsertId();
+        $statement->closeCursor();
+        return $orderID;
+    }
+
+    function addCartIntoOrder($orderID, $productDetailID, $quantity) {
+        global $db;
+        $query = 'INSERT INTO `orderdetails`(`idOrder`, `idProductDetails`, `quantity`) VALUES (?,?,?)';
+        $statement = $db->prepare($query);
+        $statement->bindValue(1,$orderID);
+        $statement->bindValue(2,$productDetailID);
+        $statement->bindValue(3,$quantity);
+        $statement->execute();
+        $statement->closeCursor();
+    }
+
+    function getProductDetail($productID, $color, $size) {
+        global $db;
+        $productDetailID = 0;
+        $query = 'SELECT id FROM `productdetails`
+        INNER JOIN size on size.sizeID = productdetails.sizeID
+        INNER JOIN color on color.colorID = productdetails.colorID
+        WHERE productdetails.productID = ? and size.size = ? and color.color = ?';
+        $statement = $db->prepare($query);
+        $statement->bindValue(1,$productID);
+        $statement->bindValue(2,$size);
+        $statement->bindValue(3,$color);
+        $statement->execute();
+        $productDetailID = $statement->fetchColumn();
+        $statement->closeCursor();
+        return $productDetailID;
+    }
+
+    function getOrderInfor($orderID) {
+        global $db;
+        $query = 'SELECT * FROM `order` WHERE idOrder = ?';
+        $statement = $db->prepare($query);
+        $statement->bindValue(1,$orderID);
+        $statement->execute();
+        $orderInfor = $statement->fetch();
+        return $orderInfor;
+    }
 ?>

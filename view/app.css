@@ -2,7 +2,6 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'Manrope', sans-serif;
-    
     background-attachment: fixed;
     background-size: cover;
 }
@@ -362,7 +361,7 @@ body{
 
 .readmore{
     width: 100%;
-    height: 10%;
+    height: 14%;
     background-color: black;
     color: white;
     display: flex;
@@ -841,10 +840,11 @@ body{
     padding-left: 10px;
 }
 
-#billing-details .right textarea{
+#billing-details .left textarea{
     resize: vertical;
     padding: 2%;
     font-family: 'Manrope', sans-serif;
+    height: 100px;
 }
 
 #billing-details .right #your-order{
@@ -976,4 +976,72 @@ body{
     font-size: 17px;
     cursor: pointer;
 }
+
+
+/* checkoutSuccess.php */
+#information{
+    padding: 0 4%;
+    margin-bottom: 100px;
+}
+
+#message{
+    border: 1px solid lightgrey;
+    background-color: rgb(244, 244, 244);
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+#order-infor{
+    border: 2px solid lightgrey;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 50px;
+    /* padding: 0.5% 2%; */
+    width: 50%;
+}
+
+#order-infor ul{
+    display: flex;
+    list-style: disc;
+}
+#order-infor li{
+    margin-right: 50px;
+}
+
+#order-infor .element{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#order-infor .span{
+    margin: 0;
+}
+
+#order-details{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding: 1% 1.5%;
+    border: 2px solid lightgrey;
+    
+}
+
+#order-details table {
+    border-spacing: 0;
+    color: grey
+}
+
+#order-details table tr{
+    height: 40px;
+}
+
+#order-details table td{
+    border-bottom: 1px solid lightgrey;
+}
+
+
 

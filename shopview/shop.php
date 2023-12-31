@@ -147,7 +147,7 @@
                   <p>For the terms of the campaign, see the description page.</p>
 
                   <a href="#">
-                     <li id="seemore">See More Products</li>
+                     <li id="seemore" style="width: 40%">See More Products</li>
                   </a>
 
                </div>
@@ -226,8 +226,6 @@
                      return filter;
                   }
 
-
-
                   $('.selection').click(function () {
                      filter_data();
                   })
@@ -239,7 +237,7 @@
                })
             </script>
 
-            <div id="numberpage">
+            <div id="numberpage" style="margin-top: 30px">
                <ul>
                   <?php
                   $limit = 12;
@@ -265,7 +263,7 @@
 
 
       <div>
-         <?php include('../view/login_register.php') ?>
+         <?php include('login_register.php') ?>
       </div>
       <div>
          <?php include('../view/password_change_form.php') ?>

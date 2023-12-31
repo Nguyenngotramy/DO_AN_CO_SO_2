@@ -79,7 +79,7 @@
 
     
    <div>
-      <?php include('../view/login_register.php') ?>
+      <?php include('login_register.php') ?>
    </div>
     <?php include('../view/header.php')?>
   
