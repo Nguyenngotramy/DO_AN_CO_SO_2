@@ -333,6 +333,7 @@ input[type="checkbox"] {
   display: flex;
   flex-wrap: wrap;
   min-width: 100%;
+  column-gap: 2%;
 }
 #rightsidebar #product-shop #product-detail {
   width: 23%;
@@ -381,7 +382,7 @@ input[type="checkbox"] {
   width: 100%; 
   background-color: black; 
   color: white; 
-  height: 10%; 
+  height: 14.5%; 
   display: flex;
   align-items: center; 
   position: absolute;

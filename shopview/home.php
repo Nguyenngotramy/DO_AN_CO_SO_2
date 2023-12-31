@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div id="catalogues">
+        <div id="catalogues" style="margin-top: 70px">
             <?php
             foreach ($categoryList as $category) {
                 $quantity = countQuantityInCategory($category['categoryID']);
@@ -139,7 +139,7 @@
                 </div>
             <?php } ?>
         </div>
-        <span style="font-size: 32px; display: flex; justify-content: center; font-weight: bold;">Featured
+        <span style="font-size: 32px; display: flex; justify-content: center; font-weight: bold; margin-top: 70px">Featured
             Products</span><br>
         <span style="float: right;">See All ></span><br>
         <div class="featured-products">
@@ -178,7 +178,7 @@
         <span>Back to the past</span><br>
         <p>You can hide so much behind theatrics, and I don't need to do that any more. My relationships with producers
             or photographers - these are relationships that took years!</p>
-        <button>See All</button>
+        <button style="margin-top: 20px">See All</button>
     </div>
     <div>
         <?php include('../view/checkout.php') ?>
@@ -186,7 +186,7 @@
 
 
     <div>
-        <?php include('../view/login_register.php') ?>
+        <?php include('login_register.php') ?>
     </div>
 
     <?php include('../view/footer.php') ?>
