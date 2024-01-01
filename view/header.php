@@ -58,10 +58,10 @@
             <a style="display: flex;" href="../shopview/shop.php">SHOP</a>
             <a>FEEDBACK</a>
         </div>
-        <b >SERENE</b> 
+        <b style="margin-left: -210px; font-size: 25px">SERENE</b> 
         <!--  style="font-size: 25px; margin-right: 420px" -->
         <div class="elements" style="width: 270px;">
-            <i class="material-symbols-outlined">search</i>
+            <i class="material-symbols-outlined" style="margin-left: -170px">search</i>
             <div>
                 <div class="circle" id="amount">
                 </div>

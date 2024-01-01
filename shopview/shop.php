@@ -185,7 +185,7 @@
                <p>Show 1-12 of 20 results</p>
             </div>
             <div id="product-shop" class="product-shop">
-                  <!--chỗ để hiện sp nè-->
+               <!--chỗ để hiện sp nè-->
 
             </div>
             <script>
@@ -208,7 +208,7 @@
                      $.ajax({
                         url: "getdata.php",
                         method: "POST",
-                        data: { action: action, categoryName: categoryName, size: size, color: color, pageNumber: pageNumber},
+                        data: { action: action, categoryName: categoryName, size: size, color: color, pageNumber: pageNumber },
                         success: function (data) {
                            $('.product-shop').html(data); // hiện sp ra chỗ div class product-shop
                         }
@@ -269,73 +269,74 @@
          <?php include('../view/password_change_form.php') ?>
       </div>
    </div>
+   </div>
    <?php include('../view/footer.php') ?>
 
-      <script>
-         let totalSeconds = 5 * 60;
-         let minutesDisplay = document.getElementById('minutes');
-         let secondsDisplay = document.getElementById('seconds');
+   <script>
+      let totalSeconds = 5 * 60;
+      let minutesDisplay = document.getElementById('minutes');
+      let secondsDisplay = document.getElementById('seconds');
 
-         function updateDisplay() {
-            let minutes = Math.floor(totalSeconds / 60);
-            let seconds = totalSeconds % 60;
+      function updateDisplay() {
+         let minutes = Math.floor(totalSeconds / 60);
+         let seconds = totalSeconds % 60;
 
-            minutesDisplay.textContent = minutes;
-            secondsDisplay.textContent = seconds;
+         minutesDisplay.textContent = minutes;
+         secondsDisplay.textContent = seconds;
+      }
+
+      function countdownTimer() {
+         if (totalSeconds <= 0) {
+            clearInterval(countdown);
+            return;
          }
+         totalSeconds--;
+         updateDisplay();
+      }
 
-         function countdownTimer() {
-            if (totalSeconds <= 0) {
-               clearInterval(countdown);
-               return;
-            }
-            totalSeconds--;
-            updateDisplay();
-         }
+      let countdown = setInterval(countdownTimer, 1000);
+   </script>
+   <script>
+      const element = document.getElementById("circal");
+      element.addEventListener("click", myFunction);
 
-         let countdown = setInterval(countdownTimer, 1000);
-      </script>
-      <script>
-         const element = document.getElementById("circal");
-         element.addEventListener("click", myFunction);
+      function myFunction() {
+         const document1 = document.getElementById("disapp");
+         document1.classList.toggle('visible');
+         document1.classList.toggle('hidden');
+      }
+   </script>
+   <script>
+      const element1 = document.getElementById("circal1");
+      element1.addEventListener("click", myFunction);
 
-         function myFunction() {
-            const document1 = document.getElementById("disapp");
-            document1.classList.toggle('visible');
-            document1.classList.toggle('hidden');
-         }
-      </script>
-      <script>
-         const element1 = document.getElementById("circal1");
-         element1.addEventListener("click", myFunction);
+      function myFunction() {
+         const document1 = document.getElementById("disapp1");
+         document1.classList.toggle('visible');
+         document1.classList.toggle('hidden');
+      }
+   </script>
+   <script>
+      const element2 = document.getElementById("circal2");
+      element2.addEventListener("click", myFunction);
 
-         function myFunction() {
-            const document1 = document.getElementById("disapp1");
-            document1.classList.toggle('visible');
-            document1.classList.toggle('hidden');
-         }
-      </script>
-      <script>
-         const element2 = document.getElementById("circal2");
-         element2.addEventListener("click", myFunction);
+      function myFunction() {
+         const document1 = document.getElementById("disapp2");
+         document1.classList.toggle('visible');
+         document1.classList.toggle('hidden');
+      }
+   </script>
+   <script>
+      const element3 = document.getElementById("circal3");
+      element3.addEventListener("click", myFunction);
 
-         function myFunction() {
-            const document1 = document.getElementById("disapp2");
-            document1.classList.toggle('visible');
-            document1.classList.toggle('hidden');
-         }
-      </script>
-      <script>
-         const element3 = document.getElementById("circal3");
-         element3.addEventListener("click", myFunction);
+      function myFunction() {
+         const document1 = document.getElementById("disapp3");
+         document1.classList.toggle('visible');
+         document1.classList.toggle('hidden');
+      }
 
-         function myFunction() {
-            const document1 = document.getElementById("disapp3");
-            document1.classList.toggle('visible');
-            document1.classList.toggle('hidden');
-         }
-
-      </script>
+   </script>
 
 </body>
 
