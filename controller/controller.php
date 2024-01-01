@@ -8,6 +8,9 @@ include_once("../model/registerModel.php");
 include_once("../model/Loss_passDB.php");
 include_once("../admin/editProduct.php");
 include_once("sendGmail.php");
+include_once("../model/orderProductDB.php");
+$orderDB = new Order();
+
 $AddPDB = new AddProductDB();
 $UpdatePDB = new ProductAd();
 $Regislogin = new Register_login();
@@ -112,14 +115,13 @@ if ($action == 'register_user'){
         $mess = "Register sucess!!";
     }
     
-    header("Location: ../shopview/shop.php");
+    header("Location: ../shopview/home.php");
     exit();
 }
 if ($action == 'login') {
     $email = filter_input(INPUT_POST, 'emaillogin');
     $password = filter_input(INPUT_POST, 'pwlogin');
-    session_start();
-    ob_start();
+   
     $result =  $Regislogin->getInfor($email);
     $pw = $result[0]['password'];
     if (password_verify($password,$pw )) {
@@ -127,16 +129,26 @@ if ($action == 'login') {
     $role = $result[0]['role'];
   
     if ($role == 1) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            ob_start();
+        }
+        
         $_SESSION['role'] = $role;
         $_SESSION['userID'] = $result[0]['userID'];
         $_SESSION['userName'] = $result[0]['userName'];
         header('location: ../admin/addProducts.php');
     } else {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            ob_start();
+        }
+        
         $_SESSION['role'] = $role;
         $_SESSION['userID'] = $result[0]['userID'];
         $_SESSION['userName'] = $result[0]['userName'];
        
-        header('location: ../shopview/shop.php');
+        header('location: ../shopview/home.php');
     }
     $user_id = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'guest';
     if (isset($_COOKIE['cart_' . $user_id])) {
@@ -148,7 +160,13 @@ if ($action == 'login') {
         // Lưu thông tin giỏ hàng vào session
         $_SESSION['cart'] = $cart;
     }
+    
+}else {
+    $errlogin = "Email or password wrong!!";
+    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/shop.php";</script>';
+    exit; // Đảm bảo kết thúc luồng chạy của PHP
 }
+
 }
 if($action == 'losspw'){
     $email = filter_input(INPUT_POST, 'Emaillosspw');
@@ -268,11 +286,16 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 if ($action == 'delete') {
     $idProduct = isset($_GET['id']) ? $_GET['id'] : null;
     $UpdatePDB->deleteProduct($idProduct);
-    // Redirect or perform additional actions after deletion
     header('Location: ../admin/productlist.php');
     exit();
 }
 
+if ($action == 'browseOrder') {
+    $idord = isset($_GET['idord']) ? $_GET['idord'] : null;
+    $orderList = $orderDB->Browseorder($idord);
+    header('Location: ../admin/orderlist.php');
+    exit();
+}
 
 
 

@@ -1,13 +1,19 @@
-
+<!-- totalWebsale() -->
+<?php include_once("../model/orderProductDB.php");
+     $orderDB = new Order();
+      $sale = $orderDB->totalWebsale(); 
+      $orderpeding = $orderDB->totalorderpedingapprovel(); 
+      $orderapp = $orderDB->totalorderapprovel(); 
+         ?>
      <div class="users">
           <div class="card">
-              <img src="img/ecommerce.png">
+              <img src="../view/img/ecommerce.png">
               <h2>Website sale</h2>
-              <h3>$ 675,373</h3>
+              <h3>$<?php echo $sale['total'] ?></h3>
               <div class="per">
                   <table>
                       <tr>
-                          <td><span>10k</span></td>
+                          <td><span><?php echo $orderapp['totalord'] ?></span></td>
 
                       </tr>
                       <tr>
@@ -19,20 +25,20 @@
           </div>
 
           <div class="card">
-              <img src="img/discount.png">
-              <h2>Discount</h2>
-              <h3>$ 45,234</h3>
+              <img src="../view/img/discount.png">
+              <h2>Total order</h2>
+              <h3><?php echo $orderpeding['totalord'] ?> order</h3>
               <div class="per">
-                  <table>
+                  <!-- <table>
                       <tr>
-                          <td><span>6k</span></td>
+                          <td><span>0k</span></td>
 
                       </tr>
                       <tr>
                           <td>order</td>
 
                       </tr>
-                  </table>
+                  </table> -->
               </div>
           </div>
       </div>

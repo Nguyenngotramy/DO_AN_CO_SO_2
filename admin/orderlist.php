@@ -28,9 +28,9 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                             <a href>
                                 <li style="color:  rgb(85, 83, 83);">Admin/</li>
                             </a><a href>
-                                <li style="color: rgb(85, 83, 83);">Product/</li>
+                                <li style="color: rgb(85, 83, 83);">Order/</li>
                             </a><a href>
-                                <li style="color:  rgb(85, 83, 83);">Product
+                                <li style="color:  rgb(85, 83, 83);">Order
                                     list</li>
                             </a>
                         </ul>
@@ -69,17 +69,19 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                     <section class="attendance">
                         
                         <div class="attendance-list">
-                            <h1>Product List</h1>
+                            <h1>Order List</h1>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Decription</th>
-                                        <th>Origin</th>
-                                        <th>Category</th>
-                                        <th>Img</th>
-                                        <th>Price</th>
+                                        <th>Email</th>
+                                        <th>FullName</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Notes</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Total Price</th>
                                         <th>Details</th>
                                         
                                        
@@ -87,28 +89,34 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                 </thead>
                                 <tbody>
                                     <?php 
-                                    include_once("../model/ProductAdminDB.php");
-                                    $PAd = new ProductAd();
-                                    $ProductList = $PAd->getListProduct();
-                                    foreach($ProductList as $product){ ?>
+                                    include_once("../model/orderProductDB.php");
+                                    $orderDB = new Order();
+                                    $orderList = $orderDB->getListOrder();
+                                 
+                                    foreach($orderList as $order){ ?>
                                     <tr>
-                                        <td><?= $product["productID"] ?></td>
-                                        <td><?= $product["productName"] ?></td>
-                                        <td><?= $product["description"]?></td>
-                                        <td><?= $product["origin"]?></td>
-                                        <td><?= $product["categoryName"]?></td>
-                                        <?php
-                                          $id = $product["productID"];
-                                          $imgList = $PAd->Listimg($id);
-                                          $Price = $PAd->getPrice($id);
-                                        foreach($imgList as $img) {?>
-                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
-                                        <?php  }?>
-                                    <td><?= $Price ?></td>
+                                       <td><?= $order["idOrder"] ?></td>
+                                        <td><?= $order["email"] ?></td>
+                                        <td><?= $order["fullName"] ?></td>
+                                        <td><?= $order["address"] ?></td>
+                                        <td><?= $order["phoneNumber"]?></td>
+                                        <td><?= $order["orderNotes"]?></td>
+                                        <td><?php
+                                        if ( $order["status"] == 0) {
+                                            echo "Pending approval";
+                                        } else {
+                                            echo "Approval";
+                                        }
+                                        
+                                        ?></td>
+                                         <td><?= $order["date"]?></td>
+                                        <td> <?php  $total = $orderDB->totalOrder($order["idOrder"]); 
+                                                     echo $total['total'];
+                                        ?></td>
                                         <td style="display: grid;">
 
-                                        <a href="../admin/editProduct.php?idPE=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Update</a>
-                                        <a href="../controller/controller.php?action=delete&id=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Delete</a>
+                                        <a href="../admin/orderdetail.php?id=<?= $order["idOrder"] ?>&fullName=<?= $order["fullName"] ?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Detail</a>
+                                        <a href="../controller/controller.php?action=browseOrder&idord=<?= $order["idOrder"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Browse order</a>
 
                                     </td>
                                     </tr>
