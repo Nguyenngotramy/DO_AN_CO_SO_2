@@ -8,6 +8,9 @@ include_once("../model/registerModel.php");
 include_once("../model/Loss_passDB.php");
 include_once("../admin/editProduct.php");
 include_once("sendGmail.php");
+include_once("../model/orderProductDB.php");
+$orderDB = new Order();
+
 $AddPDB = new AddProductDB();
 $UpdatePDB = new ProductAd();
 $Regislogin = new Register_login();
@@ -268,11 +271,16 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 if ($action == 'delete') {
     $idProduct = isset($_GET['id']) ? $_GET['id'] : null;
     $UpdatePDB->deleteProduct($idProduct);
-    // Redirect or perform additional actions after deletion
     header('Location: ../admin/productlist.php');
     exit();
 }
 
+if ($action == 'browseOrder') {
+    $idord = isset($_GET['idord']) ? $_GET['idord'] : null;
+    $orderList = $orderDB->Browseorder($idord);
+    header('Location: ../admin/orderlist.php');
+    exit();
+}
 
 
 
