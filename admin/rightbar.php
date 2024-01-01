@@ -2,8 +2,11 @@
 <?php
 include_once('../model/addProductDB.php');
 $AddPDB = new AddProductDB();
-session_start();
-ob_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    ob_start();
+}
+
 if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
 ?>
      <nav>

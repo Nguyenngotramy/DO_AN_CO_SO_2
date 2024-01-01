@@ -115,14 +115,13 @@ if ($action == 'register_user'){
         $mess = "Register sucess!!";
     }
     
-    header("Location: ../shopview/shop.php");
+    header("Location: ../shopview/home.php");
     exit();
 }
 if ($action == 'login') {
     $email = filter_input(INPUT_POST, 'emaillogin');
     $password = filter_input(INPUT_POST, 'pwlogin');
-    session_start();
-    ob_start();
+   
     $result =  $Regislogin->getInfor($email);
     $pw = $result[0]['password'];
     if (password_verify($password,$pw )) {
@@ -130,16 +129,26 @@ if ($action == 'login') {
     $role = $result[0]['role'];
   
     if ($role == 1) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            ob_start();
+        }
+        
         $_SESSION['role'] = $role;
         $_SESSION['userID'] = $result[0]['userID'];
         $_SESSION['userName'] = $result[0]['userName'];
         header('location: ../admin/addProducts.php');
     } else {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            ob_start();
+        }
+        
         $_SESSION['role'] = $role;
         $_SESSION['userID'] = $result[0]['userID'];
         $_SESSION['userName'] = $result[0]['userName'];
        
-        header('location: ../shopview/shop.php');
+        header('location: ../shopview/home.php');
     }
     $user_id = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'guest';
     if (isset($_COOKIE['cart_' . $user_id])) {
@@ -151,7 +160,13 @@ if ($action == 'login') {
         // Lưu thông tin giỏ hàng vào session
         $_SESSION['cart'] = $cart;
     }
+    
+}else {
+    $errlogin = "Email or password wrong!!";
+    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/shop.php";</script>';
+    exit; // Đảm bảo kết thúc luồng chạy của PHP
 }
+
 }
 if($action == 'losspw'){
     $email = filter_input(INPUT_POST, 'Emaillosspw');

@@ -75,6 +75,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                     <tr>
                                         <th>ID</th>
                                         <th>Email</th>
+                                        <th>FullName</th>
                                         <th>Address</th>
                                         <th>Phone</th>
                                         <th>Notes</th>
@@ -96,6 +97,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                     <tr>
                                        <td><?= $order["idOrder"] ?></td>
                                         <td><?= $order["email"] ?></td>
+                                        <td><?= $order["fullName"] ?></td>
                                         <td><?= $order["address"] ?></td>
                                         <td><?= $order["phoneNumber"]?></td>
                                         <td><?= $order["orderNotes"]?></td>
@@ -113,7 +115,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                         ?></td>
                                         <td style="display: grid;">
 
-                                        <a href="../admin/editProduct.php?idPE=<?= $order["idOrder"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Detail</a>
+                                        <a href="../admin/orderdetail.php?id=<?= $order["idOrder"] ?>&fullName=<?= $order["fullName"] ?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Detail</a>
                                         <a href="../controller/controller.php?action=browseOrder&idord=<?= $order["idOrder"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Browse order</a>
 
                                     </td>

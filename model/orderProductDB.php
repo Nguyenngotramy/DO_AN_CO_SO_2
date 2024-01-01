@@ -13,6 +13,17 @@ class Order{
           $statement->closeCursor();
           return $ListOrder;
       }
+
+      function getListOrderDetail($idorder){
+        global $db;
+        $query = 'SELECT  productdetails.price,productdetails.weight,orderdetails.quantity, orderdetails.idOrder, color.color, size.size, products.productName FROM productdetails INNER JOIN orderdetails on orderdetails.idProductDetails = productdetails.id INNER JOIN color on color.colorID = productdetails.colorID INNER JOIN size on size.sizeID = productdetails.sizeID INNER JOIN products on products.productID = productdetails.productID WHERE orderdetails.idOrder = :id;';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $idorder);
+        $statement->execute();
+        $ListOrder = $statement->fetchAll();
+        $statement->closeCursor();
+        return $ListOrder;
+    }
       
       function Browseorder($id){
           global $db;
@@ -70,7 +81,7 @@ function totalorderpedingapprovel(){
      $statement->closeCursor();
      return $sale;
  }
-
+ 
 
 }
 
