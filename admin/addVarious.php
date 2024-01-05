@@ -57,24 +57,25 @@
                     <?php endforeach ?>
                 </div>
                 <div style="justify-items: center; display: grid;">
-                <section class="fillouttheforn" >
-                <form action="../controller/controller.php" method="post" id="add_color_form" enctype="multipart/form-data" >
-                     <input type="hidden" name="action" value="add_color">
-                
-                  
-                                <div class="Product-information">
-                                    <h3>Add Color: </h3>
-                                   
-                                    <div class="nameproduct">
-                                        <label for="nameproduct">Name of Color
-                                            :</label>
-                                        <input type="text" name="nameColor"
-                                            id="nameproduct" required>
-                                    </div>
-                                </div>
-                                <center> <input style="background-color: black; color: white; padding: 18px;  " type="submit" value="Publish Color"></center>
-                </form>
-                </section>
+                <section class="fillouttheforn">
+                <form action="../controller/controller.php" method="post" id="add_color" enctype="multipart/form-data" >
+                <input type="hidden" name="action" value="add_color">
+
+        <div class="Product-information">
+            <h3>Add Color:</h3>
+
+            <div class="nameproduct">
+                <label for="namecolor">Name of Color:</label>
+                <input type="text" name="nameColor" id="namecolor" required>
+            </div>
+        </div>
+        
+        <center>
+            <input style="background-color: black; color: white; padding: 18px; " type="submit" value="Publish Color">
+        </center>
+    </form>
+</section>
+
                
                 <section class="fillouttheforn">
             <form action="../controller/controller.php" method="post" id="add_size_form" enctype="multipart/form-data" >
@@ -98,14 +99,14 @@
     <form action="../controller/controller.php" method="post" id="add_stock_form" enctype="multipart/form-data" >
                 <input type="hidden" name="action" value="stock">
                 <h3>Stock Product:</h3>
-                <select >   
+                <select name="productid" >   
                     <option>--Name Product--</option>
                     <?php 
                                     include_once("../model/ProductAdminDB.php");
                                     $PAd = new ProductAd();
                                     $ProductList = $PAd->getListProduct();
                                     foreach($ProductList as $product){ ?>
-                   
+                
                         <option style="color: black;" value="<?= $product["productID"] ?>"><?= $product["productName"] ?></option>
                     <?php } ?>
                 </select>

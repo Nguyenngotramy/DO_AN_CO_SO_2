@@ -63,6 +63,8 @@ class ProductAd{
       $statement->closeCursor();
       return $various;
     }
+    // SELECT pd.productID, (pd.quantity - COALESCE(od.quantity, 0)) AS remaining_quantity FROM productdetails pd LEFT JOIN orderdetails od ON pd.productID = od.idProductDetails WHERE pd.productID = 1 LIMIT 1;
+
     function getWeightQuantitypriceID($id){
         global $db;
         $query = 'SELECT  productdetails.weight,productdetails.quantity,productdetails.price
@@ -74,6 +76,16 @@ class ProductAd{
           $various = $statement->fetch(PDO::FETCH_ASSOC); 
       $statement->closeCursor();
       return $various;
+    }
+    function getNumberProductonstoreID($id){
+        global $db;
+        $query = ' SELECT pd.productID, (pd.quantity - COALESCE(od.quantity, 0)) AS remaining_quantity FROM productdetails pd LEFT JOIN orderdetails od ON pd.productID = od.idProductDetails WHERE pd.productID = :id LIMIT 1;';
+         $statement = $db->prepare($query);
+          $statement->bindValue(":id",$id);
+          $statement->execute();
+          $number = $statement->fetch(PDO::FETCH_ASSOC); 
+      $statement->closeCursor();
+      return $number;
     }
 
 

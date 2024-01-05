@@ -16,7 +16,7 @@ class Order{
 
       function getListOrderDetail($idorder){
         global $db;
-        $query = 'SELECT  productdetails.price,productdetails.weight,orderdetails.quantity, orderdetails.idOrder, color.color, size.size, products.productName FROM productdetails INNER JOIN orderdetails on orderdetails.idProductDetails = productdetails.id INNER JOIN color on color.colorID = productdetails.colorID INNER JOIN size on size.sizeID = productdetails.sizeID INNER JOIN products on products.productID = productdetails.productID WHERE orderdetails.idOrder = :id;';
+        $query = 'SELECT productdetails.id,  productdetails.price,productdetails.weight,orderdetails.quantity, orderdetails.idOrder, color.color, size.size, products.productName FROM productdetails INNER JOIN orderdetails on orderdetails.idProductDetails = productdetails.id INNER JOIN color on color.colorID = productdetails.colorID INNER JOIN size on size.sizeID = productdetails.sizeID INNER JOIN products on products.productID = productdetails.productID WHERE orderdetails.idOrder = :id;';
         $statement = $db->prepare($query);
         $statement->bindValue(':id', $idorder);
         $statement->execute();
@@ -47,6 +47,26 @@ class Order{
         $statement->closeCursor();
         return $total;
       }
+      function totalOrderProduct($id, $pid) {
+        global $db;
+        $query = 'SELECT ROUND((orderdetails.quantity * productdetails.price), 2) as total
+                  FROM orderdetails 
+                  INNER JOIN `order` ON `order`.idOrder = orderdetails.idOrder
+                  INNER JOIN productdetails ON productdetails.id = orderdetails.idProductDetails
+                  WHERE orderdetails.idOrder = :id AND productdetails.id = :productid;';
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(":id", $id);
+            $statement->bindValue(":productid", $pid);
+            $statement->execute();
+            $total = $statement->fetch(PDO::FETCH_ASSOC);
+            $statement->closeCursor();
+            return $total; 
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    
    
 function totalWebsale(){
      global $db;

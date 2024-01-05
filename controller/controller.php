@@ -10,7 +10,6 @@ include_once("../admin/editProduct.php");
 include_once("sendGmail.php");
 include_once("../model/orderProductDB.php");
 $orderDB = new Order();
-
 $AddPDB = new AddProductDB();
 $UpdatePDB = new ProductAd();
 $Regislogin = new Register_login();
@@ -54,7 +53,7 @@ if ($action == 'add_product') {
             
                         $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_INT);
                         $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-                        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
+                        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
             
                         if ($materialID === false || $sizeID === false || $colorID === false || $weight === false || $quantity === false || $price === false) {
                             throw new Exception("Invalid product data. Check all fields and try again.");
@@ -213,7 +212,7 @@ if ($action == 'edit_product') {
 
         $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_INT);
         $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
+        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
         
         $productdetail1 = new ProductDetail();
       
@@ -280,7 +279,26 @@ if ($action == 'edit_product') {
     }
 }
 
+if ($action == 'add_color') { 
+    $nameColor = filter_input(INPUT_POST, 'nameColor');
+    $AddPDB->AddColor($nameColor); 
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
 
+if ($action == 'add_size') { 
+    $Size = filter_input(INPUT_POST, 'Size', FILTER_VALIDATE_INT);
+    $AddPDB->AddSize($Size);
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
+if ($action == 'stock') { 
+    $id = filter_input(INPUT_POST, 'productid', FILTER_VALIDATE_INT);
+    $number = filter_input(INPUT_POST, 'number', FILTER_VALIDATE_INT);
+    $AddPDB->Stock($id,$number); 
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 if ($action == 'delete') {
@@ -296,7 +314,5 @@ if ($action == 'browseOrder') {
     header('Location: ../admin/orderlist.php');
     exit();
 }
-
-
 
 ?>

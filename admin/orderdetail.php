@@ -77,15 +77,16 @@
                                  
                                     foreach($orderList as $orderd){ ?>
                                     <tr>
+                                    <td><?= $orderd["id"] ?></td>
                                        <td><?= $orderd["productName"] ?></td>
                                         <td><?= $orderd["color"] ?></td>
                                         <td><?= $orderd["size"] ?></td>
                                         <td><?= $orderd["weight"] ?></td>
                                         <td><?= $orderd["price"]?></td>
                                         <td><?= $orderd["quantity"]?></td>
-                                       
-                                        <td> <?php  $total = $orderDB->totalOrder($id); 
-                                                     echo $total['total'];
+                                      
+                                        <td> <?php  $totalP = $orderDB-> totalOrderProduct($id, $orderd["id"]); 
+                                                     echo $totalP['total'];
                                         ?></td>
                                         <td style="display: grid;">
 
@@ -97,6 +98,10 @@
                                 </tbody>
 
                             </table>
+                            <h3>Total Bill</h3>
+                            <?php  $totalAll = $orderDB->totalOrder($id); 
+                                                     echo $totalAll['total'];
+                                        ?>
                             
                         </div>
                                    

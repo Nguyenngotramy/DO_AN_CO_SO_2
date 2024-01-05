@@ -191,4 +191,53 @@ public function getSizeitem() {
     }
 
 }
+public static function AddColor($color){
+    global $db;
+    $query = 'INSERT INTO `color`(`color`) VALUES (:color)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':color', $color);
+        $statement->execute();
+        echo 'Color added successfully!';
+    } catch (Exception $e) {
+        error_log('Error adding color: ' . $e->getMessage());
+        echo 'Error adding color. Please check the error log for details.';
+    }
+}
+
+public static function AddSize($size){
+    global $db;
+   
+    $query = 'INSERT INTO `size`(`size`) VALUES (:size)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':size', $size);
+        $statement->execute();
+        echo 'Size added successfully!';
+    } catch (Exception $e) {
+        error_log('Error adding size: ' . $e->getMessage());
+        echo 'Error adding size. Please check the error log for details.';
+    }
+}
+
+public static function Stock($id, $number) {
+    global $db;
+    $query = 'UPDATE `productdetails`
+              SET `quantity` = `quantity` + :number
+              WHERE `productID` = :id;';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->bindValue(':number', $number);
+        
+        if (!$statement->execute()) {
+            throw new Exception('Error executing SQL statement.');
+        }
+        $statement->closeCursor();
+    } catch (Exception $e) {
+        // Handle the error according to your needs
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+
 }
