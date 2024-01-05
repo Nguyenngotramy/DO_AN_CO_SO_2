@@ -36,6 +36,12 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                         </ul>
                         <!-- <i class="fas fa-user-cog"></i> -->
                     </div>
+                    <?php
+                                        include_once('../model/addProductDB.php');
+                                        $AddPDB = new AddProductDB();
+                                        include('../model/categorydb.php');
+                                       
+                                          ?>
                     <div>
          <?php include('../admin/headerbar.php') ?>
       </div> 
@@ -43,25 +49,8 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                     <div class="Filter-search">
 
                         <div class="Filter-Search-Category-Stock-Add">
-                            <input type="text" placeholder="Search Product">
-                            <select id="Category">
-                            <option>--Category--</option>
-                                        <?php
-                                        include_once('../model/addProductDB.php');
-                                        $AddPDB = new AddProductDB();
-                                        include('../model/categorydb.php');
-                                        $categoryList = showAllCategory();
-                                      foreach ($categoryList as $category) :
-                                          ?>
-                                       <option style="color: black;" value="<?php echo $category["categoryID"] ?>"><?php echo $category["categoryName"]   ?></option>
-                                       
-                                        <?php endforeach; ?>
-                            </select>
-                            <select id="Stock">
-                                <option value="Lactay">Stock</option>
-                                <option value="tRAF mY">like tmy</option>
-                            </select>
-                            <a href>+ ADD PRODUCT</a>
+                           
+                            <a href ='../admin/addProducts.php'>+ ADD PRODUCT</a>
                         </div>
 
                     </div>
@@ -80,6 +69,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                         <th>Category</th>
                                         <th>Img</th>
                                         <th>Price</th>
+                                        <th>Number</th>
                                         <th>Details</th>
                                         
                                        
@@ -92,6 +82,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                     $ProductList = $PAd->getListProduct();
                                     foreach($ProductList as $product){ ?>
                                     <tr>
+                                  
                                         <td><?= $product["productID"] ?></td>
                                         <td><?= $product["productName"] ?></td>
                                         <td><?= $product["description"]?></td>
@@ -101,10 +92,13 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                           $id = $product["productID"];
                                           $imgList = $PAd->Listimg($id);
                                           $Price = $PAd->getPrice($id);
+                                          $Number = $PAd->getNumberProductonstoreID($id);
                                         foreach($imgList as $img) {?>
-                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="<?= $img["image"]?>" ></td>
+                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
                                         <?php  }?>
                                     <td><?= $Price ?></td>
+                                    <td><?= isset($Number['remaining_quantity']) ? $Number['remaining_quantity'] : '' ?></td>
+
                                         <td style="display: grid;">
 
                                         <a href="../admin/editProduct.php?idPE=<?= $product["productID"]?>" style="color: black; padding: 10px; border-color: black; border: 1px solid;">Update</a>

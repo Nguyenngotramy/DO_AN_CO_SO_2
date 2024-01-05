@@ -10,7 +10,6 @@ include_once("../admin/editProduct.php");
 include_once("sendGmail.php");
 include_once("../model/orderProductDB.php");
 $orderDB = new Order();
-
 $AddPDB = new AddProductDB();
 $UpdatePDB = new ProductAd();
 $Regislogin = new Register_login();
@@ -54,7 +53,7 @@ if ($action == 'add_product') {
             
                         $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_INT);
                         $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-                        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
+                        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
             
                         if ($materialID === false || $sizeID === false || $colorID === false || $weight === false || $quantity === false || $price === false) {
                             throw new Exception("Invalid product data. Check all fields and try again.");
@@ -163,7 +162,7 @@ if ($action == 'login') {
     
 }else {
     $errlogin = "Email or password wrong!!";
-    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/shop.php";</script>';
+    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/home.php";</script>';
     exit; // Đảm bảo kết thúc luồng chạy của PHP
 }
 
@@ -192,7 +191,7 @@ if ($action == 'newpass'){
 
 
 if ($action == 'edit_product') {
-    // Validate product information
+   
     $id = filter_input(INPUT_POST, 'productid', FILTER_VALIDATE_INT);
     $nameproduct = filter_input(INPUT_POST, 'nameproduct');
     $description = filter_input(INPUT_POST, 'description');
@@ -202,7 +201,7 @@ if ($action == 'edit_product') {
     if ($nameproduct === NULL || $description === NULL || $Originproduct === NULL || $categoryID === false) {
         $error = "Invalid product data. Check all fields and try again.";
     } else {
-        // Update product
+      
         $product = new Product();
         $product->setProductName($nameproduct);
         $product->setDescription($description);
@@ -213,7 +212,7 @@ if ($action == 'edit_product') {
 
         $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_INT);
         $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
+        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
         
         $productdetail1 = new ProductDetail();
       
@@ -230,18 +229,16 @@ if ($action == 'edit_product') {
                 $image = $_FILES['imgDetails']['name'][$imgDetail['image']];
                 $uploadDir = 'C:/xampp/htdocs/DO_AN_CO_SO_2/view/img/';
                 $uploadPath = $uploadDir . $image;
-
-                // Check if the file was uploaded without errors
                 if (isset($_FILES['imgDetails']['error'][$imgDetail['image']]) && $_FILES['imgDetails']['error'][$imgDetail['image']] === UPLOAD_ERR_OK) {
                     if (move_uploaded_file($_FILES['imgDetails']['tmp_name'][$imgDetail['image']], $uploadPath)) {
-                        // File uploaded successfully, update image details in the database
-                        $UpdatePDB->Updateimg("R.png", $idimg, $id);
+                        
+                        $UpdatePDB->Updateimg($image, $idimg, $id);
                     } else {
-                        // Handle upload failure
+        
                         echo "Upload failed!";
                     }
                 } else {
-                    // Handle file upload error
+                   
                     echo "File upload error.";
                 }
             }
@@ -274,13 +271,32 @@ if ($action == 'edit_product') {
             }
 
             header('location: ../admin/productlist.php');
-            exit(); // Ensure script termination after header redirection
+            exit(); 
         }
         
     }
 }
 
+if ($action == 'add_color') { 
+    $nameColor = filter_input(INPUT_POST, 'nameColor');
+    $AddPDB->AddColor($nameColor); 
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
 
+if ($action == 'add_size') { 
+    $Size = filter_input(INPUT_POST, 'Size', FILTER_VALIDATE_INT);
+    $AddPDB->AddSize($Size);
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
+if ($action == 'stock') { 
+    $id = filter_input(INPUT_POST, 'productid', FILTER_VALIDATE_INT);
+    $number = filter_input(INPUT_POST, 'number', FILTER_VALIDATE_INT);
+    $AddPDB->Stock($id,$number); 
+    header('Location: ../admin/addVarious.php');
+    exit();
+}
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 if ($action == 'delete') {
@@ -296,7 +312,5 @@ if ($action == 'browseOrder') {
     header('Location: ../admin/orderlist.php');
     exit();
 }
-
-
 
 ?>

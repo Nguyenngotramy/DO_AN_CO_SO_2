@@ -14,8 +14,26 @@ include_once("../controller/controller.php");
 
       <div id="left-form-login">
          <div id="title-login">
-            <div id="tt-Signin" onclick="myFunctionFormlogin('signin')">Sign in</div>
-            <div id="tt-Register" onclick="myFunctionFormlogin('register')">Register</div>
+        
+        <?php if (!isset($_SESSION['userID']) || empty($_SESSION['userID'])) { ?>
+                     <div id="tt-Signin" onclick="myFunctionFormlogin('signin')">Sign in</div>
+                     <div id="tt-Register" onclick="myFunctionFormlogin('register')">Register</div>
+             
+       <?php } else { 
+          
+            include_once("../model/register_loginDB.php");
+                  $Regislogin = new Register_login();
+                 //  $Regislogin->getEmail($_SESSION['userID']);
+                  if (isset($_SESSION['userID']) && ($_SESSION['userID'] != "")): ?>
+                  <a href="#">
+                      <?php 
+                      $email = $Regislogin->getEmail($_SESSION['userID']);
+                      echo $email['email'];
+                      ?>
+                     
+                  </a>
+                  <?php endif;
+             } ?>
          </div>
          <div id="form-login">
             <form action="../controller/controller.php" method="post" id="register" enctype="multipart/form-data">
@@ -77,7 +95,7 @@ include_once("../controller/controller.php");
                </div>
                <lable>Password will send to your email, Please check after send</lable>
                <div id="submit-login-main">
-                  <input id="submit-login" onclick="myFunctionFormlogin('submit-login')" type="submit" value="Send"
+                  <input id="submit-login"  type="submit" value="Send"
                      class="form">
                </div>
             </form>
