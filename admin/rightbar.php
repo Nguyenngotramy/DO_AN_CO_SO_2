@@ -46,11 +46,17 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                               <span class="nav-item">Setting</span>
                           </a></li>
 
-                      <li><a href="addProducts.php?exit" class="logout">
+                      <li><a href="../shopview/home.php?exit" class="logout">
                               <i class="fas fa-sign-out-alt"></i>
                               <span class="nav-item">Log out</span>
                           </a></li>
+                      <?php    if (isset($_GET['exit'])) {
+                    session_unset();
                   
+                    header('Location: ../shopview/home.php');
+                    exit();
+                }
+                  ?>
           </ul>
       </nav>
 
