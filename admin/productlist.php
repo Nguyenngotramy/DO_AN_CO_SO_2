@@ -36,6 +36,12 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                         </ul>
                         <!-- <i class="fas fa-user-cog"></i> -->
                     </div>
+                    <?php
+                                        include_once('../model/addProductDB.php');
+                                        $AddPDB = new AddProductDB();
+                                        include('../model/categorydb.php');
+                                       
+                                          ?>
                     <div>
          <?php include('../admin/headerbar.php') ?>
       </div> 
@@ -43,24 +49,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                     <div class="Filter-search">
 
                         <div class="Filter-Search-Category-Stock-Add">
-                            <input type="text" placeholder="Search Product">
-                            <select id="Category">
-                            <option>--Category--</option>
-                                        <?php
-                                        include_once('../model/addProductDB.php');
-                                        $AddPDB = new AddProductDB();
-                                        include('../model/categorydb.php');
-                                        $categoryList = showAllCategory();
-                                      foreach ($categoryList as $category) :
-                                          ?>
-                                       <option style="color: black;" value="<?php echo $category["categoryID"] ?>"><?php echo $category["categoryName"]   ?></option>
-                                       
-                                        <?php endforeach; ?>
-                            </select>
-                            <select id="Stock">
-                                <option value="Lactay">Stock</option>
-                                <option value="tRAF mY">like tmy</option>
-                            </select>
+                           
                             <a href ='../admin/addProducts.php'>+ ADD PRODUCT</a>
                         </div>
 
