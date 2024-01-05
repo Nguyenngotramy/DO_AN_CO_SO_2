@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 31, 2023 lúc 04:39 PM
+-- Thời gian đã tạo: Th1 05, 2024 lúc 05:37 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -62,7 +62,8 @@ INSERT INTO `color` (`colorID`, `color`) VALUES
 (1, 'yellow'),
 (2, 'red'),
 (3, 'blue'),
-(4, 'green');
+(4, 'green'),
+(5, 'Purple');
 
 -- --------------------------------------------------------
 
@@ -106,9 +107,13 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`idOrder`, `userID`, `firstName`, `lastName`, `address`, `phoneNumber`, `orderNotes`, `date`, `status`) VALUES
-(1, 12, 'hahah', 'hyhy', 'dadadadada', '0123456789', 'adadadadad', '2023-12-31', 0),
-(2, 12, 'hanhi', 'nguyen', '17 Phú Lộc 15', '0702192094', 'Gói hàng cho kĩ dô', '2023-12-31', 0),
-(3, 12, 'hanhiii', 'nguyen', '17 Phú Lộc 15', '0123456789', 'hehehe', '2023-12-31', 0);
+(1, 12, 'hahah', 'hyhy', 'dadadadada', '0123456789', 'adadadadad', '2023-12-31', 1),
+(2, 12, 'hanhi', 'nguyen', '17 Phú Lộc 15', '0702192094', 'Gói hàng cho kĩ dô', '2023-12-31', 1),
+(3, 12, 'hanhiii', 'nguyen', '17 Phú Lộc 15', '0123456789', 'hehehe', '2023-12-31', 0),
+(4, 14, 'cong chua', 'bong bong', '193 Nguyễn Lương Bằng', '0123456789', 'Ta là người đẹp nhất thế gian này', '2024-01-01', 0),
+(5, 15, '', '', '', '', '', '2024-01-02', 0),
+(6, 12, 'Hạ Nhi', 'Nguyễn', '17 Phú Lộc 15', '0702192094', 'Hãy gói thật cẩn thận nhé!', '2024-01-05', 0),
+(7, 12, 'Hạ Nhi', 'Nguyễn', 'Đà Nẵng', '0702192094', 'Hãy gói cẩn thận nhé!', '2024-01-05', 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +137,15 @@ INSERT INTO `orderdetails` (`id`, `idOrder`, `idProductDetails`, `quantity`) VAL
 (2, 2, 19, 1),
 (3, 2, 26, 1),
 (4, 3, 147, 1),
-(5, 3, 9, 1);
+(5, 3, 9, 1),
+(6, 4, 23, 1),
+(7, 4, 148, 1),
+(8, 5, 10, 1),
+(9, 5, 36, 2),
+(10, 6, 8, 1),
+(11, 6, 147, 1),
+(12, 7, 8, 1),
+(13, 7, 134, 1);
 
 -- --------------------------------------------------------
 
@@ -156,12 +169,12 @@ CREATE TABLE `productdetails` (
 --
 
 INSERT INTO `productdetails` (`id`, `productID`, `materialID`, `sizeID`, `colorID`, `weight`, `quantity`, `price`) VALUES
-(1, 1, 1, 1, 1, 10, 50, 560.12),
-(2, 1, 1, 2, 1, 10, 50, 560.12),
-(3, 1, 1, 1, 2, 10, 50, 560.12),
-(4, 1, 1, 2, 2, 10, 50, 560.12),
-(5, 1, 1, 1, 3, 10, 50, 560.12),
-(6, 1, 1, 2, 3, 10, 50, 560.12),
+(1, 1, 1, 1, 1, 10, 57, 560.12),
+(2, 1, 1, 2, 1, 10, 57, 560.12),
+(3, 1, 1, 1, 2, 10, 57, 560.12),
+(4, 1, 1, 2, 2, 10, 57, 560.12),
+(5, 1, 1, 1, 3, 10, 57, 560.12),
+(6, 1, 1, 2, 3, 10, 57, 560.12),
 (7, 2, 2, 1, 1, 10, 70, 500.12),
 (8, 2, 2, 2, 1, 10, 90, 500.12),
 (9, 2, 2, 1, 2, 10, 70, 500.12),
@@ -261,10 +274,10 @@ INSERT INTO `productdetails` (`id`, `productID`, `materialID`, `sizeID`, `colorI
 (114, 23, 1, 8, 2, 10, 50, 560.12),
 (115, 23, 1, 7, 3, 10, 50, 560.12),
 (116, 23, 1, 8, 3, 10, 50, 560.12),
-(117, 24, 1, 9, 2, 10, 50, 500.12),
-(118, 24, 1, 10, 2, 10, 50, 500.12),
-(119, 24, 1, 9, 3, 10, 50, 500.12),
-(120, 24, 1, 10, 3, 10, 50, 500.12),
+(117, 24, 1, 9, 2, 18, 50, 500.12),
+(118, 24, 1, 10, 2, 18, 50, 500.12),
+(119, 24, 1, 9, 3, 18, 50, 500.12),
+(120, 24, 1, 10, 3, 18, 50, 500.12),
 (121, 25, 1, 7, 1, 10, 50, 400.12),
 (122, 25, 1, 9, 1, 10, 50, 400.12),
 (123, 25, 1, 8, 1, 10, 50, 400.12),
@@ -280,22 +293,19 @@ INSERT INTO `productdetails` (`id`, `productID`, `materialID`, `sizeID`, `colorI
 (133, 26, 2, 8, 2, 10, 50, 560.12),
 (134, 26, 2, 7, 3, 10, 50, 560.12),
 (135, 26, 2, 8, 3, 10, 50, 560.12),
-(136, 27, 2, 9, 2, 10, 50, 500.12),
-(137, 27, 2, 10, 2, 10, 50, 500.12),
-(138, 27, 2, 9, 3, 10, 50, 500.12),
-(139, 27, 2, 10, 3, 10, 50, 500.12),
-(140, 27, 2, 7, 1, 10, 50, 400.12),
-(141, 27, 2, 9, 1, 10, 50, 400.12),
-(142, 27, 2, 8, 1, 10, 50, 400.12),
-(143, 27, 2, 7, 2, 10, 50, 400.12),
-(144, 27, 2, 9, 2, 10, 50, 400.12),
-(145, 27, 2, 8, 2, 10, 50, 400.12),
-(146, 27, 2, 7, 4, 10, 50, 400.12),
-(147, 27, 2, 9, 4, 10, 50, 400.12),
-(148, 27, 2, 8, 4, 10, 50, 400.12),
-(149, 30, 2, 6, 3, 3, 1, 1),
-(150, 31, 1, 6, 2, 3, 1, 1),
-(151, 31, 1, 10, 3, 3, 1, 1);
+(136, 27, 2, 9, 2, 10, 54, 600.12),
+(137, 27, 2, 10, 2, 10, 54, 600.12),
+(138, 27, 2, 9, 3, 10, 54, 600.12),
+(139, 27, 2, 10, 3, 10, 54, 600.12),
+(140, 27, 2, 7, 1, 10, 54, 600.12),
+(141, 27, 2, 9, 1, 10, 54, 600.12),
+(142, 27, 2, 8, 1, 10, 54, 600.12),
+(143, 27, 2, 7, 2, 10, 54, 600.12),
+(144, 27, 2, 9, 2, 10, 54, 600.12),
+(145, 27, 2, 8, 2, 10, 54, 600.12),
+(146, 27, 2, 7, 4, 10, 54, 600.12),
+(147, 27, 2, 9, 4, 10, 54, 600.12),
+(148, 27, 2, 8, 4, 10, 54, 600.12);
 
 -- --------------------------------------------------------
 
@@ -429,9 +439,7 @@ INSERT INTO `productimages` (`id`, `productID`, `image`) VALUES
 (113, 27, 'https://cdn.pnj.io/images/thumbnails/485/485/detailed/172/on-sd0000w060070-day-chuyen-nam-bac-y-pnjsilver-2.jpg'),
 (114, 28, 'https://cdn.pnj.io/images/thumbnails/485/485/detailed/138/sd0000h060001-day-chuyen-bac-y-pnjsilver-1.png'),
 (115, 28, 'https://cdn.pnj.io/images/thumbnails/485/485/detailed/138/sd0000h060001-day-chuyen-bac-y-pnjsilver-2.png'),
-(116, 28, 'https://cdn.pnj.io/images/thumbnails/485/485/detailed/138/sd0000h060001-day-chuyen-bac-y-pnjsilver-3.png'),
-(117, 30, '20220517-IMG_8768.jpg'),
-(118, 31, 'dangyeu.png');
+(116, 28, 'https://cdn.pnj.io/images/thumbnails/485/485/detailed/138/sd0000h060001-day-chuyen-bac-y-pnjsilver-3.png');
 
 -- --------------------------------------------------------
 
@@ -474,11 +482,41 @@ INSERT INTO `products` (`productID`, `productName`, `description`, `origin`, `ca
 (24, '18K Gold Necklace With Curved Letters', 'By combining 18K gold material with delicate design, the necklace is the highlight, adding to her elegant and graceful beauty. Thin straps are suitable for outfits with many patterns, while also creating a balanced look with other large accessories.', 'England', 4),
 (25, '18K White Gold Necklace', 'By combining 18K gold material with delicate design, the necklace is the highlight, adding to her elegant and graceful beauty. Thin straps are suitable for outfits with many patterns, while also creating a balanced look with other large accessories.', 'England', 4),
 (26, 'Italian Silver Necklace', 'Continuing the trend of youthful and personality-style jewelry, jewelry from PNJSilver will definitely make waves in the fashion world of young girls. A necklace with completely new design inspiration, coming from emotions that will take her to her own world.', 'England', 4),
-(27, 'PNJSilver Silver Necklace With S-shaped Woven Wire', 'Silver is a material widely used in the jewelry industry. Although the price is much cheaper than Gold, it is no less luxurious and sophisticated, which is why silver jewelry is increasingly loved by many people. PNJSilver silver necklace is exquisitely crafted from the highest quality materials, grasp and start the style to be ready to renew yourself and experience wonderful gifts from life.', 'England', 4),
-(28, 'Silver Chain Ball Chain Style', 'Whenever it comes to holidays, anniversaries, birthdays or any other day, guys often think about giving gifts to their girlfriends and lovers. Choose a silver necklace because it has many meanings of love. A silver necklace is a gift that suits her preferences.', 'England', 4),
-(29, 'jhjjhhjjjh', 'hghgh', 'ggggg', 1),
-(30, 'testnhieulam roi đc di voi lay', 'jjfsjhs', 'ssss', 3),
-(31, 'testnhieulam roi đc di voi lay', 'x', 'ssss', 2);
+(27, 'PNJSilver Silver Necklace With S-shaped Woven Wire', 'Silver is a material widely used in the jewelry industry. PNJSilver silver necklace is exquisitely crafted from the highest quality materials, grasp and start the style to be ready to renew yourself and experience wonderful gifts from life.', 'England', 4),
+(28, 'Silver Chain Ball Chain Style', 'Whenever it comes to holidays, anniversaries, birthdays or any other day, guys often think about giving gifts to their girlfriends and lovers. Choose a silver necklace because it has many meanings of love. A silver necklace is a gift that suits her preferences.', 'England', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `productID` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `star` int(11) NOT NULL,
+  `reviewText` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `review`
+--
+
+INSERT INTO `review` (`id`, `productID`, `name`, `star`, `reviewText`) VALUES
+(1, 1, 'Hạ Nhi', 4, 'Sản phẩm rất xinh đẹp tuyệt vời xin cảm ơn'),
+(2, 1, 'Hahaha', 5, 'Hơi xấu'),
+(3, 1, 'Hyhy', 2, 'Kim cương nhìn giả'),
+(4, 1, 'Hihi', 3, 'Cũng đẹp'),
+(5, 2, 'Elsa', 5, 'Nhẫn rất đẹp, 10 điểm'),
+(6, 2, 'Nguyễn Văn A', 4, 'Hàng tốt'),
+(7, 2, 'Trần Thị B', 5, 'Chồng mình mới mua cầu hôn mình, mình vui lắm hyhy'),
+(8, 2, 'Lê Văn C', 5, 'Nhẫn đẹp'),
+(9, 2, 'Đặng Thị D', 5, 'Rất đẹp, 10 điểm'),
+(10, 1, 'Bla bla', 5, 'Rất đẹp'),
+(11, 1, 'Trần Văn H', 4, 'Em thấy nó cũng được ó mn'),
+(12, 1, 'Nguyễn Thị K', 4, 'Đẹp'),
+(13, 2, 'hahahah', 3, 'Xấu');
 
 -- --------------------------------------------------------
 
@@ -505,7 +543,8 @@ INSERT INTO `size` (`sizeID`, `size`) VALUES
 (7, 45),
 (8, 50),
 (9, 48),
-(10, 52);
+(10, 52),
+(11, 22);
 
 -- --------------------------------------------------------
 
@@ -526,10 +565,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `userName`, `email`, `password`, `role`) VALUES
-(1, 'hanhi', 'hanhi@gmail.com', 'a18786ae', 0),
-(2, 'mymy', 'Nguyenngotramy2427@gmail.com', 'Ngotramynguyen', 0),
-(3, 'mymy', 'Nguyenngotramy2427@gmail.com', '12121212', 0),
-(4, 'mymy', 'Nguyenngotramy2427@gmail.com', '12121212', 0),
 (5, 'mymylala', 'abc@gmail.com', 'abcdefghiklm', 0),
 (6, 'Admin', 'Admin123@gmail.com', 'admin123', 1),
 (7, 'hanhinguyen', 'hanhi@gmail.com', 'hanhinguyen', 0),
@@ -537,7 +572,11 @@ INSERT INTO `user` (`userID`, `userName`, `email`, `password`, `role`) VALUES
 (9, 'haha', 'haha@gmail.com', 'haha', 0),
 (10, 'hyhy', 'hyhy@gmail.com', 'hyhy', 0),
 (11, 'shizuka', 'hehe@gmail.com', '$2y$10$VC2aPLwCwmWZAbCYs2VuYubuWRoj1FXeLK9uRZfn/Q5NSDGzd2/kW', 0),
-(12, 'nhielsa', 'nhielsa@gmail.com', '$2y$10$gThY1aDT2EEv3c9qihqCkeGCKTjoHUQ7eOeah75A0uxrh7ZJ0UjNi', 0);
+(12, 'nhielsa', 'nhielsa@gmail.com', '$2y$10$gThY1aDT2EEv3c9qihqCkeGCKTjoHUQ7eOeah75A0uxrh7ZJ0UjNi', 0),
+(13, 'admin12', 'hahahaa@gmail.com', '$2y$10$mj05h71H.CyShKAbkOO2Z.kKwcD272JsR3sFS4HL0eniaV69D8tZK', 1),
+(14, 'winx', 'winx@gmail.com', '$2y$10$bBdiFFFP3jvYraEgQgQK1OW7HIJHJ9MrVWbs7xaiXEo7JZXxH8LoG', 0),
+(15, 'mytra', 'mytra@gmail.com', '$2y$10$D66D48fkipUJc1fi9mhyv.YNq4tYxxasZ4Wv0wOWb6Cg0ywX4JFyS', 0),
+(17, 'nhi123', 'khoaitaychiennhi@gmail.com', '$2y$10$AKqIxrACm.ejSt6Ot3EoY.Zd8WHyQr2r/Wk.bK4z30YJOi3qvIsRq', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -601,6 +640,13 @@ ALTER TABLE `products`
   ADD KEY `categoryID` (`categoryID`);
 
 --
+-- Chỉ mục cho bảng `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productID` (`productID`);
+
+--
 -- Chỉ mục cho bảng `size`
 --
 ALTER TABLE `size`
@@ -626,7 +672,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `color`
 --
 ALTER TABLE `color`
-  MODIFY `colorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `colorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `material`
@@ -638,43 +684,49 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT cho bảng `order`
 --
 ALTER TABLE `order`
-  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `productdetails`
 --
 ALTER TABLE `productdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT cho bảng `productimages`
 --
 ALTER TABLE `productimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT cho bảng `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `size`
 --
 ALTER TABLE `size`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -713,6 +765,12 @@ ALTER TABLE `productimages`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`);
+
+--
+-- Các ràng buộc cho bảng `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
