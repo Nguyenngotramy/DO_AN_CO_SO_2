@@ -162,7 +162,7 @@ if ($action == 'login') {
     
 }else {
     $errlogin = "Email or password wrong!!";
-    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/shop.php";</script>';
+    echo '<script type="text/javascript">alert("' . $errlogin . '"); window.location.href="../shopview/home.php";</script>';
     exit; // Đảm bảo kết thúc luồng chạy của PHP
 }
 
@@ -191,7 +191,7 @@ if ($action == 'newpass'){
 
 
 if ($action == 'edit_product') {
-    // Validate product information
+   
     $id = filter_input(INPUT_POST, 'productid', FILTER_VALIDATE_INT);
     $nameproduct = filter_input(INPUT_POST, 'nameproduct');
     $description = filter_input(INPUT_POST, 'description');
@@ -201,7 +201,7 @@ if ($action == 'edit_product') {
     if ($nameproduct === NULL || $description === NULL || $Originproduct === NULL || $categoryID === false) {
         $error = "Invalid product data. Check all fields and try again.";
     } else {
-        // Update product
+      
         $product = new Product();
         $product->setProductName($nameproduct);
         $product->setDescription($description);
@@ -229,18 +229,16 @@ if ($action == 'edit_product') {
                 $image = $_FILES['imgDetails']['name'][$imgDetail['image']];
                 $uploadDir = 'C:/xampp/htdocs/DO_AN_CO_SO_2/view/img/';
                 $uploadPath = $uploadDir . $image;
-
-                // Check if the file was uploaded without errors
                 if (isset($_FILES['imgDetails']['error'][$imgDetail['image']]) && $_FILES['imgDetails']['error'][$imgDetail['image']] === UPLOAD_ERR_OK) {
                     if (move_uploaded_file($_FILES['imgDetails']['tmp_name'][$imgDetail['image']], $uploadPath)) {
-                        // File uploaded successfully, update image details in the database
-                        $UpdatePDB->Updateimg("R.png", $idimg, $id);
+                        
+                        $UpdatePDB->Updateimg($image, $idimg, $id);
                     } else {
-                        // Handle upload failure
+        
                         echo "Upload failed!";
                     }
                 } else {
-                    // Handle file upload error
+                   
                     echo "File upload error.";
                 }
             }
@@ -273,7 +271,7 @@ if ($action == 'edit_product') {
             }
 
             header('location: ../admin/productlist.php');
-            exit(); // Ensure script termination after header redirection
+            exit(); 
         }
         
     }

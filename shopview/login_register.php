@@ -14,7 +14,8 @@ include_once("../controller/controller.php");
 
       <div id="left-form-login">
          <div id="title-login">
-        <?php if (session_status() == PHP_SESSION_NONE) { ?>
+        
+        <?php if (!isset($_SESSION['userID']) || empty($_SESSION['userID'])) { ?>
                      <div id="tt-Signin" onclick="myFunctionFormlogin('signin')">Sign in</div>
                      <div id="tt-Register" onclick="myFunctionFormlogin('register')">Register</div>
              
