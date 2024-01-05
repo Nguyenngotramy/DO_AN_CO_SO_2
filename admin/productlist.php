@@ -94,7 +94,17 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                           $Price = $PAd->getPrice($id);
                                           $Number = $PAd->getNumberProductonstoreID($id);
                                         foreach($imgList as $img) {?>
-                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
+                                      <?php
+$imgPath = "../view/img/" . $img["image"];
+
+if (file_exists($imgPath)) {
+    echo '<td style="display: grid;"><img style="width: 50px; height: 50px;" src="' . $imgPath . '" ></td>';
+} else {
+    
+    echo '<td style="display: grid;"><img style="width: 50px; height: 50px;" src="' . $img["image"] . '" ></td>';
+}
+?>
+
                                         <?php  }?>
                                     <td><?= $Price ?></td>
                                     <td><?= isset($Number['remaining_quantity']) ? $Number['remaining_quantity'] : '' ?></td>

@@ -81,7 +81,7 @@
                 <a href="#" onclick="myFunctionLoginFormSigned()">
                     <?php echo $_SESSION['userName']; ?>
                 </a>
-                <!-- <i onclick="myFunctionLoginFormSigned()" class="material-symbols-outlined">lock</i> -->
+                <i onclick="myFunctionNewPass()" class="material-symbols-outlined">lock</i>
                 <a href="shop.php?exit">
                     <?php echo "Log out" ?>
                 </a>
