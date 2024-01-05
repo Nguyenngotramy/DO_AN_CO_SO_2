@@ -20,59 +20,6 @@
 <body>
 
   <div id="wrapper" class="page-wrapper">
-    <!-- <div id="header-social">
-      <div>
-        <div id="social-fty">
-          <a href="#"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
-          <a href="#"><i class="fa-brands fa-youtube" style="color: #ffffff;"></i></a>
-        </div>
-
-        <b>Free shipping on all orders over 1 milion </b>
-        <ul id="icon-text-list">
-          <a href="#">
-            <li><span>CART</span></li>
-          </a>
-          <a href="#">
-            <li><span>SEARCH</span></li>
-          </a>
-          <a href="#">
-            <li><span>HELP</span></li>
-          </a>
-        </ul>
-      </div>
-    </div>
-
-    <div id="menu-main">
-      <div>
-        <ul id="menu">
-          <a href="#">
-            <li><span>HOME</span></li>
-          </a>
-          <a href="#">
-            <li><span id="choose">SHOP</span></li>
-          </a>
-          <a href="#">
-            <li><span>PRODUCT</span></li>
-          </a>
-          <a href="#">
-            <li><span>PRODUCT</span></li>
-          </a>
-          <a href="#">
-            <li><span>PRODUCT</span></li>
-          </a>
-        </ul>
-        <span id="header-text-logo">GODTHISM</span>
-        <div id="menu-logo">
-          <a href="#" id="first"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></a>
-          <a href="#"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
-          <a href="#"><i class="fa-regular fa-heart" style="color: #000000;"></i></a>
-          <a href="#"><i class="fa-sharp fa-solid fa-rotate" style="color: #000000;"></i></a>
-          <a href="#"><i class="fa-regular fa-user" style="color: #000000;"></i></a>
-          <a href="#" id="last"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
-        </div>
-      </div>
-    </div> -->
     <div>
       <?php include('../view/checkout.php') ?>
    </div>

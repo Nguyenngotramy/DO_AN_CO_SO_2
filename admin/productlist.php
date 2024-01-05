@@ -102,7 +102,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                           $imgList = $PAd->Listimg($id);
                                           $Price = $PAd->getPrice($id);
                                         foreach($imgList as $img) {?>
-                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
+                                        <td style="display: grid;"><img style="width: 50px; height: 50px;" src="<?= $img["image"]?>" ></td>
                                         <?php  }?>
                                     <td><?= $Price ?></td>
                                         <td style="display: grid;">

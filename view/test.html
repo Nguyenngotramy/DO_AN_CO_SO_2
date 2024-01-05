@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <!-- <link rel="stylesheet" href="app.css"> -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <style>
+        ul {
+            display: flex;
+            list-style: none;
+            margin-top: 0;
+        }
+
+        .choice {
+            color: yellow;
+        }
+
+        li {
+            color: grey;
+            cursor: pointer;
+        }
+    </style>
+    <div class="review">
+        <h2>1 reviews for Product's Name</h2><br>
+        <div class="rate-star" style="z-index: 1;">
+            <div class="elements">
+                <span style="font-size: 36px; font-weight: bold;">5.0</span>
+                <div class="inline">
+                    <span class="material-icons">star </span>
+                    <span class="material-icons">star </span>
+                    <span class="material-icons">star </span>
+                    <span class="material-icons">star </span>
+                    <span class="material-icons">star </span>
+                </div>
+                <span style="margin-bottom: 10px;">Based on 1 reviews</span>
+                <button id="add-review">Add a review</button>
+                <!-- <script>
+                    function addReview() {
+                        var formReview = document.getElementById('form-review');
+                        formReview.style.opacity = '1';
+                        formReview.style.transform = 'translateY(0%)';
+                        formReview.style.height = 'auto';
+                    }
+                </script> -->
+            </div>
+            <div class="elements">
+                <div class="inline" style="margin: 5px 0;">
+                    <b>5 star</b>
+                    <div class="char"></div>
+                    <span style="margin-left: 10px">100%</span>
+                </div>
+                <div class="inline" style="margin: 5px 0;">
+                    <b>4 star</b>
+                    <div class="char"></div>
+                    <span style="margin-left: 10px">100%</span>
+                </div>
+                <div class="inline" style="margin: 5px 0;">
+                    <b>3 star</b>
+                    <div class="char"></div>
+                    <span style="margin-left: 10px">100%</span>
+                </div>
+                <div class="inline" style="margin: 5px 0;">
+                    <b>2 star</b>
+                    <div class="char"></div>
+                    <span style="margin-left: 10px">100%</span>
+                </div>
+                <div class="inline" style="margin: 5px 0;">
+                    <b>1 star</b>
+                    <div class="char"></div>
+                    <span style="margin-left: 10px">100%</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="form-review" style="margin-top: 30px;">
+            <div>
+                <label>Your name</label>
+                <input type="text" style="width: 525px; height: 20px; margin-left: 20px;">
+            </div>
+            <div style="display: flex; margin-top: 25px;">
+                <label>Satisfaction level: </label>
+                <ul>
+                    <li class="form-star" value="1"><span class="material-icons">star</span></li>
+                    <li class="form-star" value="2"><span class="material-icons">star</span></li>
+                    <li class="form-star" value="3"><span class="material-icons">star</span></li>
+                    <li class="form-star" value="4"><span class="material-icons">star</span></li>
+                    <li class="form-star" value="5"><span class="material-icons">star</span></li>
+                </ul>
+                <script>
+                    var listItems = document.querySelectorAll('#form-review .form-star');
+                    // var star = index;
+                    listItems.forEach((li, index) => {
+                        li.addEventListener('click', () => {
+                            listItems.forEach(item => item.classList.remove('choice'));
+                            if (index >= 0) {
+                                for (let i = 0; i <= index; i++) {
+                                    listItems[i].classList.add('choice');
+                                }
+                            }
+                            var value = li.getAttribute('value');
+                            console.log(value);
+                        });
+                    });
+                </script>
+            </div>
+            <label>Your review:</label><br>
+            <textarea style="width: 626px; height: 150px;"></textarea><br>
+            <button style="margin-left: 575px;">Submit</button>
+        </div>
+
+        <div class="comment" style="margin-top: 30px; border-top: 1px solid lightgrey; padding: 20px">
+            <img src="image/373398291_311101748103167_1757327635046334779_n.jpg" style="margin-right: 50px;">
+            <div style="border-bottom: 1px solid lightgrey; display: flex; width: 700px;">
+                <div style="width: 80%;">
+                    <b style="font-size: 20px;">John Ema</b><br>
+                    <span style="margin-bottom: 20px;">Reviewer</span><br>
+                    <div class="inline">
+                        <span class="material-icons">star </span>
+                        <span class="material-icons">star </span>
+                        <span class="material-icons">star </span>
+                        <span class="material-icons">star </span>
+                        <span class="material-icons">star </span>
+                    </div>
+                    <p>An evening dress that reveals a woman’s ankles while walking is the most disgusting thing I have
+                        ever seen.</p>
+                </div>
+                <span style="right: 0;">September 3, 2022</span>
+            </div>
+        </div>
+        <div class="comment" style="margin-top: 30px;">
+            <img src="image/373398291_311101748103167_1757327635046334779_n.jpg" style="margin-right: 50px;">
+            <div style="border-bottom: 1px solid lightgrey; display: flex; width: 700px;">
+                <div style="width: 80%;">
+                    <b style="font-size: 20px;">John Ema</b><br>
+                    <span style="margin-bottom: 20px;">Reviewer</span><br>
+                    <div class="inline">
+                        <span class="material-icons">
+                            star
+                        </span>
+                        <span class="material-icons">
+                            star
+                        </span>
+                        <span class="material-icons">
+                            star
+                        </span>
+                        <span class="material-icons">
+                            star
+                        </span>
+                        <span class="material-icons">
+                            star
+                        </span>
+                    </div>
+                    <p>An evening dress that reveals a woman’s ankles while walking is the most disgusting thing I have
+                        ever seen.</p>
+                </div>
+                <span style="right: 0;">September 3, 2022</span>
+            </div>
+        </div>
+    </div>;
+</body>
+
+</html>

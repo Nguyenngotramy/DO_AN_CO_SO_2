@@ -78,6 +78,7 @@
 
     <span style="font-weight: bold; padding-left: 6%; font-size: 23px;">Billing details</span>
     <form action="orderComplete.php" method="post">
+        <input type="hidden" >
         <div id="billing-details">
             <div class="left">
                 <label for="first-name">FIRST NAME *</label>
@@ -174,7 +175,6 @@
                     <input type="submit" value="Place order" onclick="validateForm()">
                 </div>
             </div>
-
         </div>
     </form>
 

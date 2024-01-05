@@ -770,6 +770,27 @@ body{
     margin-top: 50px;
 }
 
+#form-review ul {
+    display: flex;
+    list-style: none;
+    margin-top: 0;
+}
+
+.choice {
+    color: yellow;
+}
+
+#form-review li {
+    color: grey;
+    cursor: pointer;
+}
+#form-review{
+    z-index: 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    height: 0;
+    transition: transform 0.3s ease;
+}
 
 /* checkout.php */
 

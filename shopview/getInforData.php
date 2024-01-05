@@ -1,24 +1,4 @@
 <?php
-// require_once("../database/connecttemp.php");
-// include('../model/productdb.php');
-
-// $productID = $_POST['productID'];
-// echo $productID;
-// $productInfor = showInforOfProduct($productID);
-// $productDetails = showDetails($productID);
-// $colors = array();
-// $sizes = array();
-// foreach ($productDetails as $detail) {
-//     $color = $detail['color'];
-//     $size = $detail['size'];
-//     if (!in_array($color, $colors)) {
-//         $colors[] = $color;
-//     }
-
-//     if (!in_array($size, $sizes)) {
-//         $sizes[] = $size;
-//     }
-// }
 
 function descriptionProduct($productInfor)
 {

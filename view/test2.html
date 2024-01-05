@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        li {
+            color: black;
+            transition: color 0.3s;
+        }
+
+        li:hover {
+            color: yellow;
+        }
+
+        .prev-hovered {
+            color: red; /* Màu sắc bạn muốn áp dụng cho phần tử li đứng trước */
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+
+    <script>
+        // Lấy danh sách các phần tử li
+        const listItems = document.querySelectorAll('li');
+
+        // Lặp qua mỗi phần tử li
+        listItems.forEach((li, index) => {
+            // Thêm sự kiện hover
+            li.addEventListener('mouseover', () => {
+                // Loại bỏ lớp 'prev-hovered' từ tất cả các phần tử li
+                listItems.forEach(item => item.classList.remove('prev-hovered'));
+
+                // Thêm lớp 'prev-hovered' cho phần tử li đứng trước phần tử được hover
+                if (index > 0) {
+                    listItems[index - 1].classList.add('prev-hovered');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

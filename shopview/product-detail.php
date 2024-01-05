@@ -17,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost&family=Manrope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script src='main.js'></script>
 
     <link rel=" stylesheet" href="../view/css/checkout.css">
@@ -52,7 +54,6 @@
         <div class="elements">
             <div class="detail">
                 <?php
-                // $productID =  $_GET['productID'];
                 $productInfor = showInforOfProduct($productID);
                 $productDetails = showDetails($productID);
                 $colors = array();
@@ -174,12 +175,13 @@
                 <div class="can-buy">
                     <div class="inline" style="border-bottom: 1px solid lightgrey; padding: 5px 20px;">
                         <div class="quantity">
-                            <button name="cal" onclick="quantity('minus')">-</button>
-                            <input type="text" value="1" id="quantity">
-                            <button name="cal" onclick="quantity('plus')">+</button>
+                            <input type="number" value="1" id="quantity" min="1" max="100" style="width: 69px;
+    margin-left: 20px;
+    margin-right: -40px;">
                         </div>
                         <a class="btnAdd" onclick="myFunctionCheckout()"
                             data-page="<?php echo ($productInfor['productID']) ?>">Add to Cart</a>
+                        <input type="hidden" value="<?php echo ($productInfor['productID']) ?>" id="idProduct">
                         <span class="material-symbols-outlined" style="margin-left: 20px;">favorite</span>
                     </div>
                     <div class="inline" style="padding: 20px;">
@@ -218,14 +220,9 @@
                 document.addEventListener("DOMContentLoaded", function () {
                     console.log(<?php echo $description ?>);
                     show('description', <?php echo $description ?>);
-                    //Hề hước vl đéo hiểu???
                 });
             </script>
         </div>
-
-
-
-
 
         <div id="also-like">
             <span style="font-size: 25px; font-weight: bold;">Viewers Also Liked</span>
@@ -274,7 +271,7 @@
     </div>
     <?php include('../view/footer.php') ?>
 
-
+   
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function () {
@@ -333,8 +330,40 @@
 
         });
     </script>
+    <script>
+        function submitReview() {
+  let $pdID = document.getElementById('idProduct').value;
+  let $star = document.getElementById('inputHidden').value;
+  let $name = document.getElementById('name').value;
+  let $reviewText = document.getElementById('review-text').value;
+  console.log($pdID, $star, $name, $reviewText);
+ $.ajax({
+    type: "POST",
+    url: "review.php",
+    data: {
+        pdID: $pdID,
+        star: $star,
+        name: $name,
+        reviewText: $reviewText
+    },
+    dataType: 'json',
+    success: function (data) {
+        // var reviewList = data.reviewList;
+
+        // Sử dụng reviewList theo cách bạn muốn ở đây
+        // console.log(reviewList);
+        var reviewList = data.list;
+        $('#commentsOfReviewers').html(reviewList);
+        console.log(reviewList);
+    },
+    error: function (xhr, status, error) {
+        console.error("Error in AJAX request:", xhr.responseText);
+    }
+});
 
 
+}
+    </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

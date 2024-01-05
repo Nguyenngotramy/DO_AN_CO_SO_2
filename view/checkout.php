@@ -1,3 +1,4 @@
+<script src="script.js"></script>
 <div id="cart-div-control">
    <div id="icon-controler">
       <a id="choose-exit"><i onclick="myFunctionExit()" class="fa-solid fa-xmark" style="color: #000000;"></i></a>
@@ -36,9 +37,19 @@
       <a href="#" id="Viewcart">
          <li>View cart</li>
       </a>
+      <?php
+         if(isset($_SESSION['userID'])) {
+      ?>
       <a href="../shopview/checkout-page.php" id="Viewcart">
          <li>Check out</li>
       </a>
+      <?php } else {?>
+         <a id="Viewcart">
+         <button style="    background-color: transparent;
+    color: white;
+    font-size: 17px;" onclick="myFunctionLoginForm()" >Check out</button>
+      </a>
+      <?php }?>
    </div>
 </div>
 
