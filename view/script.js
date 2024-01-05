@@ -35,6 +35,12 @@ function myFunctionLoginForm() {
   var x = document.getElementById("form-login");
   x.style.transform = "translateX(0%)";
 }
+function myFunctionNewPass() {
+  var form = document.getElementById("log-in-cart");
+  form.style.transform = "translateX(0%)";
+  var x = document.getElementById("form-login3");
+  x.style.transform = "translateX(0%)";
+}
 
 function myFunctionCheckout() {
   var x = document.getElementById("cart-div-control");
