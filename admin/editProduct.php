@@ -14,14 +14,13 @@
 </head>
 
 <body>
-
-
- 
     <div class="container">
-    <div>
-         <?php include('../admin/rightbar.php') ?>
-      </div>
+   
       <?php
+      if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+        ob_start();
+    }
 include_once('../model/addProductDB.php');
 $AddPDB = new AddProductDB();
   include_once("../model/ProductAdminDB.php");
@@ -29,23 +28,7 @@ $AddPDB = new AddProductDB();
 
 if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
 ?>
-        <nav>
-            <ul class="menu-main-admin">
-                         <li><a href="#" class="logo">
-                                <img src="./pic/logo.jpg">
-                                <!-- <span class="nav-item">Admin</span> -->
-                               <?php if (isset($_SESSION['userID']) && ($_SESSION['userID'] != "")) : ?>
-           <a href=""><?php echo $_SESSION['userID']; ?></a>
-           <?php
-            if (isset($_GET['exit'])) {
-            session_unset();
-            session_destroy();
-            header('Location: productlist.php');
-            exit();
-             }
-?>
-            <?php endif ?>
-            <div>
+        <div>
          <?php include('../admin/rightbar.php') ?>
       </div>
         <section class="main">
@@ -211,12 +194,6 @@ foreach ($VariousByID as $various):
         <?php endforeach; ?>
     </select>
 </div>
-
-        
-    
-
-
-
                                 </div>
                                      
                             
