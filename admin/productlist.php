@@ -80,6 +80,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                         <th>Category</th>
                                         <th>Img</th>
                                         <th>Price</th>
+                                        <th>Number</th>
                                         <th>Details</th>
                                         
                                        
@@ -104,6 +105,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role']==1)) {
                                         foreach($imgList as $img) {?>
                                         <td style="display: grid;"><img style="width: 50px; height: 50px;" src="../view/img/<?= $img["image"]?>" ></td>
                                         <?php  }?>
+                                    <td><?= $Price ?></td>
                                     <td><?= $Price ?></td>
                                         <td style="display: grid;">
 
